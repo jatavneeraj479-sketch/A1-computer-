@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobs & Career Hub | A1 Computer</title>
+<meta name="description" content="A1 Computer Jobs & Career Hub - Government Jobs, MP Jobs, Private Jobs, Admit Card, Results, Answer Key and Career Guidance.">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+}
+
+:root{
+    --bg:#050711;
+    --bg2:#0a0d18;
+    --card:rgba(17,22,38,.78);
+    --card2:rgba(25,31,52,.72);
+    --text:#f6f7ff;
+    --muted:#a8afc4;
+    --line:rgba(255,255,255,.10);
+    --blue:#5da9ff;
+    --cyan:#53e5ff;
+    --purple:#9b7cff;
+    --green:#55e6a5;
+    --orange:#ffb65c;
+    --red:#ff6b7a;
+    --shadow:0 20px 60px rgba(0,0,0,.38);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at 10% 10%,rgba(83,229,255,.11),transparent 28%),
+        radial-gradient(circle at 90% 15%,rgba(155,124,255,.12),transparent 30%),
+        radial-gradient(circle at 50% 90%,rgba(85,230,165,.08),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:45px 45px;
+    mask-image:linear-gradient(to bottom,black,transparent);
+    z-index:-1;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(20px);
+    background:rgba(5,7,17,.78);
+    border-bottom:1px solid var(--line);
+}
+
+.nav{
+    width:min(1250px,94%);
+    margin:auto;
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    text-decoration:none;
+    color:white;
+    font-weight:900;
+    letter-spacing:.5px;
+    font-size:20px;
+}
+
+.logo-box{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    box-shadow:0 0 30px rgba(83,229,255,.25);
+    color:#050711;
+    font-weight:1000;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.nav-btn{
+    color:#dce3f6;
+    text-decoration:none;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.045);
+    padding:10px 14px;
+    border-radius:12px;
+    transition:.25s;
+    font-size:14px;
+}
+
+.nav-btn:hover{
+    transform:translateY(-2px);
+    border-color:rgba(83,229,255,.45);
+    background:rgba(83,229,255,.08);
+}
+
+/* HERO */
+
+.hero{
+    width:min(1250px,94%);
+    margin:55px auto 25px;
+    min-height:390px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:32px;
+    padding:52px;
+    background:
+        radial-gradient(circle at 85% 30%,rgba(83,229,255,.18),transparent 28%),
+        radial-gradient(circle at 70% 90%,rgba(155,124,255,.16),transparent 28%),
+        linear-gradient(135deg,rgba(18,24,42,.92),rgba(8,11,23,.88));
+    box-shadow:var(--shadow);
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    right:-100px;
+    top:-100px;
+    border-radius:50%;
+    border:1px solid rgba(83,229,255,.16);
+    box-shadow:
+        0 0 0 35px rgba(83,229,255,.025),
+        0 0 0 70px rgba(83,229,255,.018);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:720px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border-radius:999px;
+    background:rgba(83,229,255,.08);
+    border:1px solid rgba(83,229,255,.22);
+    color:#8eeeff;
+    font-size:13px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.badge span{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
+}
+
+h1{
+    font-size:clamp(38px,6vw,72px);
+    line-height:1.02;
+    letter-spacing:-3px;
+    margin-bottom:20px;
+}
+
+.gradient-text{
+    background:linear-gradient(90deg,#fff,var(--cyan),#bba9ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:650px;
+    line-height:1.75;
+    font-size:17px;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:28px;
+}
+
+.primary-btn,
+.secondary-btn{
+    border:0;
+    cursor:pointer;
+    text-decoration:none;
+    padding:14px 18px;
+    border-radius:14px;
+    font-weight:850;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    transition:.25s;
+}
+
+.primary-btn{
+    background:linear-gradient(135deg,var(--cyan),#6f9dff);
+    color:#06101b;
+    box-shadow:0 12px 35px rgba(83,229,255,.17);
+}
+
+.secondary-btn{
+    color:white;
+    background:rgba(255,255,255,.055);
+    border:1px solid var(--line);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover{
+    transform:translateY(-3px);
+}
+
+/* SEARCH */
+
+.search-section{
+    width:min(1250px,94%);
+    margin:28px auto;
+}
+
+.search-box{
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    padding:19px 20px 19px 54px;
+    border-radius:18px;
+    outline:none;
+    border:1px solid var(--line);
+    background:rgba(15,19,34,.82);
+    color:white;
+    font-size:16px;
+    box-shadow:0 12px 35px rgba(0,0,0,.18);
+}
+
+.search-box input:focus{
+    border-color:rgba(83,229,255,.45);
+    box-shadow:0 0 0 4px rgba(83,229,255,.05);
+}
+
+.search-icon{
+    position:absolute;
+    left:19px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:20px;
+    color:#8b96ad;
+}
+
+/* FILTER */
+
+.filters{
+    width:min(1250px,94%);
+    margin:18px auto 30px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+}
+
+.filter{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    color:#bfc7db;
+    padding:10px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:.2s;
+    font-size:13px;
+    font-weight:750;
+}
+
+.filter:hover,
+.filter.active{
+    background:rgba(83,229,255,.10);
+    color:#aaf2ff;
+    border-color:rgba(83,229,255,.35);
+}
+
+/* SECTION */
+
+.section{
+    width:min(1250px,94%);
+    margin:42px auto;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.section-heading h2{
+    font-size:28px;
+    letter-spacing:-1px;
+}
+
+.section-heading p{
+    color:var(--muted);
+    margin-top:6px;
+}
+
+/* GRID */
+
+.jobs-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.job-card{
+    position:relative;
+    padding:22px;
+    border:1px solid var(--line);
+    background:linear-gradient(145deg,var(--card),rgba(10,14,27,.72));
+    border-radius:22px;
+    min-height:250px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.job-card:before{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    right:-45px;
+    top:-45px;
+    border-radius:50%;
+    background:var(--glow,rgba(83,229,255,.12));
+    filter:blur(2px);
+}
+
+.job-card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(83,229,255,.28);
+    box-shadow:0 22px 50px rgba(0,0,0,.28);
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    position:relative;
+    z-index:2;
+}
+
+.icon{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    display:grid;
+    place-items:center;
+    font-size:25px;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--line);
+}
+
+.tag{
+    height:max-content;
+    padding:6px 9px;
+    border-radius:999px;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.4px;
+    background:rgba(83,229,255,.09);
+    color:#8feeff;
+    border:1px solid rgba(83,229,255,.18);
+}
+
+.job-card h3{
+    margin-top:19px;
+    font-size:19px;
+    position:relative;
+    z-index:2;
+}
+
+.job-card p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.65;
+    margin-top:9px;
+    position:relative;
+    z-index:2;
+}
+
+.card-link{
+    margin-top:17px;
+    color:#a9efff;
+    font-size:13px;
+    font-weight:850;
+    position:relative;
+    z-index:2;
+}
+
+/* FEATURE STRIP */
+
+.stats{
+    width:min(1250px,94%);
+    margin:25px auto 10px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.stat{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    border-radius:18px;
+    padding:18px;
+}
+
+.stat strong{
+    display:block;
+    font-size:25px;
+    margin-bottom:5px;
+}
+
+.stat span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* INFO */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1.4fr .6fr;
+    gap:16px;
+}
+
+.info-card{
+    border:1px solid var(--line);
+    border-radius:23px;
+    background:rgba(14,18,32,.76);
+    padding:26px;
+}
+
+.info-card h3{
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.info-card p,
+.info-card li{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:14px;
+}
+
+.info-card ul{
+    padding-left:20px;
+}
+
+/* CONTACT */
+
+.contact{
+    width:min(1250px,94%);
+    margin:55px auto 30px;
+    padding:32px;
+    border:1px solid rgba(83,229,255,.16);
+    border-radius:26px;
+    background:
+        linear-gradient(135deg,rgba(83,229,255,.07),rgba(155,124,255,.07)),
+        rgba(12,16,29,.82);
+}
+
+.contact-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+}
+
+.contact h2{
+    font-size:27px;
+    margin-bottom:8px;
+}
+
+.contact p{
+    color:var(--muted);
+    line-height:1.6;
+}
+
+.contact-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(12px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(650px,100%);
+    max-height:90vh;
+    overflow:auto;
+    border:1px solid var(--line);
+    border-radius:26px;
+    background:#0b0f1d;
+    box-shadow:0 35px 100px rgba(0,0,0,.55);
+    padding:27px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:17px;
+    top:17px;
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.05);
+    color:white;
+    cursor:pointer;
+    font-size:19px;
+}
+
+.modal-icon{
+    width:62px;
+    height:62px;
+    display:grid;
+    place-items:center;
+    border-radius:18px;
+    font-size:30px;
+    background:rgba(83,229,255,.08);
+    margin-bottom:17px;
+}
+
+.modal-box h2{
+    padding-right:45px;
+    margin-bottom:9px;
+}
+
+.modal-box p{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:14px;
+}
+
+.modal-list{
+    margin:18px 0;
+    padding-left:20px;
+}
+
+.modal-list li{
+    color:#cbd2e5;
+    margin:8px 0;
+    line-height:1.55;
+}
+
+.modal-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+}
+
+/* AGE CALCULATOR */
+
+.age-box{
+    margin-top:18px;
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:17px;
+    background:rgba(255,255,255,.035);
+}
+
+.age-box label{
+    display:block;
+    color:#cbd2e5;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.age-box input{
+    width:100%;
+    padding:13px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:#080b15;
+    color:white;
+    outline:none;
+}
+
+.age-result{
+    margin-top:13px;
+    color:#8feeff;
+    font-weight:800;
+    line-height:1.6;
+}
+
+/* MOBILE NAV */
+
+.mobile-nav{
+    display:none;
+    position:fixed;
+    bottom:12px;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(94%,450px);
+    z-index:2000;
+    background:rgba(8,11,21,.91);
+    backdrop-filter:blur(20px);
+    border:1px solid var(--line);
+    border-radius:19px;
+    padding:9px;
+    box-shadow:0 15px 50px rgba(0,0,0,.45);
+}
+
+.mobile-nav-inner{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:5px;
+}
+
+.mobile-nav a{
+    color:#b8c0d4;
+    text-decoration:none;
+    text-align:center;
+    padding:8px 4px;
+    border-radius:12px;
+    font-size:11px;
+}
+
+.mobile-nav a span{
+    display:block;
+    font-size:18px;
+    margin-bottom:3px;
+}
+
+.mobile-nav a:hover{
+    color:white;
+    background:rgba(255,255,255,.06);
+}
+
+/* FOOTER */
+
+footer{
+    width:min(1250px,94%);
+    margin:45px auto 100px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    color:#737d95;
+    font-size:12px;
+}
+
+.no-results{
+    display:none;
+    padding:45px 20px;
+    text-align:center;
+    color:var(--muted);
+    border:1px dashed var(--line);
+    border-radius:20px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+    .jobs-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .contact-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:650px){
+    .nav{
+        min-height:67px;
+    }
+
+    .nav-actions .nav-btn:nth-child(2){
+        display:none;
+    }
+
+    .hero{
+        margin-top:22px;
+        padding:30px 22px;
+        border-radius:25px;
+        min-height:440px;
+    }
+
+    h1{
+        font-size:43px;
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .primary-btn,
+    .secondary-btn{
+        width:100%;
+    }
+
+    .jobs-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .section-heading{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .contact{
+        padding:24px 20px;
+    }
+
+    .contact-buttons{
+        width:100%;
+        flex-direction:column;
+    }
+
+    .contact-buttons a{
+        width:100%;
+    }
+
+    .mobile-nav{
+        display:block;
+    }
+
+    footer{
+        margin-bottom:110px;
+        flex-direction:column;
+    }
+}
+
+@media(max-width:390px){
+    .stats{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav class="nav">
+        <a class="logo" href="../index.html">
+            <div class="logo-box">A1</div>
+            <span>A1 Computer</span>
+        </a>
+
+        <div class="nav-actions">
+            <a class="nav-btn" href="../index.html">⌂ Home</a>
+            <a class="nav-btn" href="services.html">Services</a>
+            <a class="nav-btn" href="contact.html">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="hero-content">
+
+        <div class="badge">
+            <span></span>
+            A1 CAREER SYSTEM • 2026
+        </div>
+
+        <h1>
+            Jobs &amp;<br>
+            <span class="gradient-text">Career Hub</span>
+        </h1>
+
+        <p>
+            Government jobs, MP government vacancies, private jobs,
+            admit cards, results, answer keys, syllabus, eligibility
+            और career guidance — सब कुछ एक जगह।
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#jobs" class="primary-btn">🚀 Explore Jobs</a>
+            <a href="contact.html" class="secondary-btn">💬 Get Help</a>
+        </div>
+
+    </div>
+</section>
+
+<div class="stats">
+    <div class="stat">
+        <strong>10+</strong>
+        <span>Career Categories</span>
+    </div>
+
+    <div class="stat">
+        <strong>24×7</strong>
+        <span>Career Information Access</span>
+    </div>
+
+    <div class="stat">
+        <strong>MP</strong>
+        <span>Local Job Support</span>
+    </div>
+
+    <div class="stat">
+        <strong>A1</strong>
+        <span>Application Assistance</span>
+    </div>
+</div>
+
+<section class="search-section" id="jobs">
+
+    <div class="search-box">
+        <span class="search-icon">⌕</span>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search jobs, admit card, result, SSC, Railway, MP Govt..."
+            autocomplete="off"
+        >
+    </div>
+
+</section>
+
+<div class="filters">
+    <button class="filter active" data-filter="all">All</button>
+    <button class="filter" data-filter="government">Government</button>
+    <button class="filter" data-filter="mp">MP Govt</button>
+    <button class="filter" data-filter="central">Central Govt</button>
+    <button class="filter" data-filter="private">Private</button>
+    <button class="filter" data-filter="admit">Admit Card</button>
+    <button class="filter" data-filter="result">Results</button>
+    <button class="filter" data-filter="answer">Answer Key</button>
+    <button class="filter" data-filter="career">Syllabus / Career</button>
+</div>
+
+<section class="section">
+
+    <div class="section-heading">
+        <div>
+            <h2>Career Services</h2>
+            <p>Choose a service and get basic guidance instantly.</p>
+        </div>
+    </div>
+
+    <div class="jobs-grid" id="jobsGrid">
+
+        <article class="job-card" data-category="government latest" data-title="Latest Government Jobs" onclick="openModal('latest')">
+            <div class="card-top">
+                <div class="icon">🏛️</div>
+                <div class="tag">LATEST</div>
+            </div>
+            <h3>Latest Government Jobs</h3>
+            <p>New government vacancy information, eligibility, age limit and application guidance.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="government central" data-title="Central Government Jobs" onclick="openModal('central')">
+            <div class="card-top">
+                <div class="icon">🇮🇳</div>
+                <div class="tag">CENTRAL</div>
+            </div>
+            <h3>Central Government Jobs</h3>
+            <p>SSC, UPSC, Railway, Banking and other central recruitment guidance.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="government mp" data-title="MP Government Jobs" onclick="openModal('mp')">
+            <div class="card-top">
+                <div class="icon">🏢</div>
+                <div class="tag">MP</div>
+            </div>
+            <h3>MP Government Jobs</h3>
+            <p>Madhya Pradesh government recruitment, MPPSC, MPESB and department jobs.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="private" data-title="Private Jobs" onclick="openModal('private')">
+            <div class="card-top">
+                <div class="icon">💼</div>
+                <div class="tag">PRIVATE</div>
+            </div>
+            <h3>Private Jobs</h3>
+            <p>Private-sector career options, application support and basic job guidance.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="admit government" data-title="Admit Card" onclick="openModal('admit')">
+            <div class="card-top">
+                <div class="icon">🎫</div>
+                <div class="tag">EXAM</div>
+            </div>
+            <h3>Admit Card</h3>
+            <p>Exam admit card information, download guidance and document checklist.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="result government" data-title="Results" onclick="openModal('result')">
+            <div class="card-top">
+                <div class="icon">📊</div>
+                <div class="tag">RESULT</div>
+            </div>
+            <h3>Results</h3>
+            <p>Exam result guidance, result checking steps and next-stage information.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="answer government" data-title="Answer Key" onclick="openModal('answer')">
+            <div class="card-top">
+                <div class="icon">📝</div>
+                <div class="tag">KEY</div>
+            </div>
+            <h3>Answer Key</h3>
+            <p>Answer key information, objection process and result preparation guidance.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="career government central mp" data-title="Syllabus" onclick="openModal('syllabus')">
+            <div class="card-top">
+                <div class="icon">📚</div>
+                <div class="tag">STUDY</div>
+            </div>
+            <h3>Syllabus &amp; Preparation</h3>
+            <p>Exam syllabus, subject planning, preparation strategy and study guidance.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="career government central mp private" data-title="Eligibility" onclick="openModal('eligibility')">
+            <div class="card-top">
+                <div class="icon">✅</div>
+                <div class="tag">CHECK</div>
+            </div>
+            <h3>Eligibility Check</h3>
+            <p>Understand qualification, age, category and basic eligibility requirements.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="career government central mp" data-title="Age Calculator" onclick="openModal('age')">
+            <div class="card-top">
+                <div class="icon">🧮</div>
+                <div class="tag">TOOL</div>
+            </div>
+            <h3>Age Calculator</h3>
+            <p>Calculate your current age in years, months and days for basic eligibility checking.</p>
+            <div class="card-link">Open calculator →</div>
+        </article>
+
+        <article class="job-card" data-category="career government central mp" data-title="Exam Calendar" onclick="openModal('calendar')">
+            <div class="card-top">
+                <div class="icon">📅</div>
+                <div class="tag">PLAN</div>
+            </div>
+            <h3>Exam Calendar</h3>
+            <p>Plan your preparation around upcoming examinations and recruitment cycles.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+        <article class="job-card" data-category="career private government central mp" data-title="Career Guidance" onclick="openModal('career')">
+            <div class="card-top">
+                <div class="icon">🚀</div>
+                <div class="tag">GUIDE</div>
+            </div>
+            <h3>Career Guidance</h3>
+            <p>Choose a career direction based on qualification, interests and target exams.</p>
+            <div class="card-link">Open details →</div>
+        </article>
+
+    </div>
+
+    <div class="no-results" id="noResults">
+        <div style="font-size:35px;margin-bottom:10px;">🔎</div>
+        <strong>No matching service found</strong>
+        <p style="margin-top:7px;">Try another keyword or select a different category.</p>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="info-grid">
+
+        <div class="info-card">
+            <h3>🎯 Smart Job Preparation</h3>
+            <p>
+                A1 Computer पर किसी भी vacancy के लिए application से पहले
+                qualification, age limit, documents और important dates check करना
+                आसान बनाया गया है।
+            </p>
+
+            <ul style="margin-top:15px;">
+                <li>Qualification और eligibility समझें</li>
+                <li>Age limit check करें</li>
+                <li>Required documents तैयार रखें</li>
+                <li>Syllabus देखकर preparation plan बनाएं</li>
+                <li>Admit Card और Result updates track करें</li>
+                <li>Application में गलती होने से बचें</li>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <h3>📌 A1 Help Desk</h3>
+            <p>
+                Online form, print, scan, PDF, application assistance
+                और basic career information के लिए A1 Computer से संपर्क करें।
+            </p>
+
+            <div style="margin-top:20px;display:grid;gap:10px;">
+                <a class="secondary-btn" href="tel:9993831755">📞 Call A1</a>
+                <a class="secondary-btn" href="https://wa.me/919993831755" target="_blank">💬 WhatsApp</a>
+                <a class="secondary-btn" href="mailto:jatavneeraj479@gmail.com">✉️ Email</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="contact">
+
+    <div class="contact-inner">
+
+        <div>
+            <h2>Need help with a job form?</h2>
+            <p>
+                A1 Computer, New Bus Stand, Ajaigarh<br>
+                Application support • Print • Scan • PDF • Career Help
+            </p>
+        </div>
+
+        <div class="contact-buttons">
+            <a class="primary-btn" href="tel:9993831755">📞 9993831755</a>
+            <a class="secondary-btn" href="https://wa.me/919993831755" target="_blank">💬 WhatsApp</a>
+            <a class="secondary-btn" href="mailto:jatavneer479@gmail.com">✉️ Email</a>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <div>© 2026 A1 Computer • New Bus Stand, Ajaigarh</div>
+    <div>Jobs • Career • Education • Digital Services</div>
+</footer>
+
+<!-- MODAL -->
+
+<div class="modal" id="detailModal" onclick="closeOutside(event)">
+    <div class="modal-box">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div class="modal-icon" id="modalIcon">🏛️</div>
+
+        <h2 id="modalTitle">Latest Government Jobs</h2>
+
+        <p id="modalDescription"></p>
+
+        <ul class="modal-list" id="modalList"></ul>
+
+        <div id="ageCalculator" class="age-box" style="display:none;">
+
+            <label for="dob">Select Date of Birth</label>
+
+            <input type="date" id="dob">
+
+            <button
+                class="primary-btn"
+                style="margin-top:12px;width:100%;"
+                onclick="calculateAge()"
+            >
+                Calculate Age
+            </button>
+
+            <div class="age-result" id="ageResult"></div>
+
+        </div>
+
+        <div class="modal-actions">
+            <a class="primary-btn" href="tel:9993831755">📞 Call A1</a>
+            <a class="secondary-btn" href="https://wa.me/919993831755" target="_blank">💬 WhatsApp</a>
+            <button class="secondary-btn" onclick="closeModal()">Close</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- MOBILE NAV -->
+
+<div class="mobile-nav">
+    <div class="mobile-nav-inner">
+
+        <a href="../index.html">
+            <span>⌂</span>
+            Home
+        </a>
+
+        <a href="services.html">
+            <span>◈</span>
+            Services
+        </a>
+
+        <a href="#jobs">
+            <span>💼</span>
+            Jobs
+        </a>
+
+        <a href="contact.html">
+            <span>☎</span>
+            Contact
+        </a>
+
+    </div>
+</div>
+
+<script>
+
+const jobDetails = {
+
+    latest:{
+        icon:"🏛️",
+        title:"Latest Government Jobs",
+        description:"Government recruitment में vacancy खोजने से लेकर basic application preparation तक A1 Computer सहायता दे सकता है।",
+        list:[
+            "नई vacancy की official notification जरूर check करें।",
+            "Qualification और age limit application से पहले verify करें।",
+            "Application की last date और fee details ध्यान से देखें।",
+            "Required documents की clear copies तैयार रखें।",
+            "Final submission के बाद application/registration number सुरक्षित रखें।"
+        ]
+    },
+
+    central:{
+        icon:"🇮🇳",
+        title:"Central Government Jobs",
+        description:"Central government career के लिए SSC, UPSC, Railway, Banking और अन्य recruitment categories की basic guidance।",
+        list:[
+            "SSC और UPSC examinations",
+            "Railway recruitment",
+            "Central government departments",
+            "Banking recruitment",
+            "Admit card, result और answer key guidance"
+        ]
+    },
+
+    mp:{
+        icon:"🏢",
+        title:"MP Government Jobs",
+        description:"Madhya Pradesh में MPPSC, MPESB और अन्य government recruitment के लिए career information और application assistance।",
+        list:[
+            "MPPSC recruitment",
+            "MPESB examinations",
+            "MP government department vacancies",
+            "Eligibility और age guidance",
+            "Online application assistance"
+        ]
+    },
+
+    private:{
+        icon:"💼",
+        title:"Private Jobs",
+        description:"Private-sector opportunities के लिए job profile, qualification और application preparation की basic guidance।",
+        list:[
+            "Entry-level private jobs",
+            "Office और computer-related jobs",
+            "Sales और customer support roles",
+            "Resume/application assistance",
+            "Basic career direction"
+        ]
+    },
+
+    admit:{
+        icon:"🎫",
+        title:"Admit Card",
+        description:"Admit card जारी होने के बाद उसे download करने और exam day के लिए documents तैयार करने में सहायता।",
+        list:[
+            "Registration/Application number रखें।",
+            "Date of birth/password details तैयार रखें।",
+            "Admit card का print निकालें।",
+            "Photo ID और required documents साथ रखें।",
+            "Exam centre और reporting time ध्यान से check करें।"
+        ]
+    },
+
+    result:{
+        icon:"📊",
+        title:"Results",
+        description:"Exam result check करने के लिए basic process और result के बाद next step की जानकारी।",
+        list:[
+            "Roll number/Application number तैयार रखें।",
+            "Official result notice check करें।",
+            "Score/qualification status verify करें।",
+            "Cut-off और next-stage information देखें।",
+            "Result का PDF/print सुरक्षित रखें।"
+        ]
+    },
+
+    answer:{
+        icon:"📝",
+        title:"Answer Key",
+        description:"Answer key से अपने संभावित score का अनुमान और objection process की basic understanding प्राप्त करें।",
+        list:[
+            "Official answer key को priority दें।",
+            "Question paper और answer key match करें।",
+            "Response/marked answers सुरक्षित रखें।",
+            "Objection window की last date check करें।",
+            "Final answer key को result के समय ध्यान में रखें।"
+        ]
+    },
+
+    syllabus:{
+        icon:"📚",
+        title:"Syllabus & Preparation",
+        description:"किसी भी competitive examination की तैयारी शुरू करने से पहले syllabus को समझना सबसे जरूरी step है।",
+        list:[
+            "Official syllabus download करें।",
+            "Subjects को छोटे topics में divide करें।",
+            "Previous year papers solve करें।",
+            "Weekly revision schedule बनाएं।",
+            "Mock tests और time management पर focus करें।"
+        ]
+    },
+
+    eligibility:{
+        icon:"✅",
+        title:"Eligibility Check",
+        description:"Job application से पहले educational qualification, age limit और अन्य requirements को verify करना जरूरी है।",
+        list:[
+            "Educational qualification check करें।",
+            "Age limit और cut-off date देखें।",
+            "Category-related relaxation notification से verify करें।",
+            "Required certificate/document check करें।",
+            "Final eligibility हमेशा official notification से confirm करें।"
+        ]
+    },
+
+    age:{
+        icon:"🧮",
+        title:"Age Calculator",
+        description:"नीचे अपनी date of birth डालकर current age calculate करें। यह सामान्य age calculation है; किसी भर्ती की official age eligibility notification से verify करें।",
+        list:[
+            "Date of birth select करें।",
+            "Calculate Age दबाएं।",
+            "Years, months और days देखें।",
+            "Recruitment की official cut-off date अलग हो सकती है।"
+        ]
+    },
+
+    calendar:{
+        icon:"📅",
+        title:"Exam Calendar",
+        description:"अपने target exams के लिए preparation calendar बनाएं और important recruitment dates को track करें।",
+        list:[
+            "Target examination चुनें।",
+            "Notification date note करें।",
+            "Application last date mark करें।",
+            "Admit card और exam date note करें।",
+            "Result/next stage के लिए अलग reminder रखें।"
+        ]
+    },
+
+    career:{
+        icon:"🚀",
+        title:"Career Guidance",
+        description:"आपकी qualification और target के हिसाब से suitable government, private या skill-based career direction समझने में A1 Computer मदद कर सकता है।",
+        list:[
+            "अपनी highest qualification identify करें।",
+            "Government/private preference तय करें।",
+            "Target exams की list बनाएं।",
+            "Required skills और subjects identify करें।",
+            "एक realistic preparation routine बनाएं।"
+        ]
+    }
+
+};
+
+function openModal(type){
+
+    const data = jobDetails[type];
+
+    if(!data) return;
+
+    document.getElementById("modalIcon").textContent = data.icon;
+    document.getElementById("modalTitle").textContent = data.title;
+    document.getElementById("modalDescription").textContent = data.description;
+
+    const list = document.getElementById("modalList");
+
+    list.innerHTML = "";
+
+    data.list.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+    });
+
+    document.getElementById("ageCalculator").style.display =
+        type === "age" ? "block" : "none";
+
+    document.getElementById("ageResult").textContent = "";
+
+    document.getElementById("detailModal").classList.add("show");
+
+    document.body.style.overflow = "hidden";
+}
+
+function closeModal(){
+
+    document.getElementById("detailModal").classList.remove("show");
+
+    document.body.style.overflow = "";
+}
+
+function closeOutside(event){
+
+    if(event.target === document.getElementById("detailModal")){
+        closeModal();
+    }
+}
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key === "Escape"){
+        closeModal();
+    }
+
+});
+
+function calculateAge(){
+
+    const dobValue = document.getElementById("dob").value;
+    const result = document.getElementById("ageResult");
+
+    if(!dobValue){
+        result.textContent = "Please select your date of birth.";
+        return;
+    }
+
+    const dob = new Date(dobValue + "T00:00:00");
+    const today = new Date();
+
+    if(dob > today){
+        result.textContent = "Date of birth future में नहीं हो सकती।";
+        return;
+    }
+
+    let years = today.getFullYear() - dob.getFullYear();
+    let months = today.getMonth() - dob.getMonth();
+    let days = today.getDate() - dob.getDate();
+
+    if(days < 0){
+
+        months--;
+
+        const previousMonth = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            0
+        );
+
+        days += previousMonth.getDate();
+    }
+
+    if(months < 0){
+
+        years--;
+        months += 12;
+    }
+
+    result.textContent =
+        "Your current age: " +
+        years +
+        " years, " +
+        months +
+        " months, " +
+        days +
+        " days.";
+
+}
+
+const filters = document.querySelectorAll(".filter");
+const cards = document.querySelectorAll(".job-card");
+const searchInput = document.getElementById("searchInput");
+const noResults = document.getElementById("noResults");
+
+let activeFilter = "all";
+
+function applyFilters(){
+
+    const query = searchInput.value.toLowerCase().trim();
+
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+
+        const categories = card.dataset.category.toLowerCase();
+        const title = card.dataset.title.toLowerCase();
+        const text = card.textContent.toLowerCase();
+
+        const filterMatch =
+            activeFilter === "all" ||
+            categories.includes(activeFilter);
+
+        const searchMatch =
+            !query ||
+            title.includes(query) ||
+            text.includes(query) ||
+            categories.includes(query);
+
+        if(filterMatch && searchMatch){
+
+            card.style.display = "";
+
+            visibleCount++;
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    noResults.style.display =
+        visibleCount === 0 ? "block" : "none";
+}
+
+filters.forEach(button => {
+
+    button.addEventListener("click",function(){
+
+        filters.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        this.classList.add("active");
+
+        activeFilter = this.dataset.filter;
+
+        applyFilters();
+
+    });
+
+});
+
+searchInput.addEventListener("input",applyFilters);
+
+</script>
+
+</body>
+</html>
