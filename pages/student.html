@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>Student Hub | A1 Computer</title>
+
+<style>
+:root{
+  --bg:#050914;
+  --bg2:#091426;
+  --card:rgba(15,28,49,.78);
+  --card2:rgba(18,35,61,.9);
+  --line:rgba(255,255,255,.10);
+  --text:#f5f8ff;
+  --muted:#9eabc0;
+  --cyan:#36d9ff;
+  --blue:#5c7cff;
+  --violet:#9b6cff;
+  --green:#36e0a0;
+  --yellow:#ffd166;
+  --danger:#ff6685;
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+  --radius:24px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(54,217,255,.13),transparent 28%),
+    radial-gradient(circle at 90% 15%,rgba(155,108,255,.13),transparent 30%),
+    radial-gradient(circle at 50% 90%,rgba(92,124,255,.10),transparent 35%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:45px 45px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  backdrop-filter:blur(20px);
+  background:rgba(5,9,20,.78);
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  letter-spacing:.5px;
+}
+
+.logo-mark{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));
+  color:white;
+  box-shadow:0 0 30px rgba(54,217,255,.25);
+}
+
+.logo-text{
+  line-height:1.05;
+}
+
+.logo-text strong{
+  display:block;
+  font-size:17px;
+}
+
+.logo-text span{
+  display:block;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:3px;
+  letter-spacing:1.5px;
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.nav-btn{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  padding:10px 15px;
+  border-radius:14px;
+  transition:.25s;
+}
+
+.nav-btn:hover{
+  border-color:rgba(54,217,255,.5);
+  transform:translateY(-2px);
+}
+
+.home-btn{
+  background:linear-gradient(135deg,rgba(54,217,255,.16),rgba(92,124,255,.14));
+}
+
+/* HERO */
+
+.hero{
+  padding:65px 0 35px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.35fr .65fr;
+  gap:25px;
+  align-items:stretch;
+}
+
+.hero-main{
+  position:relative;
+  overflow:hidden;
+  padding:42px;
+  border:1px solid var(--line);
+  border-radius:32px;
+  background:
+    radial-gradient(circle at 80% 10%,rgba(54,217,255,.16),transparent 25%),
+    radial-gradient(circle at 10% 90%,rgba(155,108,255,.16),transparent 30%),
+    var(--card);
+  box-shadow:var(--shadow);
+}
+
+.hero-main:after{
+  content:"";
+  position:absolute;
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  border:1px solid rgba(54,217,255,.13);
+  right:-90px;
+  bottom:-100px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  border-radius:999px;
+  background:rgba(54,217,255,.09);
+  border:1px solid rgba(54,217,255,.20);
+  color:#aeefff;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.6px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(38px,6vw,70px);
+  line-height:.98;
+  letter-spacing:-2.5px;
+  max-width:720px;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,var(--cyan),#fff,var(--violet));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  margin-top:20px;
+  color:var(--muted);
+  line-height:1.8;
+  max-width:650px;
+  font-size:16px;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:27px;
+}
+
+.primary{
+  border:0;
+  color:white;
+  padding:13px 18px;
+  border-radius:15px;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  box-shadow:0 10px 30px rgba(92,124,255,.22);
+  font-weight:800;
+}
+
+.secondary{
+  border:1px solid var(--line);
+  color:white;
+  padding:13px 18px;
+  border-radius:15px;
+  background:rgba(255,255,255,.05);
+  font-weight:700;
+}
+
+/* HERO SIDE */
+
+.study-orbit{
+  min-height:100%;
+  border:1px solid var(--line);
+  border-radius:32px;
+  background:linear-gradient(145deg,rgba(18,35,61,.9),rgba(9,20,38,.8));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.orbit{
+  width:230px;
+  height:230px;
+  border:1px dashed rgba(54,217,255,.25);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+
+.orbit:before,
+.orbit:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(155,108,255,.20);
+  border-radius:50%;
+}
+
+.orbit:before{
+  width:165px;
+  height:165px;
+}
+
+.orbit:after{
+  width:95px;
+  height:95px;
+}
+
+.orbit-center{
+  width:78px;
+  height:78px;
+  border-radius:25px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  font-size:32px;
+  box-shadow:0 0 35px rgba(92,124,255,.35);
+  z-index:2;
+}
+
+.orbit-item{
+  position:absolute;
+  width:47px;
+  height:47px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--line);
+  font-size:22px;
+}
+
+.o1{top:-12px;left:92px}
+.o2{right:-10px;top:90px}
+.o3{bottom:-10px;left:90px}
+.o4{left:-10px;top:90px}
+
+.orbit-title{
+  margin-top:22px;
+  font-weight:900;
+  font-size:20px;
+}
+
+.orbit-text{
+  color:var(--muted);
+  font-size:13px;
+  text-align:center;
+  margin-top:7px;
+}
+
+/* SEARCH */
+
+.search-section{
+  padding:18px 0 30px;
+}
+
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.045);
+  border-radius:18px;
+  padding:7px 9px 7px 17px;
+  box-shadow:0 15px 45px rgba(0,0,0,.18);
+}
+
+.search-icon{
+  font-size:20px;
+  opacity:.8;
+}
+
+.search-box input{
+  flex:1;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:white;
+  min-width:0;
+  padding:10px 0;
+}
+
+.search-box input::placeholder{
+  color:#77849a;
+}
+
+/* SECTION */
+
+.section{
+  padding:34px 0;
+}
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.section-title{
+  font-size:28px;
+  letter-spacing:-.8px;
+}
+
+.section-sub{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:6px;
+  line-height:1.6;
+}
+
+.count{
+  color:#aeefff;
+  font-size:13px;
+}
+
+/* FILTERS */
+
+.filters{
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding-bottom:7px;
+  margin-bottom:22px;
+  scrollbar-width:none;
+}
+
+.filters::-webkit-scrollbar{
+  display:none;
+}
+
+.filter{
+  flex:0 0 auto;
+  border:1px solid var(--line);
+  color:#b7c2d4;
+  background:rgba(255,255,255,.04);
+  padding:9px 13px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.filter.active{
+  color:white;
+  border-color:rgba(54,217,255,.45);
+  background:rgba(54,217,255,.10);
+}
+
+/* CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.card{
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,rgba(18,35,61,.82),rgba(10,20,35,.82));
+  border-radius:22px;
+  padding:20px;
+  min-height:185px;
+  position:relative;
+  overflow:hidden;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(54,217,255,.30);
+  box-shadow:0 18px 45px rgba(0,0,0,.25);
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  width:100px;
+  height:100px;
+  background:rgba(54,217,255,.08);
+  filter:blur(35px);
+  right:-40px;
+  top:-40px;
+}
+
+.card-icon{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  font-size:23px;
+  margin-bottom:17px;
+}
+
+.card h3{
+  font-size:17px;
+  position:relative;
+}
+
+.card p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+  margin-top:7px;
+  position:relative;
+}
+
+.card-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:17px;
+  position:relative;
+}
+
+.open-btn{
+  border:1px solid rgba(54,217,255,.22);
+  background:rgba(54,217,255,.08);
+  color:#baf3ff;
+  padding:7px 10px;
+  border-radius:10px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.cart-btn{
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.06);
+  color:white;
+}
+
+/* FEATURE BANNER */
+
+.feature{
+  margin:30px 0;
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:28px;
+  background:
+    linear-gradient(100deg,rgba(54,217,255,.09),rgba(155,108,255,.08)),
+    rgba(255,255,255,.035);
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:25px;
+}
+
+.feature h2{
+  font-size:27px;
+}
+
+.feature p{
+  color:var(--muted);
+  margin-top:7px;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.feature-badge{
+  font-size:40px;
+  padding:20px;
+}
+
+/* UPDATES */
+
+.updates{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.update{
+  padding:20px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
+  border-radius:20px;
+}
+
+.update-tag{
+  display:inline-block;
+  font-size:10px;
+  color:#b9f5ff;
+  background:rgba(54,217,255,.08);
+  border:1px solid rgba(54,217,255,.18);
+  border-radius:999px;
+  padding:6px 9px;
+  font-weight:800;
+}
+
+.update h3{
+  margin-top:13px;
+  font-size:16px;
+}
+
+.update p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+  margin-top:7px;
+}
+
+/* CONTACT */
+
+.contact{
+  margin:40px 0;
+  padding:32px;
+  border-radius:28px;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(circle at 100% 0%,rgba(54,217,255,.12),transparent 30%),
+    rgba(255,255,255,.035);
+  text-align:center;
+}
+
+.contact h2{
+  font-size:28px;
+}
+
+.contact p{
+  color:var(--muted);
+  margin:9px auto 20px;
+  max-width:620px;
+  line-height:1.7;
+}
+
+.contact-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.contact-actions a{
+  padding:11px 15px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  font-size:13px;
+  font-weight:800;
+}
+
+/* CART */
+
+.cart-float{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:500;
+  width:58px;
+  height:58px;
+  border:1px solid rgba(54,217,255,.3);
+  border-radius:19px;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  color:white;
+  font-size:22px;
+  box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.cart-count{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  min-width:21px;
+  height:21px;
+  padding:0 5px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background:var(--danger);
+  color:white;
+  font-size:10px;
+  font-weight:900;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(10px);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(620px,100%);
+  max-height:85vh;
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:26px;
+  background:#0a1424;
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+  padding:26px;
+}
+
+.modal-top{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:center;
+}
+
+.modal-title{
+  font-size:24px;
+}
+
+.close{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  color:white;
+  font-size:20px;
+}
+
+.modal-content{
+  margin-top:18px;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:14px;
+}
+
+.modal-content ul{
+  margin:12px 0 0 20px;
+}
+
+.modal-content li{
+  margin:6px 0;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:25px 0;
+  color:#718097;
+  font-size:12px;
+  text-align:center;
+}
+
+/* MOBILE */
+
+.mobile-menu{
+  display:none;
+}
+
+@media(max-width:950px){
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .updates{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:700px){
+  .nav{
+    min-height:66px;
+  }
+
+  .logo-text span{
+    display:none;
+  }
+
+  .nav-actions .lang-btn{
+    display:none;
+  }
+
+  .hero{
+    padding-top:35px;
+  }
+
+  .hero-main{
+    padding:28px 22px;
+    border-radius:25px;
+  }
+
+  .hero h1{
+    font-size:43px;
+    letter-spacing:-1.8px;
+  }
+
+  .study-orbit{
+    min-height:390px;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .section{
+    padding:25px 0;
+  }
+
+  .feature{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .feature-badge{
+    display:none;
+  }
+}
+
+@media(max-width:470px){
+  .container{
+    width:94%;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    min-height:auto;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .hero-actions a,
+  .hero-actions button{
+    width:100%;
+    text-align:center;
+  }
+
+  .contact{
+    padding:25px 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">A1</div>
+      <div class="logo-text">
+        <strong>A1 Computer</strong>
+        <span>DIGITAL SERVICE HUB</span>
+      </div>
+    </a>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="nav-btn home-btn">⌂ Home</a>
+      <button class="nav-btn lang-btn" onclick="showLanguage()">🌐 हिन्दी / English</button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div class="hero-main">
+      <div class="badge">🎓 A1 STUDENT HUB • 2026</div>
+
+      <h1>
+        Your complete
+        <span>study universe.</span>
+      </h1>
+
+      <p>
+        JEE, NEET, CUET, SSC, UPSC, Banking, Railway, MPPSC,
+        MPESB, school, college, admission, results, scholarships,
+        notes and exam resources — all in one smart place.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#exams" class="primary">🚀 Explore Student Services</a>
+        <button class="secondary" onclick="showStudentInfo()">✨ How A1 Student Hub Works</button>
+      </div>
+    </div>
+
+    <div class="study-orbit">
+
+      <div class="orbit">
+        <div class="orbit-center">🎓</div>
+
+        <div class="orbit-item o1">📚</div>
+        <div class="orbit-item o2">💻</div>
+        <div class="orbit-item o3">📝</div>
+        <div class="orbit-item o4">🎯</div>
+      </div>
+
+      <div class="orbit-title">Study Mode: ON</div>
+      <div class="orbit-text">
+        Search • Learn • Prepare • Apply • Track
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="container">
+
+    <div class="search-box">
+      <span class="search-icon">⌕</span>
+      <input
+        id="studentSearch"
+        type="search"
+        placeholder="Search JEE, NEET, scholarship, result, syllabus..."
+        autocomplete="off"
+      >
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="exams">
+
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Exam & Career Hub</h2>
+        <p class="section-sub">
+          Popular competitive exams and career preparation services.
+        </p>
+      </div>
+
+      <div class="count" id="resultCount">18 services</div>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="engineering">Engineering</button>
+      <button class="filter" data-filter="medical">Medical</button>
+      <button class="filter" data-filter="government">Government</button>
+      <button class="filter" data-filter="banking">Banking</button>
+      <button class="filter" data-filter="school">School & College</button>
+    </div>
+
+    <div class="cards" id="examCards">
+
+      <article class="card service-card" data-category="engineering" data-search="jee engineering entrance exam">
+        <div class="card-icon">⚙️</div>
+        <h3>JEE</h3>
+        <p>Engineering entrance exam information, preparation and important resources.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('JEE','Engineering entrance preparation, exam information, eligibility, syllabus and useful preparation resources.')">Open</button>
+          <button class="cart-btn" onclick="addCart('JEE')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="medical" data-search="neet medical entrance exam">
+        <div class="card-icon">🩺</div>
+        <h3>NEET</h3>
+        <p>Medical entrance exam information, eligibility, syllabus and preparation.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('NEET','Medical entrance preparation, eligibility, syllabus, important dates and exam resources.')">Open</button>
+          <button class="cart-btn" onclick="addCart('NEET')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="government" data-search="cuet university entrance admission">
+        <div class="card-icon">🏛️</div>
+        <h3>CUET</h3>
+        <p>University admission entrance information and preparation resources.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('CUET','Common University Entrance Test information, admission guidance and preparation resources.')">Open</button>
+          <button class="cart-btn" onclick="addCart('CUET')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="government" data-search="ssc staff selection commission">
+        <div class="card-icon">🧾</div>
+        <h3>SSC</h3>
+        <p>SSC exam categories, recruitment information and preparation resources.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('SSC','SSC recruitment information, eligibility, syllabus, preparation and exam resources.')">Open</button>
+          <button class="cart-btn" onclick="addCart('SSC')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="government" data-search="upsc civil services">
+        <div class="card-icon">🏅</div>
+        <h3>UPSC</h3>
+        <p>Civil services and other UPSC examination information.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('UPSC','UPSC examination information, eligibility, syllabus, preparation and career guidance.')">Open</button>
+          <button class="cart-btn" onclick="addCart('UPSC')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="banking" data-search="banking bank po clerk">
+        <div class="card-icon">🏦</div>
+        <h3>Banking</h3>
+        <p>Banking exams, PO, Clerk and other banking career resources.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Banking','Banking exam categories, eligibility, preparation, syllabus and career information.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Banking')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="government" data-search="railway rrb group d ntpc">
+        <div class="card-icon">🚆</div>
+        <h3>Railway</h3>
+        <p>Railway recruitment, RRB exams and preparation information.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Railway','Railway recruitment information, exam categories, eligibility and preparation resources.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Railway')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="government" data-search="mppsc madhya pradesh public service commission">
+        <div class="card-icon">🏛️</div>
+        <h3>MPPSC</h3>
+        <p>Madhya Pradesh state government competitive examination resources.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('MPPSC','MPPSC examination information, eligibility, syllabus, preparation and career guidance.')">Open</button>
+          <button class="cart-btn" onclick="addCart('MPPSC')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="government" data-search="mpesb vyapam madhya pradesh">
+        <div class="card-icon">📋</div>
+        <h3>MPESB</h3>
+        <p>MPESB recruitment and entrance examination information.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('MPESB','MPESB examination categories, eligibility, preparation and recruitment information.')">Open</button>
+          <button class="cart-btn" onclick="addCart('MPESB')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="school class 10 12">
+        <div class="card-icon">🏫</div>
+        <h3>School Hub</h3>
+        <p>School study resources, syllabus, timetable, results and useful information.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('School Hub','School-level study resources, syllabus, timetable, results, admission and examination information.')">Open</button>
+          <button class="cart-btn" onclick="addCart('School Hub')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="college university degree">
+        <div class="card-icon">🎓</div>
+        <h3>College Hub</h3>
+        <p>College, university, course and academic information.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('College Hub','College and university information, courses, academic resources and student guidance.')">Open</button>
+          <button class="cart-btn" onclick="addCart('College Hub')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="admission college school application">
+        <div class="card-icon">📝</div>
+        <h3>Admission</h3>
+        <p>School, college and course admission guidance.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Admission','Admission guidance, application information, required documents and important steps.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Admission')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="result exam marksheet">
+        <div class="card-icon">📊</div>
+        <h3>Results</h3>
+        <p>Exam result and marksheet information hub.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Results','Exam result guidance, marksheet information and result-related student support.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Results')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="admit card hall ticket">
+        <div class="card-icon">🎫</div>
+        <h3>Admit Card</h3>
+        <p>Find and understand admit-card related services.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Admit Card','Admit card guidance, application details and important examination instructions.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Admit Card')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="timetable time table exam schedule">
+        <div class="card-icon">🗓️</div>
+        <h3>Timetable</h3>
+        <p>Exam schedules, class timetable and important dates.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Timetable','Exam timetable, academic schedule and important student dates.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Timetable')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="syllabus course curriculum">
+        <div class="card-icon">📖</div>
+        <h3>Syllabus</h3>
+        <p>Course and examination syllabus resources.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Syllabus','Course syllabus, subject structure and examination preparation guidance.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Syllabus')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="previous year paper pyq question paper">
+        <div class="card-icon">📚</div>
+        <h3>Previous Year Papers</h3>
+        <p>Previous examination papers and practice resources.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Previous Year Papers','Previous-year question papers, practice strategy and exam preparation resources.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Previous Year Papers')">＋</button>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="feature">
+      <div>
+        <h2>🎯 Scholarship & Student Benefits</h2>
+        <p>
+          Scholarship information, student benefits, DigiLocker,
+          ABC/APAAR and other digital student services will be
+          organized here as the A1 platform grows.
+        </p>
+      </div>
+
+      <div class="feature-badge">🎓</div>
+    </div>
+
+    <div class="cards">
+
+      <article class="card service-card" data-category="school" data-search="scholarship student scholarship">
+        <div class="card-icon">💰</div>
+        <h3>Scholarship</h3>
+        <p>Student scholarship information and application guidance.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Scholarship','Scholarship categories, eligibility guidance and application-related student information.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Scholarship')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="digilocker digital documents">
+        <div class="card-icon">🔐</div>
+        <h3>DigiLocker</h3>
+        <p>Digital document and certificate access guidance.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('DigiLocker','DigiLocker usage guidance, digital documents and student document support.')">Open</button>
+          <button class="cart-btn" onclick="addCart('DigiLocker')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="abc apaar academic bank credits">
+        <div class="card-icon">🪪</div>
+        <h3>ABC / APAAR</h3>
+        <p>Academic identity and credit-related student guidance.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('ABC / APAAR','Academic Bank of Credits and APAAR-related student guidance and information.')">Open</button>
+          <button class="cart-btn" onclick="addCart('ABC / APAAR')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="notes study material">
+        <div class="card-icon">🗒️</div>
+        <h3>Notes & Study Material</h3>
+        <p>Organized notes, study resources and learning material.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Notes & Study Material','Subject notes, study material and preparation resources can be organized here.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Notes & Study Material')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="online learning course education">
+        <div class="card-icon">💻</div>
+        <h3>Online Learning</h3>
+        <p>Digital learning resources and educational guidance.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Online Learning','Online learning resources, study guidance and educational tools.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Online Learning')">＋</button>
+        </div>
+      </article>
+
+      <article class="card service-card" data-category="school" data-search="exam calendar important dates">
+        <div class="card-icon">📅</div>
+        <h3>Exam Calendar</h3>
+        <p>Important exam dates and academic planning resources.</p>
+        <div class="card-bottom">
+          <button class="open-btn" onclick="openService('Exam Calendar','Important exam dates, academic planning and preparation timeline information.')">Open</button>
+          <button class="cart-btn" onclick="addCart('Exam Calendar')">＋</button>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Student Updates</h2>
+        <p class="section-sub">
+          A1 Student Hub will keep important information organized.
+        </p>
+      </div>
+    </div>
+
+    <div class="updates">
+
+      <div class="update">
+        <span class="update-tag">STUDY</span>
+        <h3>Prepare smarter</h3>
+        <p>
+          Use syllabus, previous papers and notes together
+          to create a simple preparation workflow.
+        </p>
+      </div>
+
+      <div class="update">
+        <span class="update-tag">CAREER</span>
+        <h3>Track opportunities</h3>
+        <p>
+          Government exams, entrance exams and career resources
+          can be organized in one student dashboard.
+        </p>
+      </div>
+
+      <div class="update">
+        <span class="update-tag">DIGITAL</span>
+        <h3>Keep documents ready</h3>
+        <p>
+          DigiLocker, ABC/APAAR and other student-document
+          services can be accessed from one place.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="container">
+  <div class="contact">
+
+    <h2>Need help with a student service?</h2>
+
+    <p>
+      A1 Computer, New Bus Stand, Ajaigarh —
+      student services and digital assistance in one place.
+    </p>
+
+    <div class="contact-actions">
+      <a href="tel:9993831755">📞 Call 9993831755</a>
+      <a href="https://wa.me/919993831755" target="_blank">💬 WhatsApp</a>
+      <a href="mailto:jatavneeraj479@gmail.com">✉️ Email</a>
+      <a href="../index.html">🏠 A1 Home</a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<button class="cart-float" onclick="showCart()" aria-label="Study Cart">
+  🛒
+  <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+
+    <div class="modal-top">
+      <h2 class="modal-title" id="modalTitle">A1 Student Hub</h2>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <div class="modal-content" id="modalContent"></div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    © 2026 A1 Computer • New Bus Stand, Ajaigarh •
+    Study. Services. Everything A1.
+  </div>
+</footer>
+
+<script>
+const cards = Array.from(document.querySelectorAll(".service-card"));
+const filters = Array.from(document.querySelectorAll(".filter"));
+const searchInput = document.getElementById("studentSearch");
+const resultCount = document.getElementById("resultCount");
+
+let activeFilter = "all";
+
+function updateCards(){
+
+  const query = searchInput.value.toLowerCase().trim();
+  let visible = 0;
+
+  cards.forEach(card => {
+
+    const category = card.dataset.category || "";
+    const search = (card.dataset.search || "").toLowerCase();
+    const title = (card.querySelector("h3")?.innerText || "").toLowerCase();
+
+    const categoryMatch =
+      activeFilter === "all" || category === activeFilter;
+
+    const searchMatch =
+      !query || search.includes(query) || title.includes(query);
+
+    if(categoryMatch && searchMatch){
+      card.style.display = "";
+      visible++;
+    }else{
+      card.style.display = "none";
+    }
+
+  });
+
+  resultCount.textContent =
+    visible + (visible === 1 ? " service" : " services");
+}
+
+filters.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    filters.forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+
+    activeFilter = button.dataset.filter;
+
+    updateCards();
+
+  });
+
+});
+
+searchInput.addEventListener("input", updateCards);
+
+function openService(title, description){
+
+  document.getElementById("modalTitle").textContent = title;
+
+  document.getElementById("modalContent").innerHTML = `
+    <p>${description}</p>
+
+    <ul>
+      <li>Eligibility and basic information</li>
+      <li>Important documents and preparation guidance</li>
+      <li>Syllabus / exam resources where applicable</li>
+      <li>Important dates and updates can be added here</li>
+    </ul>
+
+    <br>
+
+    <p>
+      <strong style="color:white;">A1 Computer</strong><br>
+      New Bus Stand, Ajaigarh<br>
+      📞 9993831755
+    </p>
+  `;
+
+  document.getElementById("modal").classList.add("show");
+}
+
+function showStudentInfo(){
+
+  document.getElementById("modalTitle").textContent =
+    "How A1 Student Hub Works";
+
+  document.getElementById("modalContent").innerHTML = `
+    <p>
+      A1 Student Hub is designed as a single student-focused
+      dashboard for study, exams, admissions and digital services.
+    </p>
+
+    <ul>
+      <li>Search any student service</li>
+      <li>Filter services by category</li>
+      <li>Open service information instantly</li>
+      <li>Add useful services to Study Cart</li>
+      <li>Contact A1 Computer for assistance</li>
+    </ul>
+  `;
+
+  document.getElementById("modal").classList.add("show");
+}
+
+function showLanguage(){
+
+  document.getElementById("modalTitle").textContent =
+    "Language Support";
+
+  document.getElementById("modalContent").innerHTML = `
+    <p>
+      A1 Computer is being prepared for a multilingual interface.
+    </p>
+
+    <ul>
+      <li>🇮🇳 हिन्दी</li>
+      <li>🇬🇧 English</li>
+      <li>मराठी</li>
+      <li>ગુજરાતી</li>
+      <li>বাংলা</li>
+      <li>தமிழ்</li>
+      <li>తెలుగు</li>
+    </ul>
+
+    <p>
+      Full language switching will be connected with the
+      A1 language system in the next development stages.
+    </p>
+  `;
+
+  document.getElementById("modal").classList.add("show");
+}
+
+function closeModal(){
+  document.getElementById("modal").classList.remove("show");
+}
+
+document.getElementById("modal").addEventListener("click", function(e){
+  if(e.target === this){
+    closeModal();
+  }
+});
+
+/* STUDY CART */
+
+function getCart(){
+  try{
+    return JSON.parse(localStorage.getItem("a1StudentCart")) || [];
+  }catch(error){
+    return [];
+  }
+}
+
+function saveCart(cart){
+  localStorage.setItem("a1StudentCart", JSON.stringify(cart));
+  updateCartCount();
+}
+
+function addCart(name){
+
+  const cart = getCart();
+
+  if(!cart.includes(name)){
+    cart.push(name);
+    saveCart(cart);
+
+    openService(
+      "Added to Study Cart",
+      name + " has been added to your A1 Study Cart."
+    );
+
+  }else{
+
+    openService(
+      "Already Added",
+      name + " is already available in your Study Cart."
+    );
+
+  }
+}
+
+function updateCartCount(){
+  document.getElementById("cartCount").textContent = getCart().length;
+}
+
+function showCart(){
+
+  const cart = getCart();
+
+  document.getElementById("modalTitle").textContent =
+    "📚 Your Study Cart";
+
+  if(cart.length === 0){
+
+    document.getElementById("modalContent").innerHTML = `
+      <p>
+        Your Study Cart is empty.
+      </p>
+
+      <p>
+        Tap the <strong style="color:white;">＋</strong> button
+        on any student service to save it here.
+      </p>
+    `;
+
+  }else{
+
+    document.getElementById("modalContent").innerHTML = `
+      <p>You saved ${cart.length} student service${cart.length === 1 ? "" : "s"}:</p>
+
+      <ul>
+        ${cart.map(item => `<li>${item}</li>`).join("")}
+      </ul>
+
+      <br>
+
+      <button class="primary" onclick="clearCart()">
+        Clear Study Cart
+      </button>
+    `;
+
+  }
+
+  document.getElementById("modal").classList.add("show");
+}
+
+function clearCart(){
+
+  localStorage.removeItem("a1StudentCart");
+  updateCartCount();
+
+  document.getElementById("modalContent").innerHTML = `
+    <p>
+      Study Cart cleared successfully.
+    </p>
+  `;
+}
+
+updateCartCount();
+updateCards();
+
+document.addEventListener("keydown", function(e){
+
+  if(e.key === "Escape"){
+    closeModal();
+  }
+
+});
+</script>
+
+</body>
+</html>
