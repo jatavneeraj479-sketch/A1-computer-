@@ -1,0 +1,277 @@
+{
+"meta": {
+"code": "gu",
+"name": "Gujarati",
+"nativeName": "ગુજરાતી",
+"direction": "ltr"
+},
+
+"site": {
+"name": "A1 Computer",
+"tagline": "તમારી ડિજિટલ અને શૈક્ષણિક સેવા માટેનું સ્માર્ટ સેન્ટર",
+"address": "ન્યૂ બસ સ્ટેન્ડ, અજયગઢ",
+"phone": "9993831755",
+"email": "[jatavneeraj479@gmail.com](mailto:jatavneeraj479@gmail.com)"
+},
+
+"common": {
+"home": "હોમ",
+"services": "સેવાઓ",
+"student": "વિદ્યાર્થી",
+"government": "સરકારી સેવાઓ",
+"jobs": "નોકરીઓ",
+"schemes": "યોજનાઓ",
+"land": "જમીન અને મિલકત",
+"documents": "દસ્તાવેજો",
+"notices": "નોટિસ",
+"contact": "સંપર્ક",
+"search": "શોધો",
+"viewAll": "બધું જુઓ",
+"learnMore": "વધુ જાણો",
+"open": "ખોલો",
+"close": "બંધ કરો",
+"back": "પાછળ",
+"next": "આગળ",
+"previous": "પાછલું",
+"submit": "સબમિટ કરો",
+"save": "સાચવો",
+"cancel": "રદ કરો",
+"loading": "લોડ થઈ રહ્યું છે...",
+"available": "ઉપલબ્ધ",
+"comingSoon": "ટૂંક સમયમાં",
+"new": "નવું",
+"important": "મહત્વપૂર્ણ"
+},
+
+"header": {
+"home": "હોમ",
+"services": "સેવાઓ",
+"student": "સ્ટુડન્ટ હબ",
+"government": "સરકારી સેવાઓ",
+"jobs": "નોકરી અને કરિયર",
+"contact": "સંપર્ક",
+"notifications": "નોટિફિકેશન",
+"language": "ભાષા",
+"menu": "મેનુ",
+"searchPlaceholder": "સેવા, પરીક્ષા, નોકરી અથવા યોજના શોધો..."
+},
+
+"hero": {
+"badge": "2026 ડિજિટલ સર્વિસ પોર્ટલ",
+"title": "તમારી દરેક ડિજિટલ જરૂરિયાતનું એક સ્માર્ટ સેન્ટર",
+"subtitle": "અભ્યાસ, સરકારી સેવાઓ, નોકરી, દસ્તાવેજો, યોજનાઓ અને અન્ય ડિજિટલ સેવાઓ સરળતાથી મેળવો.",
+"searchPlaceholder": "તમને શું જોઈએ છે તે શોધો...",
+"searchButton": "શોધો",
+"aiButton": "AI સહાયક",
+"exploreButton": "સેવાઓ જુઓ"
+},
+
+"quickServices": {
+"title": "ઝડપી સેવાઓ",
+"subtitle": "સૌથી વધુ ઉપયોગમાં લેવાતી સેવાઓ એક જ જગ્યાએ",
+"student": "વિદ્યાર્થી સેવાઓ",
+"government": "સરકારી સેવાઓ",
+"jobs": "નોકરીઓ",
+"documents": "દસ્તાવેજ સેવાઓ",
+"land": "જમીન સેવાઓ",
+"schemes": "સરકારી યોજનાઓ",
+"travel": "ટ્રાવેલ સેવાઓ",
+"citizen": "નાગરિક સેવાઓ"
+},
+
+"categories": {
+"title": "સેવા કેટેગરી",
+"student": {
+"title": "વિદ્યાર્થી",
+"description": "પરીક્ષા, પ્રવેશ, પરિણામ અને અભ્યાસ સંબંધિત સેવાઓ"
+},
+"government": {
+"title": "સરકારી",
+"description": "સરકારી પોર્ટલ અને ઓનલાઈન સેવાઓ"
+},
+"jobs": {
+"title": "નોકરી અને કરિયર",
+"description": "સરકારી નોકરી, ભરતી અને કરિયર માહિતી"
+},
+"land": {
+"title": "જમીન અને મિલકત",
+"description": "જમીન રેકોર્ડ અને મિલકત સંબંધિત સેવાઓ"
+},
+"documents": {
+"title": "દસ્તાવેજો",
+"description": "ઓનલાઈન દસ્તાવેજ અને પ્રમાણપત્ર સેવાઓ"
+},
+"schemes": {
+"title": "યોજનાઓ",
+"description": "સરકારી યોજનાઓ અને લાભોની માહિતી"
+},
+"travel": {
+"title": "ટ્રાવેલ",
+"description": "ટિકિટ, મુસાફરી અને ટ્રાવેલ સેવાઓ"
+},
+"citizen": {
+"title": "નાગરિક સેવાઓ",
+"description": "રોજિંદી નાગરિક અને ડિજિટલ સેવાઓ"
+}
+},
+
+"student": {
+"title": "સ્ટુડન્ટ હબ",
+"subtitle": "વિદ્યાર્થીઓ માટે જરૂરી તમામ માહિતી અને સેવાઓ",
+"jee": "JEE",
+"neet": "NEET",
+"cuet": "CUET",
+"school": "સ્કૂલ",
+"college": "કોલેજ",
+"admission": "પ્રવેશ",
+"results": "પરિણામ",
+"admitCard": "એડમિટ કાર્ડ",
+"timetable": "ટાઈમટેબલ",
+"syllabus": "સિલેબસ",
+"scholarships": "સ્કોલરશિપ",
+"studyMaterial": "સ્ટડી મટિરિયલ"
+},
+
+"government": {
+"title": "સરકારી સેવાઓ",
+"subtitle": "મુખ્ય સરકારી પોર્ટલ અને ઓનલાઈન સેવાઓ",
+"aadhaar": "આધાર સેવાઓ",
+"pan": "PAN સેવાઓ",
+"voter": "વોટર સેવાઓ",
+"passport": "પાસપોર્ટ",
+"income": "આવક પ્રમાણપત્ર",
+"caste": "જાતિ પ્રમાણપત્ર",
+"domicile": "મૂળ નિવાસ પ્રમાણપત્ર",
+"birth": "જન્મ પ્રમાણપત્ર",
+"death": "મૃત્યુ પ્રમાણપત્ર",
+"ration": "રેશન કાર્ડ",
+"pension": "પેન્શન સેવાઓ"
+},
+
+"jobs": {
+"title": "નોકરી અને કરિયર",
+"subtitle": "નવી ભરતી, સરકારી નોકરી અને કરિયર અપડેટ",
+"ssc": "SSC",
+"upsc": "UPSC",
+"mppsc": "MPPSC",
+"mpesb": "MPESB",
+"railway": "રેલવે",
+"banking": "બેંકિંગ",
+"police": "પોલીસ",
+"defence": "ડિફેન્સ",
+"teaching": "ટીચિંગ",
+"privateJobs": "ખાનગી નોકરીઓ",
+"latestJobs": "નવી ભરતી"
+},
+
+"land": {
+"title": "જમીન અને મિલકત",
+"subtitle": "જમીન રેકોર્ડ અને મિલકત સંબંધિત ઓનલાઈન સેવાઓ",
+"landRecords": "જમીન રેકોર્ડ",
+"khasra": "ખસરા",
+"khatauni": "ખતૌની",
+"b1": "B-1",
+"map": "જમીનનો નકશો",
+"registry": "રજિસ્ટ્રી",
+"property": "મિલકત માહિતી",
+"mutation": "નામંતરણ"
+},
+
+"documents": {
+"title": "દસ્તાવેજ સેવાઓ",
+"subtitle": "મહત્વપૂર્ણ દસ્તાવેજો અને પ્રમાણપત્રો માટેની સેવાઓ",
+"aadhaar": "આધાર કાર્ડ",
+"pan": "PAN કાર્ડ",
+"voter": "વોટર ID",
+"drivingLicense": "ડ્રાઇવિંગ લાઇસન્સ",
+"incomeCertificate": "આવક પ્રમાણપત્ર",
+"casteCertificate": "જાતિ પ્રમાણપત્ર",
+"domicileCertificate": "મૂળ નિવાસ પ્રમાણપત્ર",
+"birthCertificate": "જન્મ પ્રમાણપત્ર",
+"documentsUpload": "દસ્તાવેજ અપલોડ"
+},
+
+"schemes": {
+"title": "સરકારી યોજનાઓ",
+"subtitle": "તમારા માટે ઉપલબ્ધ સરકારી યોજનાઓ અને લાભો",
+"farmer": "ખેડૂત યોજનાઓ",
+"student": "વિદ્યાર્થી યોજનાઓ",
+"women": "મહિલા યોજનાઓ",
+"pension": "પેન્શન યોજનાઓ",
+"housing": "આવાસ યોજનાઓ",
+"employment": "રોજગાર યોજનાઓ",
+"health": "આરોગ્ય યોજનાઓ",
+"education": "શિક્ષણ યોજનાઓ",
+"latest": "નવી યોજનાઓ"
+},
+
+"notices": {
+"title": "નોટિસ અને અપડેટ",
+"subtitle": "મહત્વપૂર્ણ જાહેરાતો અને નવા અપડેટ",
+"latest": "નવીનતમ નોટિસ",
+"important": "મહત્વપૂર્ણ નોટિસ",
+"readMore": "વધુ વાંચો",
+"noNotices": "હાલમાં કોઈ નોટિસ ઉપલબ્ધ નથી"
+},
+
+"contact": {
+"title": "અમારો સંપર્ક કરો",
+"subtitle": "ડિજિટલ સેવા માટે અમારી સાથે સંપર્ક કરો",
+"call": "કૉલ કરો",
+"whatsapp": "WhatsApp કરો",
+"email": "ઈમેલ કરો",
+"address": "સરનામું",
+"phone": "મોબાઇલ",
+"sendMessage": "મેસેજ મોકલો",
+"workingHours": "કાર્ય સમય",
+"location": "ન્યૂ બસ સ્ટેન્ડ, અજયગઢ"
+},
+
+"ai": {
+"title": "A1 AI સહાયક",
+"subtitle": "તમારી સેવા, અભ્યાસ અને માહિતી સંબંધિત પ્રશ્નોમાં મદદ મેળવો.",
+"placeholder": "તમારો પ્રશ્ન લખો...",
+"send": "મોકલો",
+"thinking": "AI જવાબ તૈયાર કરી રહ્યું છે...",
+"welcome": "નમસ્તે! હું A1 Computer AI સહાયક છું. હું તમારી કેવી રીતે મદદ કરી શકું?",
+"offline": "AI સેવા હાલમાં ઉપલબ્ધ નથી.",
+"enabled": "AI ચાલુ છે",
+"disabled": "AI બંધ છે"
+},
+
+"search": {
+"title": "શોધ પરિણામ",
+"placeholder": "કંઈપણ શોધો...",
+"resultsFor": "માટે પરિણામો",
+"noResults": "કોઈ પરિણામ મળ્યું નથી.",
+"tryAgain": "બીજો શબ્દ અથવા સેવા શોધો.",
+"servicesFound": "સેવાઓ મળી",
+"jobsFound": "નોકરીઓ મળી",
+"schemesFound": "યોજનાઓ મળી",
+"noticesFound": "નોટિસ મળી"
+},
+
+"footer": {
+"quickLinks": "ઝડપી લિંક્સ",
+"services": "સેવાઓ",
+"student": "વિદ્યાર્થી",
+"government": "સરકારી સેવાઓ",
+"jobs": "નોકરીઓ",
+"contact": "સંપર્ક",
+"followUs": "અમને ફોલો કરો",
+"copyright": "© 2026 A1 Computer. સર્વાધિકાર સુરક્ષિત.",
+"madeWith": "ડિજિટલ સેવા માટે બનાવવામાં આવ્યું"
+},
+
+"messages": {
+"success": "કાર્ય સફળતાપૂર્વક પૂર્ણ થયું.",
+"error": "કંઈક ખોટું થયું. ફરી પ્રયાસ કરો.",
+"saved": "સફળતાપૂર્વક સાચવ્યું.",
+"deleted": "સફળતાપૂર્વક ડિલીટ કર્યું.",
+"updated": "સફળતાપૂર્વક અપડેટ થયું.",
+"loginRequired": "આ સેવા માટે લોગિન જરૂરી છે.",
+"comingSoon": "આ સેવા ટૂંક સમયમાં ઉપલબ્ધ થશે.",
+"notificationsComingSoon": "નોટિફિકેશન સેવા ટૂંક સમયમાં ઉપલબ્ધ થશે.",
+"languageChanged": "ભાષા સફળતાપૂર્વક બદલાઈ ગઈ."
+}
+}
