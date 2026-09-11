@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+
+<title>A1 Computer | All Services</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#050914;
+    --card:rgba(15,25,42,.78);
+    --card2:rgba(20,34,55,.72);
+    --text:#f7faff;
+    --muted:#91a0b8;
+    --line:rgba(255,255,255,.09);
+    --blue:#4da3ff;
+    --cyan:#43e8ff;
+    --gold:#ffd166;
+    --green:#35e39a;
+    --purple:#9b7cff;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:
+      radial-gradient(circle at 10% 10%,rgba(77,163,255,.14),transparent 30%),
+      radial-gradient(circle at 90% 20%,rgba(155,124,255,.12),transparent 30%),
+      linear-gradient(145deg,#040711,#081321 50%,#040711);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:45px 45px;
+}
+
+/* HEADER */
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(20px);
+    background:rgba(4,8,17,.82);
+    border-bottom:1px solid var(--line);
+}
+
+.nav{
+    max-width:1250px;
+    margin:auto;
+    padding:15px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:white;
+}
+
+.logo-box{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    font-size:21px;
+    font-weight:900;
+    background:linear-gradient(135deg,#4da3ff,#8e7dff);
+    box-shadow:0 0 30px rgba(77,163,255,.25);
+}
+
+.logo-text{
+    font-weight:900;
+    letter-spacing:.5px;
+}
+
+.logo-sub{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    letter-spacing:2px;
+    margin-top:2px;
+}
+
+.nav-actions{
+    display:flex;
+    gap:8px;
+}
+
+.nav-btn{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.045);
+    color:white;
+    padding:10px 14px;
+    border-radius:12px;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.nav-btn:hover{
+    border-color:rgba(77,163,255,.5);
+    background:rgba(77,163,255,.1);
+}
+
+/* HERO */
+
+.hero{
+    max-width:1250px;
+    margin:auto;
+    padding:70px 22px 35px;
+}
+
+.hero-badge{
+    display:inline-flex;
+    padding:8px 13px;
+    border:1px solid rgba(67,232,255,.2);
+    border-radius:50px;
+    background:rgba(67,232,255,.06);
+    color:var(--cyan);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+}
+
+.hero h1{
+    max-width:800px;
+    margin-top:18px;
+    font-size:clamp(38px,6vw,72px);
+    line-height:.98;
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#fff,#6ddcff,#9b7cff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:700px;
+    color:var(--muted);
+    line-height:1.7;
+    margin-top:20px;
+    font-size:16px;
+}
+
+/* SEARCH */
+
+.search-wrap{
+    max-width:800px;
+    margin-top:30px;
+    position:relative;
+}
+
+.search{
+    width:100%;
+    padding:18px 55px 18px 20px;
+    border-radius:18px;
+    border:1px solid var(--line);
+    outline:none;
+    background:rgba(255,255,255,.055);
+    color:white;
+    font-size:16px;
+    backdrop-filter:blur(15px);
+}
+
+.search::placeholder{
+    color:#718098;
+}
+
+.search:focus{
+    border-color:rgba(67,232,255,.5);
+    box-shadow:0 0 30px rgba(67,232,255,.08);
+}
+
+.search-icon{
+    position:absolute;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:20px;
+}
+
+/* CATEGORY FILTER */
+
+.filters{
+    max-width:1250px;
+    margin:20px auto 0;
+    padding:0 22px;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+.filters::-webkit-scrollbar{
+    display:none;
+}
+
+.filter{
+    white-space:nowrap;
+    padding:10px 15px;
+    border-radius:50px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    color:#aebbd0;
+    cursor:pointer;
+}
+
+.filter.active,
+.filter:hover{
+    color:white;
+    background:rgba(77,163,255,.12);
+    border-color:rgba(77,163,255,.35);
+}
+
+/* SERVICES */
+
+.services{
+    max-width:1250px;
+    margin:35px auto 100px;
+    padding:0 22px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:20px;
+}
+
+.section-head h2{
+    font-size:27px;
+}
+
+.section-head p{
+    color:var(--muted);
+    margin-top:6px;
+    font-size:13px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.card{
+    position:relative;
+    min-height:220px;
+    padding:22px;
+    border-radius:24px;
+    border:1px solid var(--line);
+    background:
+      linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),
+      var(--card);
+    overflow:hidden;
+    cursor:pointer;
+    transition:.3s ease;
+}
+
+.card:before{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    right:-50px;
+    top:-50px;
+    border-radius:50%;
+    background:var(--glow,rgba(77,163,255,.18));
+    filter:blur(8px);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(77,163,255,.35);
+    box-shadow:0 20px 50px rgba(0,0,0,.28);
+}
+
+.icon{
+    width:55px;
+    height:55px;
+    display:grid;
+    place-items:center;
+    border-radius:17px;
+    font-size:27px;
+    background:rgba(255,255,255,.07);
+    border:1px solid var(--line);
+}
+
+.card h3{
+    margin-top:18px;
+    font-size:20px;
+}
+
+.card p{
+    margin-top:8px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.55;
+}
+
+.open{
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    color:var(--cyan);
+    font-size:12px;
+    font-weight:800;
+}
+
+/* COLORS */
+
+.student{--glow:rgba(77,163,255,.3)}
+.gov{--glow:rgba(53,227,154,.3)}
+.jobs{--glow:rgba(255,209,102,.3)}
+.land{--glow:rgba(141,205,102,.3)}
+.docs{--glow:rgba(155,124,255,.3)}
+.scheme{--glow:rgba(255,111,145,.3)}
+.travel{--glow:rgba(67,232,255,.3)}
+.citizen{--glow:rgba(255,145,77,.3)}
+
+/* DETAIL PANEL */
+
+.detail{
+    max-width:1250px;
+    margin:0 auto 100px;
+    padding:0 22px;
+}
+
+.detail-box{
+    display:none;
+    padding:28px;
+    border-radius:25px;
+    border:1px solid rgba(77,163,255,.22);
+    background:rgba(13,24,40,.88);
+    box-shadow:0 20px 70px rgba(0,0,0,.25);
+}
+
+.detail-box.active{
+    display:block;
+    animation:fade .25s ease;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(8px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.detail-top{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.detail h2{
+    font-size:28px;
+}
+
+.detail p{
+    color:var(--muted);
+    line-height:1.7;
+    margin-top:8px;
+}
+
+.close{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.05);
+    color:white;
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.detail-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:22px;
+}
+
+.detail-item{
+    padding:14px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    border-radius:15px;
+    color:#dce5f3;
+    font-size:13px;
+}
+
+/* CONTACT STRIP */
+
+.contact{
+    max-width:1250px;
+    margin:0 auto 100px;
+    padding:0 22px;
+}
+
+.contact-box{
+    padding:30px;
+    border-radius:26px;
+    background:linear-gradient(135deg,rgba(77,163,255,.1),rgba(155,124,255,.08));
+    border:1px solid var(--line);
+}
+
+.contact-box h2{
+    font-size:28px;
+}
+
+.contact-box p{
+    color:var(--muted);
+    margin-top:8px;
+}
+
+.contact-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.contact-btn{
+    padding:13px 18px;
+    border-radius:13px;
+    text-decoration:none;
+    color:white;
+    background:rgba(255,255,255,.07);
+    border:1px solid var(--line);
+}
+
+/* FOOTER */
+
+.footer{
+    border-top:1px solid var(--line);
+    text-align:center;
+    padding:30px 20px 90px;
+    color:#718098;
+    font-size:13px;
+}
+
+/* MOBILE NAV */
+
+.mobile-nav{
+    display:none;
+    position:fixed;
+    z-index:2000;
+    bottom:12px;
+    left:12px;
+    right:12px;
+    padding:10px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:rgba(5,10,20,.88);
+    backdrop-filter:blur(20px);
+}
+
+.mobile-nav-inner{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+}
+
+.mobile-nav a{
+    text-decoration:none;
+    color:#8391a8;
+    text-align:center;
+    font-size:11px;
+    padding:8px 2px;
+}
+
+.mobile-nav a:first-child{
+    color:white;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .detail-list{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:650px){
+    .nav{
+        padding:12px 15px;
+    }
+
+    .nav-actions .nav-btn:nth-child(2){
+        display:none;
+    }
+
+    .hero{
+        padding:50px 16px 25px;
+    }
+
+    .hero h1{
+        font-size:43px;
+        letter-spacing:-2px;
+    }
+
+    .filters,
+    .services,
+    .detail,
+    .contact{
+        padding-left:16px;
+        padding-right:16px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        min-height:195px;
+    }
+
+    .detail-list{
+        grid-template-columns:1fr;
+    }
+
+    .mobile-nav{
+        display:block;
+    }
+
+    .footer{
+        padding-bottom:100px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="nav">
+
+        <a href="../index.html" class="logo">
+            <div class="logo-box">A1</div>
+
+            <div>
+                <div class="logo-text">A1 COMPUTER</div>
+                <span class="logo-sub">DIGITAL SERVICE HUB</span>
+            </div>
+        </a>
+
+        <div class="nav-actions">
+            <a href="../index.html" class="nav-btn">⌂ Home</a>
+            <button class="nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Top</button>
+        </div>
+
+    </nav>
+</header>
+
+
+<section class="hero">
+
+    <span class="hero-badge">A1 • NEXT-GEN SERVICE HUB</span>
+
+    <h1>
+        Everything you need,
+        <span>in one place.</span>
+    </h1>
+
+    <p>
+        Student services, government work, documents, jobs,
+        schemes, land records, travel and citizen assistance —
+        all organized inside A1 Computer.
+    </p>
+
+    <div class="search-wrap">
+        <input
+            id="serviceSearch"
+            class="search"
+            type="search"
+            placeholder="Search services... e.g. Aadhaar, scholarship, Khasra, job"
+            oninput="searchServices()"
+        >
+        <span class="search-icon">⌕</span>
+    </div>
+
+</section>
+
+
+<div class="filters">
+
+    <button class="filter active" onclick="filterServices('all',this)">All</button>
+
+    <button class="filter" onclick="filterServices('student',this)">
+        🎓 Student
+    </button>
+
+    <button class="filter" onclick="filterServices('government',this)">
+        🏛 Government
+    </button>
+
+    <button class="filter" onclick="filterServices('jobs',this)">
+        💼 Jobs
+    </button>
+
+    <button class="filter" onclick="filterServices('land',this)">
+        🗺 Land
+    </button>
+
+    <button class="filter" onclick="filterServices('documents',this)">
+        📄 Documents
+    </button>
+
+    <button class="filter" onclick="filterServices('schemes',this)">
+        🎁 Schemes
+    </button>
+
+    <button class="filter" onclick="filterServices('travel',this)">
+        🚆 Travel
+    </button>
+
+    <button class="filter" onclick="filterServices('citizen',this)">
+        🧑 Citizen
+    </button>
+
+</div>
+
+
+<section class="services">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Explore A1 Services</h2>
+            <p>Choose a category to explore available services.</p>
+        </div>
+
+    </div>
+
+
+    <div class="grid" id="serviceGrid">
+
+
+        <!-- STUDENT -->
+
+        <article class="card student"
+                 data-category="student"
+                 data-search="student education jee neet cuet ssc upsc banking railway mppsc mpesb school college admission result admit card timetable syllabus scholarship">
+
+            <div class="icon">🎓</div>
+
+            <h3>Student Hub</h3>
+
+            <p>
+                Exams, admissions, results, scholarships,
+                study material and career resources.
+            </p>
+
+            <span class="open"
+                  onclick="openDetail('student')">
+                EXPLORE →
+            </span>
+
+        </article>
+
+
+        <!-- GOVERNMENT -->
+
+        <article class="card gov"
+                 data-category="government"
+                 data-search="government mponline e district samagra certificate birth death caste income residence ews pension ration">
+
+            <div class="icon">🏛️</div>
+
+            <h3>Government Services</h3>
+
+            <p>
+                MPOnline, e-District, certificates,
+                Samagra, pension and citizen services.
+            </p>
+
+            <span class="open"
+                  onclick="openDetail('government')">
+                EXPLORE →
+            </span>
+
+        </article>
+
+
+        <!-- JOBS -->
+
+        <article class="card jobs"
+                 data-category="jobs"
+                 data-search="jobs government vacancy central mp govt private admit card result answer key eligibility age exam calendar">
+
+            <div class="icon">💼</div>
+
+            <h3>Jobs & Career</h3>
+
+            <p>
+                Government jobs, private jobs, vacancies,
+                admit cards, results and career guidance.
+            </p>
+
+            <span class="open"
+                  onclick="openDetail('jobs')">
+                EXPLORE →
+            </span>
+
+        </article>
+
+
+        <!-- LAND -->
+
+        <article class="card land"
+                 data-category="land"
+                 data-search="land khasra khatauni b1 nakal naksha bhulekh mutation bantwara seemankan registry stamp">
+
+            <div class="icon">🗺️</div>
+
+            <h3>Land & Property</h3>
+
+            <p>
+                Khasra, Khatauni, B-1, Nakal, Naksha,
+                mutation, registry and land information.
+            </p>
+
+            <span class="open"
+                  onclick="openDetail('land')">
+                EXPLORE →
+            </span>
+
+        </article>
+
+
+        <!-- DOCUMENTS -->
+
+        <article class="card docs"
+                 data-category="documents"
+                 data-search="aadhaar pan voter dl passport ration ayushman eshram digilocker documents verification">
+
+            <div class="icon">📄</div>
+
+            <h3>Documents</h3>
+
+            <p>
+                Aadhaar, PAN, Voter ID, DL, Passport,
+                Ayushman, e-Shram and DigiLocker help.
+            </p>
+
+            <span class="open"
+                  onclick="openDetail('documents')">
+                EXPLORE →
+            </span>
+
+        </article>
+
+
+        <!-- SCHEMES -->
+
+        <article class="card scheme"
+                 data-category="schemes"
+                 data-search="scheme scholarship pension farmer labour student loan subsidy government benefits">
+
+            <div class="icon">🎁</div>
+
+            <h3>Schemes & Benefits</h3>
+
+            <p>
+                Scholarships, pension, farmer benefits,
+                labour schemes, loans and subsidies.
+            </p>
+
+            <span class="open"
+                  onclick="openDetail('schemes')">
+                EXPLORE →
+            </span>
+
+        </article>
+
+
+        <!-- TRAVEL -->
+
+        <article class="card travel"
+                 data-category="travel"
+                 data-search="railway train pnr bus flight ticket passport travel">
+
+            <div class="icon">🚆</div>
+
+            <h3>Railway & Travel</h3>
+
+            <p>
+                Railway, PNR, train, bus, flight,
+                passport and travel information.
+            </p>
+
+            <span class="open"
+                  onclick="openDetail('travel')">
+                EXPLORE →
+            </span>
+
+        </article>
+
+
+        <!-- CITIZEN -->
+
+        <article class="card citizen"
+                 data-category="citizen"
+                 data-search="citizen police emergency hospital ambulance cyber crime consumer electricity water gas municipal grievance">
+
+            <div class="icon">🧑‍💻</div>
+
+            <h3>Citizen Help</h3>
+
+            <p>
+                Emergency contacts, police, hospital,
+                cyber crime, utilities and grievance help.
+            </p>
+
+            <span class="open"
+                  onclick="openDetail('citizen')">
+                EXPLORE →
+            </span>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- DETAILS -->
+
+<section class="detail">
+
+    <!-- STUDENT -->
+
+    <div class="detail-box" id="detail-student">
+
+        <div class="detail-top">
+
+            <div>
+                <h2>🎓 Student Hub</h2>
+                <p>
+                    Education, examination and career related
+                    services for students.
+                </p>
+            </div>
+
+            <button class="close" onclick="closeDetails()">×</button>
+
+        </div>
+
+        <div class="detail-list">
+
+            <div class="detail-item">JEE</div>
+            <div class="detail-item">NEET</div>
+            <div class="detail-item">CUET</div>
+            <div class="detail-item">SSC</div>
+            <div class="detail-item">UPSC</div>
+            <div class="detail-item">Banking Exams</div>
+            <div class="detail-item">Railway Exams</div>
+            <div class="detail-item">MPPSC</div>
+            <div class="detail-item">MPESB</div>
+            <div class="detail-item">College Admission</div>
+            <div class="detail-item">Exam Results</div>
+            <div class="detail-item">Scholarships</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- GOVERNMENT -->
+
+    <div class="detail-box" id="detail-government">
+
+        <div class="detail-top">
+
+            <div>
+                <h2>🏛️ Government Services</h2>
+                <p>
+                    Government and citizen services in one organized section.
+                </p>
+            </div>
+
+            <button class="close" onclick="closeDetails()">×</button>
+
+        </div>
+
+        <div class="detail-list">
+
+            <div class="detail-item">MPOnline</div>
+            <div class="detail-item">MP e-District</div>
+            <div class="detail-item">Samagra</div>
+            <div class="detail-item">Birth Certificate</div>
+            <div class="detail-item">Death Certificate</div>
+            <div class="detail-item">Caste Certificate</div>
+            <div class="detail-item">Income Certificate</div>
+            <div class="detail-item">Residence Certificate</div>
+            <div class="detail-item">EWS Certificate</div>
+            <div class="detail-item">Pension</div>
+            <div class="detail-item">Ration Card</div>
+            <div class="detail-item">Other Citizen Services</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JOBS -->
+
+    <div class="detail-box" id="detail-jobs">
+
+        <div class="detail-top">
+
+            <div>
+                <h2>💼 Jobs & Career</h2>
+                <p>
+                    Vacancy, examination and career information.
+                </p>
+            </div>
+
+            <button class="close" onclick="closeDetails()">×</button>
+
+        </div>
+
+        <div class="detail-list">
+
+            <div class="detail-item">Central Government Jobs</div>
+            <div class="detail-item">MP Government Jobs</div>
+            <div class="detail-item">Private Jobs</div>
+            <div class="detail-item">Latest Vacancies</div>
+            <div class="detail-item">Admit Cards</div>
+            <div class="detail-item">Results</div>
+            <div class="detail-item">Answer Keys</div>
+            <div class="detail-item">Eligibility</div>
+            <div class="detail-item">Age Calculator</div>
+            <div class="detail-item">Exam Calendar</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LAND -->
+
+    <div class="detail-box" id="detail-land">
+
+        <div class="detail-top">
+
+            <div>
+                <h2>🗺️ Land & Property</h2>
+                <p>
+                    Land record and property related assistance.
+                </p>
+            </div>
+
+            <button class="close" onclick="closeDetails()">×</button>
+
+        </div>
+
+        <div class="detail-list">
+
+            <div class="detail-item">Khasra</div>
+            <div class="detail-item">Khatauni</div>
+            <div class="detail-item">B-1</div>
+            <div class="detail-item">Nakal</div>
+            <div class="detail-item">Naksha</div>
+            <div class="detail-item">Bhulekh</div>
+            <div class="detail-item">Mutation</div>
+            <div class="detail-item">Bंटवारा</div>
+            <div class="detail-item">सीमांकन</div>
+            <div class="detail-item">Registry Information</div>
+            <div class="detail-item">Stamp Information</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DOCUMENTS -->
+
+    <div class="detail-box" id="detail-documents">
+
+        <div class="detail-top">
+
+            <div>
+                <h2>📄 Documents</h2>
+                <p>
+                    Important digital document services and assistance.
+                </p>
+            </div>
+
+            <button class="close" onclick="closeDetails()">×</button>
+
+        </div>
+
+        <div class="detail-list">
+
+            <div class="detail-item">Aadhaar</div>
+            <div class="detail-item">PAN Card</div>
+            <div class="detail-item">Voter ID</div>
+            <div class="detail-item">Driving Licence</div>
+            <div class="detail-item">Passport</div>
+            <div class="detail-item">Ration Card</div>
+            <div class="detail-item">Ayushman Card</div>
+            <div class="detail-item">e-Shram</div>
+            <div class="detail-item">DigiLocker</div>
+            <div class="detail-item">Document Verification</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCHEMES -->
+
+    <div class="detail-box" id="detail-schemes">
+
+        <div class="detail-top">
+
+            <div>
+                <h2>🎁 Schemes & Benefits</h2>
+                <p>
+                    Government schemes and benefit information.
+                </p>
+            </div>
+
+            <button class="close" onclick="closeDetails()">×</button>
+
+        </div>
+
+        <div class="detail-list">
+
+            <div class="detail-item">Scholarships</div>
+            <div class="detail-item">Pension Schemes</div>
+            <div class="detail-item">Farmer Schemes</div>
+            <div class="detail-item">Labour Schemes</div>
+            <div class="detail-item">Student Benefits</div>
+            <div class="detail-item">Loan Information</div>
+            <div class="detail-item">Subsidy Information</div>
+            <div class="detail-item">Government Benefits</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TRAVEL -->
+
+    <div class="detail-box" id="detail-travel">
+
+        <div class="detail-top">
+
+            <div>
+                <h2>🚆 Railway & Travel</h2>
+                <p>
+                    Travel information and digital assistance.
+                </p>
+            </div>
+
+            <button class="close" onclick="closeDetails()">×</button>
+
+        </div>
+
+        <div class="detail-list">
+
+            <div class="detail-item">Railway</div>
+            <div class="detail-item">PNR</div>
+            <div class="detail-item">Train Information</div>
+            <div class="detail-item">Bus Information</div>
+            <div class="detail-item">Flight Information</div>
+            <div class="detail-item">Passport</div>
+            <div class="detail-item">Travel Information</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CITIZEN -->
+
+    <div class="detail-box" id="detail-citizen">
+
+        <div class="detail-top">
+
+            <div>
+                <h2>🧑‍💻 Citizen Help</h2>
+                <p>
+                    Useful emergency, public utility and complaint resources.
+                </p>
+            </div>
+
+            <button class="close" onclick="closeDetails()">×</button>
+
+        </div>
+
+        <div class="detail-list">
+
+            <div class="detail-item">Police</div>
+            <div class="detail-item">Emergency</div>
+            <div class="detail-item">Hospital</div>
+            <div class="detail-item">Ambulance</div>
+            <div class="detail-item">Cyber Crime</div>
+            <div class="detail-item">Consumer Complaint</div>
+            <div class="detail-item">Electricity</div>
+            <div class="detail-item">Water</div>
+            <div class="detail-item">Gas</div>
+            <div class="detail-item">Municipal Services</div>
+            <div class="detail-item">Grievance</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+    <div class="contact-box">
+
+        <h2>Need help with a service?</h2>
+
+        <p>
+            Visit A1 Computer at New Bus Stand, Ajaigarh
+            or contact us directly.
+        </p>
+
+        <div class="contact-buttons">
+
+            <a class="contact-btn"
+               href="tel:9993831755">
+                📞 Call A1 Computer
+            </a>
+
+            <a class="contact-btn"
+               href="https://wa.me/919993831755"
+               target="_blank">
+                💬 WhatsApp
+            </a>
+
+            <a class="contact-btn"
+               href="mailto:jatavneeraj479@gmail.com">
+                ✉️ Email
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <strong>A1 COMPUTER</strong>
+
+    <br>
+
+    New Bus Stand, Ajaigarh
+
+    <br><br>
+
+    © 2026 A1 Computer • Digital Service Hub
+
+</footer>
+
+
+<!-- MOBILE NAV -->
+
+<div class="mobile-nav">
+
+    <div class="mobile-nav-inner">
+
+        <a href="../index.html">
+            🏠<br>Home
+        </a>
+
+        <a href="#serviceGrid">
+            ⚡<br>Services
+        </a>
+
+        <a href="#serviceSearch">
+            🔎<br>Search
+        </a>
+
+        <a href="#contact">
+            ☎️<br>Contact
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* OPEN SERVICE DETAIL */
+
+function openDetail(type){
+
+    document.querySelectorAll(".detail-box")
+        .forEach(box => box.classList.remove("active"));
+
+    const target = document.getElementById("detail-" + type);
+
+    if(target){
+
+        target.classList.add("active");
+
+        setTimeout(() => {
+            target.scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
+        },50);
+
+    }
+}
+
+
+/* CLOSE DETAIL */
+
+function closeDetails(){
+
+    document.querySelectorAll(".detail-box")
+        .forEach(box => box.classList.remove("active"));
+
+}
+
+
+/* SEARCH */
+
+function searchServices(){
+
+    const value =
+        document.getElementById("serviceSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    document.querySelectorAll(".card")
+        .forEach(card => {
+
+            const text =
+                (card.dataset.search || "")
+                .toLowerCase();
+
+            card.style.display =
+                !value || text.includes(value)
+                ? ""
+                : "none";
+
+        });
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterServices(category,button){
+
+    document.querySelectorAll(".filter")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document.querySelectorAll(".card")
+        .forEach(card => {
+
+            if(category === "all"){
+                card.style.display = "";
+                return;
+            }
+
+            card.style.display =
+                card.dataset.category === category
+                ? ""
+                : "none";
+
+        });
+
+    document.getElementById("serviceSearch").value = "";
+
+}
+
+
+/* URL HASH SUPPORT */
+
+window.addEventListener("load",function(){
+
+    const hash =
+        window.location.hash.replace("#","");
+
+    const allowed = [
+        "student",
+        "government",
+        "jobs",
+        "land",
+        "documents",
+        "schemes",
+        "travel",
+        "citizen"
+    ];
+
+    if(allowed.includes(hash)){
+        openDetail(hash);
+    }
+
+});
+
+</script>
+
+</body>
+</html>
