@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "code": "hi",
+    "name": "हिन्दी",
+    "nativeName": "हिन्दी",
+    "direction": "ltr"
+  },
+
+  "site": {
+    "name": "A1 Computer",
+    "tagline": "डिजिटल सेवाएँ, शिक्षा और सरकारी सुविधाएँ एक ही जगह",
+    "address": "न्यू बस स्टैंड, अजयगढ़",
+    "phone": "9993831755",
+    "email": "jatavneeraj479@gmail.com"
+  },
+
+  "common": {
+    "home": "होम",
+    "search": "खोजें",
+    "searchPlaceholder": "सेवा, नौकरी, योजना या जानकारी खोजें...",
+    "open": "खोलें",
+    "view": "देखें",
+    "viewAll": "सभी देखें",
+    "details": "विवरण",
+    "submit": "सबमिट करें",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "close": "बंद करें",
+    "back": "वापस",
+    "next": "आगे",
+    "previous": "पिछला",
+    "loading": "लोड हो रहा है...",
+    "available": "उपलब्ध",
+    "active": "सक्रिय",
+    "new": "नया",
+    "important": "महत्वपूर्ण",
+    "free": "निःशुल्क",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "call": "कॉल करें",
+    "whatsapp": "WhatsApp",
+    "email": "ईमेल"
+  },
+
+  "header": {
+    "home": "होम",
+    "services": "सेवाएँ",
+    "students": "स्टूडेंट हब",
+    "government": "सरकारी सेवाएँ",
+    "jobs": "नौकरी",
+    "land": "भूमि एवं संपत्ति",
+    "documents": "दस्तावेज़",
+    "schemes": "योजनाएँ",
+    "notices": "सूचनाएँ",
+    "contact": "संपर्क",
+    "notifications": "सूचनाएँ",
+    "language": "भाषा"
+  },
+
+  "hero": {
+    "badge": "आपकी डिजिटल सेवा का भरोसेमंद केंद्र",
+    "title": "हर डिजिटल काम,",
+    "titleHighlight": "एक ही जगह",
+    "description": "A1 Computer पर सरकारी सेवाएँ, ऑनलाइन फॉर्म, शिक्षा, नौकरी, दस्तावेज़, योजनाएँ और डिजिटल सुविधाएँ आसानी से प्राप्त करें।",
+    "searchTitle": "आपको क्या चाहिए?",
+    "searchPlaceholder": "सेवा या जानकारी खोजें...",
+    "aiButton": "AI से पूछें",
+    "exploreButton": "सेवाएँ देखें"
+  },
+
+  "quickServices": {
+    "title": "त्वरित सेवाएँ",
+    "subtitle": "सबसे अधिक उपयोग की जाने वाली डिजिटल सेवाएँ",
+    "mpOnline": "MP Online",
+    "aadhaar": "आधार सेवाएँ",
+    "panCard": "PAN कार्ड",
+    "documents": "दस्तावेज़",
+    "jobs": "सरकारी नौकरी",
+    "scholarship": "छात्रवृत्ति",
+    "exam": "परीक्षा",
+    "results": "रिजल्ट"
+  },
+
+  "categories": {
+    "title": "सेवा श्रेणियाँ",
+    "subtitle": "अपनी जरूरत के अनुसार सेवा चुनें",
+
+    "student": {
+      "title": "Student Hub",
+      "description": "परीक्षा, प्रवेश, छात्रवृत्ति, रिजल्ट और शिक्षा संबंधी सेवाएँ।"
+    },
+
+    "government": {
+      "title": "Government Services",
+      "description": "सरकारी पोर्टल और नागरिक सेवाओं की जानकारी।"
+    },
+
+    "jobs": {
+      "title": "Jobs & Career",
+      "description": "सरकारी नौकरी, भर्ती, परीक्षा और करियर अपडेट।"
+    },
+
+    "land": {
+      "title": "Land & Property",
+      "description": "भूमि रिकॉर्ड, खसरा, नक्शा और संपत्ति संबंधी सेवाएँ।"
+    },
+
+    "documents": {
+      "title": "Documents",
+      "description": "आधार, PAN, प्रमाण पत्र और अन्य डिजिटल दस्तावेज़।"
+    },
+
+    "schemes": {
+      "title": "Schemes & Benefits",
+      "description": "सरकारी योजनाएँ, लाभ और पात्रता की जानकारी।"
+    },
+
+    "travel": {
+      "title": "Travel",
+      "description": "ट्रेन, बस, यात्रा और संबंधित ऑनलाइन सेवाएँ।"
+    },
+
+    "citizen": {
+      "title": "Citizen Services",
+      "description": "आम नागरिकों के लिए डिजिटल सेवाएँ।"
+    }
+  },
+
+  "student": {
+    "title": "Student Hub",
+    "subtitle": "छात्रों के लिए सभी जरूरी सेवाएँ एक जगह",
+    "jee": "JEE",
+    "neet": "NEET",
+    "cuet": "CUET",
+    "ssc": "SSC",
+    "upsc": "UPSC",
+    "banking": "Banking",
+    "railway": "Railway",
+    "school": "School",
+    "college": "College",
+    "admission": "Admission",
+    "result": "Result",
+    "admitCard": "Admit Card",
+    "timetable": "Time Table",
+    "syllabus": "Syllabus"
+  },
+
+  "government": {
+    "title": "सरकारी सेवाएँ",
+    "subtitle": "महत्वपूर्ण सरकारी पोर्टल और सेवाएँ",
+    "mpOnline": "MP Online",
+    "mpesb": "MPESB",
+    "incomeCertificate": "आय प्रमाण पत्र",
+    "casteCertificate": "जाति प्रमाण पत्र",
+    "domicile": "निवास प्रमाण पत्र",
+    "birthCertificate": "जन्म प्रमाण पत्र",
+    "deathCertificate": "मृत्यु प्रमाण पत्र",
+    "rationCard": "राशन कार्ड",
+    "pension": "पेंशन सेवाएँ"
+  },
+
+  "jobs": {
+    "title": "नौकरी एवं करियर",
+    "subtitle": "सरकारी नौकरी और भर्ती की जानकारी",
+    "latestJobs": "नवीनतम नौकरियाँ",
+    "governmentJobs": "सरकारी नौकरियाँ",
+    "privateJobs": "प्राइवेट नौकरियाँ",
+    "admitCards": "एडमिट कार्ड",
+    "results": "रिजल्ट",
+    "answerKeys": "उत्तर कुंजी",
+    "jobDetails": "नौकरी विवरण",
+    "applyNow": "अभी आवेदन करें"
+  },
+
+  "land": {
+    "title": "भूमि एवं संपत्ति",
+    "subtitle": "भूमि रिकॉर्ड और संपत्ति संबंधी ऑनलाइन सेवाएँ",
+    "khasra": "खसरा",
+    "khatauni": "खतौनी",
+    "map": "भू-नक्शा",
+    "landRecord": "भूमि रिकॉर्ड",
+    "property": "संपत्ति",
+    "registration": "पंजीयन",
+    "stamp": "स्टाम्प"
+  },
+
+  "documents": {
+    "title": "दस्तावेज़ सेवाएँ",
+    "subtitle": "जरूरी डिजिटल दस्तावेज़ और प्रमाण पत्र",
+    "aadhaar": "आधार कार्ड",
+    "pan": "PAN कार्ड",
+    "voterId": "वोटर ID",
+    "drivingLicense": "ड्राइविंग लाइसेंस",
+    "passport": "पासपोर्ट",
+    "income": "आय प्रमाण पत्र",
+    "caste": "जाति प्रमाण पत्र",
+    "domicile": "निवास प्रमाण पत्र"
+  },
+
+  "schemes": {
+    "title": "सरकारी योजनाएँ",
+    "subtitle": "सरकारी योजनाओं और लाभों की जानकारी",
+    "eligibility": "पात्रता",
+    "benefits": "लाभ",
+    "documents": "जरूरी दस्तावेज़",
+    "application": "आवेदन प्रक्रिया",
+    "deadline": "अंतिम तिथि"
+  },
+
+  "notices": {
+    "title": "महत्वपूर्ण सूचनाएँ",
+    "subtitle": "A1 Computer और सरकारी सेवाओं से जुड़े नवीनतम अपडेट",
+    "latest": "नवीनतम",
+    "important": "महत्वपूर्ण",
+    "readMore": "और पढ़ें"
+  },
+
+  "contact": {
+    "title": "हमसे संपर्क करें",
+    "subtitle": "किसी भी डिजिटल सेवा के लिए A1 Computer से संपर्क करें",
+    "address": "पता",
+    "phone": "मोबाइल नंबर",
+    "email": "ईमेल",
+    "callNow": "अभी कॉल करें",
+    "whatsappNow": "WhatsApp करें",
+    "sendEmail": "ईमेल भेजें",
+    "location": "न्यू बस स्टैंड, अजयगढ़"
+  },
+
+  "ai": {
+    "title": "A1 AI Assistant",
+    "subtitle": "अपनी सेवा या सवाल के बारे में पूछें",
+    "placeholder": "अपना सवाल लिखें...",
+    "send": "भेजें",
+    "thinking": "AI सोच रहा है...",
+    "welcome": "नमस्ते! मैं A1 Computer AI Assistant हूँ। मैं सेवाओं, सरकारी योजनाओं, नौकरी और शिक्षा संबंधी जानकारी खोजने में आपकी मदद कर सकता हूँ।"
+  },
+
+  "search": {
+    "title": "Universal Search",
+    "results": "परिणाम",
+    "noResults": "कोई परिणाम नहीं मिला।",
+    "searching": "खोज जारी है...",
+    "tryAgain": "कोई दूसरा शब्द खोजकर देखें।"
+  },
+
+  "footer": {
+    "quickLinks": "त्वरित लिंक",
+    "services": "सेवाएँ",
+    "importantLinks": "महत्वपूर्ण लिंक",
+    "contact": "संपर्क",
+    "copyright": "सर्वाधिकार सुरक्षित।",
+    "poweredBy": "A1 Computer द्वारा संचालित",
+    "disclaimer": "यह पोर्टल सुविधा और जानकारी उपलब्ध कराने के लिए है। किसी भी सरकारी आवेदन के लिए संबंधित आधिकारिक वेबसाइट की जानकारी को प्राथमिकता दें।"
+  },
+
+  "messages": {
+    "saved": "जानकारी सफलतापूर्वक सहेजी गई।",
+    "updated": "जानकारी सफलतापूर्वक अपडेट हुई।",
+    "deleted": "जानकारी हटा दी गई।",
+    "error": "कुछ समस्या हुई। कृपया दोबारा प्रयास करें।",
+    "offline": "आप ऑफलाइन हैं। इंटरनेट कनेक्शन जांचें।",
+    "comingSoon": "यह सुविधा जल्द उपलब्ध होगी।"
+  }
+}
