@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A1 Computer | Students Manager</title>
+<meta name="theme-color" content="#050a13">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#050a13;--side:#08111f;--card:rgba(13,24,42,.78);
+--border:rgba(255,255,255,.09);--text:#f5f7fb;--muted:#8e9bb0;
+--cyan:#5ee7ff;--purple:#8d6cff;--green:#43e6a4;--orange:#ffb45c;--red:#ff637f
+}
+body{
+min-height:100vh;color:var(--text);
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:
+radial-gradient(circle at 80% 5%,rgba(94,231,255,.08),transparent 28%),
+radial-gradient(circle at 15% 90%,rgba(141,108,255,.08),transparent 30%),var(--bg)
+}
+button,input,select{font:inherit}button{cursor:pointer}
+.layout{min-height:100vh;display:flex}
+
+.sidebar{
+position:fixed;inset:0 auto 0 0;width:250px;padding:18px 13px;
+background:rgba(8,17,31,.96);border-right:1px solid var(--border);
+backdrop-filter:blur(25px);z-index:50
+}
+.brand{display:flex;align-items:center;gap:10px;padding:8px 9px 24px}
+.logo{
+width:44px;height:44px;display:grid;place-items:center;border-radius:14px;
+color:#04101a;font-weight:950;
+background:linear-gradient(135deg,var(--cyan),#baf7ff,var(--purple))
+}
+.brand strong{font-size:16px}.brand small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+.section-title{
+color:#59677d;font-size:9px;font-weight:800;letter-spacing:1.2px;
+text-transform:uppercase;padding:10px 11px 7px
+}
+.nav{display:grid;gap:4px}
+.nav a{
+min-height:42px;display:flex;align-items:center;gap:11px;padding:0 12px;
+border-radius:12px;color:#98a5b9;font-size:11px;font-weight:650;
+text-decoration:none;border:1px solid transparent;transition:.2s
+}
+.nav a:hover,.nav a.active{
+color:#fff;background:rgba(94,231,255,.07);border-color:rgba(94,231,255,.12)
+}
+.nav a.active{box-shadow:inset 3px 0 var(--cyan)}
+.nav-icon{width:22px;text-align:center;font-size:16px}
+.sidebar-bottom{position:absolute;left:13px;right:13px;bottom:16px}
+.back-site,.logout{
+width:100%;height:40px;border-radius:11px;font-size:10px
+}
+.back-site{
+border:1px solid var(--border);background:rgba(255,255,255,.03);
+color:#aeb9ca;margin-bottom:8px
+}
+.logout{
+border:1px solid rgba(255,99,127,.16);color:#ff9caf;
+background:rgba(255,99,127,.05);font-weight:750
+}
+
+.main{width:calc(100% - 250px);margin-left:250px;padding:22px}
+.topbar{
+min-height:60px;display:flex;align-items:center;justify-content:space-between;
+gap:15px;margin-bottom:18px
+}
+.mobile-menu{
+display:none;width:42px;height:42px;border:1px solid var(--border);
+border-radius:12px;background:var(--card);color:white
+}
+.title-wrap small{color:var(--muted);font-size:10px}
+.title-wrap h1{margin-top:4px;font-size:29px;letter-spacing:-1.2px}
+.top-actions{display:flex;gap:8px}
+.top-btn{
+height:40px;padding:0 13px;border-radius:11px;border:1px solid var(--border);
+background:var(--card);color:#c8d3e2;font-size:10px;font-weight:700
+}
+.top-btn:hover{color:var(--cyan)}
+
+.hero{
+padding:23px;border-radius:21px;border:1px solid var(--border);
+background:linear-gradient(120deg,rgba(94,231,255,.07),rgba(141,108,255,.06)),var(--card);
+margin-bottom:16px
+}
+.badge{
+display:inline-flex;padding:6px 10px;border-radius:999px;color:var(--cyan);
+background:rgba(94,231,255,.05);border:1px solid rgba(94,231,255,.13);
+font-size:9px;font-weight:800
+}
+.hero h2{margin-top:10px;font-size:24px;letter-spacing:-1px}
+.hero p{max-width:700px;color:var(--muted);font-size:11px;line-height:1.7;margin-top:7px}
+
+.toolbar{display:flex;gap:10px;margin-bottom:15px}
+.search{flex:1;position:relative}
+.search span{
+position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#718097
+}
+.search input{
+width:100%;height:45px;padding:0 14px 0 39px;border:1px solid var(--border);
+border-radius:12px;outline:none;background:var(--card);color:white;font-size:11px
+}
+.search input:focus{border-color:rgba(94,231,255,.35)}
+.filter{
+height:45px;min-width:145px;border:1px solid var(--border);
+border-radius:12px;background:var(--card);color:#cbd5e3;padding:0 11px;outline:none;font-size:10px
+}
+.add-btn{
+height:45px;padding:0 17px;border:0;border-radius:12px;color:#04101a;
+background:linear-gradient(100deg,var(--cyan),#a9f4ff,#9a86ff);
+font-size:10px;font-weight:850
+}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.stat{padding:15px;border:1px solid var(--border);border-radius:16px;background:var(--card)}
+.stat-icon{font-size:18px}.stat-number{margin-top:7px;font-size:22px;font-weight:900}
+.stat-label{color:var(--muted);font-size:9px;margin-top:2px}
+
+.table-wrap{
+overflow:auto;border:1px solid var(--border);border-radius:18px;background:var(--card)
+}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th,td{padding:14px 13px;text-align:left;border-bottom:1px solid var(--border)}
+th{
+color:#708098;font-size:8px;text-transform:uppercase;letter-spacing:.7px
+}
+td{font-size:10px;color:#d7dfeb}
+tr:last-child td{border-bottom:0}
+.student{
+display:flex;align-items:center;gap:10px
+}
+.avatar{
+width:36px;height:36px;display:grid;place-items:center;border-radius:11px;
+background:rgba(94,231,255,.08);font-size:16px
+}
+.student strong{font-size:10px}.student small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+.status{
+display:inline-flex;padding:5px 8px;border-radius:999px;font-size:8px;font-weight:800
+}
+.active{color:#9af1ca;background:rgba(67,230,164,.08)}
+.pending{color:#ffd18f;background:rgba(255,180,92,.08)}
+.complete{color:#8eeeff;background:rgba(94,231,255,.08)}
+.actions{display:flex;gap:5px}
+.actions button{
+height:29px;padding:0 9px;border:1px solid var(--border);border-radius:8px;
+background:rgba(255,255,255,.025);color:#b6c2d2;font-size:8px;font-weight:700
+}
+.actions button:hover{color:white;border-color:rgba(94,231,255,.25)}
+
+.empty{
+display:none;padding:45px 20px;text-align:center;color:var(--muted);
+border:1px solid var(--border);border-radius:18px;background:var(--card)
+}
+.empty.show{display:block}
+
+.modal-bg{
+display:none;position:fixed;inset:0;z-index:100;align-items:center;justify-content:center;
+padding:18px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px)
+}
+.modal-bg.show{display:flex}
+.modal{
+width:min(500px,100%);padding:22px;border-radius:20px;border:1px solid var(--border);
+background:#0a1424;box-shadow:0 30px 90px rgba(0,0,0,.45)
+}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}
+.modal-head h2{font-size:18px}
+.close{
+width:34px;height:34px;border:1px solid var(--border);border-radius:10px;
+color:#aeb9c9;background:rgba(255,255,255,.03)
+}
+.form-group{margin-bottom:13px}
+.form-group label{display:block;color:#b8c3d3;font-size:9px;font-weight:700;margin-bottom:6px}
+.form-group input,.form-group select{
+width:100%;height:40px;padding:0 11px;border:1px solid var(--border);
+border-radius:10px;outline:none;background:rgba(255,255,255,.025);color:white;font-size:10px
+}
+.form-actions{display:flex;gap:8px;margin-top:17px}
+.form-actions button{
+flex:1;height:43px;border-radius:11px;border:1px solid var(--border);
+background:rgba(255,255,255,.03);color:#b9c5d5;font-size:10px;font-weight:750
+}
+.form-actions .save{
+border:0;color:#04101a;background:linear-gradient(100deg,var(--cyan),#a4f2ff,#9883ff)
+}
+.toast{
+position:fixed;right:18px;bottom:18px;z-index:200;max-width:320px;
+padding:12px 15px;border-radius:12px;border:1px solid rgba(94,231,255,.16);
+background:rgba(8,17,31,.96);color:#dce7f5;font-size:10px;
+opacity:0;transform:translateY(15px);pointer-events:none;transition:.25s
+}
+.toast.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){
+.sidebar{transform:translateX(-105%);transition:transform .25s ease;box-shadow:20px 0 60px rgba(0,0,0,.4)}
+.sidebar.open{transform:translateX(0)}
+.main{width:100%;margin-left:0;padding:15px}
+.mobile-menu{display:block}
+.topbar{align-items:flex-start}
+.toolbar{flex-wrap:wrap}
+.search{flex-basis:100%}
+.filter,.add-btn{flex:1}
+}
+@media(max-width:520px){
+.title-wrap h1{font-size:23px}
+.top-actions .top-btn{display:none}
+.stats{gap:7px}
+.stat{padding:11px}
+.stat-number{font-size:19px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar" id="sidebar">
+
+<div class="brand">
+<div class="logo">A1</div>
+<div>
+<strong>A1 Computer</strong>
+<small>Admin Control Center</small>
+</div>
+</div>
+
+<div class="section-title">Overview</div>
+
+<nav class="nav">
+
+<a href="dashboard.html"><span class="nav-icon">⌂</span>Dashboard</a>
+<a href="services.html"><span class="nav-icon">⚡</span>Services</a>
+<a href="categories.html"><span class="nav-icon">▦</span>Categories</a>
+
+<a href="students.html" class="active">
+<span class="nav-icon">🎓</span>Students
+</a>
+
+<a href="#" data-coming="Jobs"><span class="nav-icon">💼</span>Jobs</a>
+<a href="#" data-coming="Schemes"><span class="nav-icon">🏛️</span>Schemes</a>
+<a href="#" data-coming="Land & Property"><span class="nav-icon">🏠</span>Land & Property</a>
+
+</nav>
+
+<div class="section-title">Content</div>
+
+<nav class="nav">
+<a href="#" data-coming="Documents"><span class="nav-icon">📄</span>Documents</a>
+<a href="#" data-coming="Notices"><span class="nav-icon">🔔</span>Notices</a>
+<a href="#" data-coming="Banners"><span class="nav-icon">🖼️</span>Banners</a>
+<a href="#" data-coming="A1 AI"><span class="nav-icon">🤖</span>A1 AI</a>
+<a href="#" data-coming="Languages"><span class="nav-icon">🌐</span>Languages</a>
+<a href="#" data-coming="Official Links"><span class="nav-icon">🔗</span>Official Links</a>
+</nav>
+
+<div class="sidebar-bottom">
+<button class="back-site" id="backSite">↗ Open Public Website</button>
+<button class="logout" id="logout">⇥ Logout</button>
+</div>
+
+</aside>
+
+
+<main class="main">
+
+<header class="topbar">
+
+<button class="mobile-menu" id="mobileMenu">☰</button>
+
+<div class="title-wrap">
+<small>Admin / Education Management</small>
+<h1>Students Manager</h1>
+</div>
+
+<div class="top-actions">
+<button class="top-btn" id="refresh">⟳ Refresh</button>
+<button class="top-btn" id="dashboard">← Dashboard</button>
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="badge">🎓 STUDENT CONTROL</div>
+
+<h2>Manage student-focused services</h2>
+
+<p>
+Control student applications, exam assistance, admissions,
+results, study resources and scholarship-related entries
+from the A1 Computer administration panel.
+</p>
+
+</section>
+
+
+<section class="toolbar">
+
+<div class="search">
+<span>⌕</span>
+<input type="search" id="search" placeholder="Search student records...">
+</div>
+
+<select class="filter" id="statusFilter">
+<option value="all">All Status</option>
+<option value="active">Active</option>
+<option value="pending">Pending</option>
+<option value="complete">Completed</option>
+</select>
+
+<button class="add-btn" id="addStudent">+ Add Student</button>
+
+</section>
+
+
+<section class="stats">
+
+<div class="stat">
+<div class="stat-icon">🎓</div>
+<div class="stat-number" id="totalCount">08</div>
+<div class="stat-label">Student Records</div>
+</div>
+
+<div class="stat">
+<div class="stat-icon">🟢</div>
+<div class="stat-number">05</div>
+<div class="stat-label">Active</div>
+</div>
+
+<div class="stat">
+<div class="stat-icon">⏳</div>
+<div class="stat-number">02</div>
+<div class="stat-label">Pending</div>
+</div>
+
+<div class="stat">
+<div class="stat-icon">✓</div>
+<div class="stat-number">01</div>
+<div class="stat-label">Completed</div>
+</div>
+
+</section>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Student</th>
+<th>Course</th>
+<th>Service</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="studentBody">
+
+<tr data-name="rahul kumar" data-status="active">
+<td>
+<div class="student">
+<div class="avatar">👨‍🎓</div>
+<div>
+<strong>Rahul Kumar</strong>
+<small>STU-1001</small>
+</div>
+</div>
+</td>
+<td>B.Sc.</td>
+<td>Exam Form</td>
+<td>11 Sep 2026</td>
+<td><span class="status active">ACTIVE</span></td>
+<td>
+<div class="actions">
+<button data-view="Rahul Kumar">View</button>
+<button data-edit="Rahul Kumar">Edit</button>
+</div>
+</td>
+</tr>
+
+
+<tr data-name="priya patel" data-status="pending">
+<td>
+<div class="student">
+<div class="avatar">👩‍🎓</div>
+<div>
+<strong>Priya Patel</strong>
+<small>STU-1002</small>
+</div>
+</div>
+</td>
+<td>B.A.</td>
+<td>Admission</td>
+<td>10 Sep 2026</td>
+<td><span class="status pending">PENDING</span></td>
+<td>
+<div class="actions">
+<button data-view="Priya Patel">View</button>
+<button data-edit="Priya Patel">Edit</button>
+</div>
+</td>
+</tr>
+
+
+<tr data-name="aman singh" data-status="complete">
+<td>
+<div class="student">
+<div class="avatar">👨‍💻</div>
+<div>
+<strong>Aman Singh</strong>
+<small>STU-1003</small>
+</div>
+</div>
+</td>
+<td>BCA</td>
+<td>Result</td>
+<td>09 Sep 2026</td>
+<td><span class="status complete">COMPLETED</span></td>
+<td>
+<div class="actions">
+<button data-view="Aman Singh">View</button>
+<button data-edit="Aman Singh">Edit</button>
+</div>
+</td>
+</tr>
+
+
+<tr data-name="neha yadav" data-status="active">
+<td>
+<div class="student">
+<div class="avatar">👩‍💻</div>
+<div>
+<strong>Neha Yadav</strong>
+<small>STU-1004</small>
+</div>
+</div>
+</td>
+<td>B.Sc.</td>
+<td>Scholarship</td>
+<td>08 Sep 2026</td>
+<td><span class="status active">ACTIVE</span></td>
+<td>
+<div class="actions">
+<button data-view="Neha Yadav">View</button>
+<button data-edit="Neha Yadav">Edit</button>
+</div>
+</td>
+</tr>
+
+
+<tr data-name="rohit kushwaha" data-status="active">
+<td>
+<div class="student">
+<div class="avatar">👨‍🎓</div>
+<div>
+<strong>Rohit Kushwaha</strong>
+<small>STU-1005</small>
+</div>
+</div>
+</td>
+<td>B.Com.</td>
+<td>Document Help</td>
+<td>07 Sep 2026</td>
+<td><span class="status active">ACTIVE</span></td>
+<td>
+<div class="actions">
+<button data-view="Rohit Kushwaha">View</button>
+<button data-edit="Rohit Kushwaha">Edit</button>
+</div>
+</td>
+</tr>
+
+
+<tr data-name="komal sen" data-status="pending">
+<td>
+<div class="student">
+<div class="avatar">👩‍🎓</div>
+<div>
+<strong>Komal Sen</strong>
+<small>STU-1006</small>
+</div>
+</div>
+</td>
+<td>M.A.</td>
+<td>Admission</td>
+<td>06 Sep 2026</td>
+<td><span class="status pending">PENDING</span></td>
+<td>
+<div class="actions">
+<button data-view="Komal Sen">View</button>
+<button data-edit="Komal Sen">Edit</button>
+</div>
+</td>
+</tr>
+
+
+<tr data-name="vikas verma" data-status="active">
+<td>
+<div class="student">
+<div class="avatar">👨‍💻</div>
+<div>
+<strong>Vikas Verma</strong>
+<small>STU-1007</small>
+</div>
+</div>
+</td>
+<td>B.Tech.</td>
+<td>Exam Form</td>
+<td>05 Sep 2026</td>
+<td><span class="status active">ACTIVE</span></td>
+<td>
+<div class="actions">
+<button data-view="Vikas Verma">View</button>
+<button data-edit="Vikas Verma">Edit</button>
+</div>
+</td>
+</tr>
+
+
+<tr data-name="anjali jain" data-status="active">
+<td>
+<div class="student">
+<div class="avatar">👩‍🎓</div>
+<div>
+<strong>Anjali Jain</strong>
+<small>STU-1008</small>
+</div>
+</div>
+</td>
+<td>B.Sc.</td>
+<td>Study Material</td>
+<td>04 Sep 2026</td>
+<td><span class="status active">ACTIVE</span></td>
+<td>
+<div class="actions">
+<button data-view="Anjali Jain">View</button>
+<button data-edit="Anjali Jain">Edit</button>
+</div>
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="empty" id="empty">
+<div style="font-size:30px">🔎</div>
+<h3 style="margin-top:10px;color:white;font-size:14px">No student records found</h3>
+<p style="margin-top:5px;font-size:10px">Try another search or status filter.</p>
+</div>
+
+</main>
+</div>
+
+
+<div class="modal-bg" id="modalBg">
+
+<div class="modal">
+
+<div class="modal-head">
+<h2 id="modalTitle">Add Student</h2>
+<button class="close" id="closeModal">×</button>
+</div>
+
+<form id="studentForm">
+
+<div class="form-group">
+<label>Student Name</label>
+<input id="studentName" type="text" placeholder="Enter student name" required>
+</div>
+
+<div class="form-group">
+<label>Course</label>
+<select id="studentCourse" required>
+<option value="">Select course</option>
+<option>B.Sc.</option>
+<option>B.A.</option>
+<option>B.Com.</option>
+<option>BCA</option>
+<option>B.Tech.</option>
+<option>M.A.</option>
+<option>Other</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Service</label>
+<select id="studentService" required>
+<option value="">Select service</option>
+<option>Exam Form</option>
+<option>Admission</option>
+<option>Result</option>
+<option>Scholarship</option>
+<option>Document Help</option>
+<option>Study Material</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Status</label>
+<select id="studentStatus">
+<option value="active">Active</option>
+<option value="pending">Pending</option>
+<option value="complete">Completed</option>
+</select>
+</div>
+
+<div class="form-actions">
+<button type="button" id="cancelModal">Cancel</button>
+<button type="submit" class="save">Save Student</button>
+</div>
+
+</form>
+
+</div>
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+(function(){
+
+if(sessionStorage.getItem("a1_admin_logged_in")!=="true"){
+window.location.replace("login.html");
+return;
+}
+
+const sidebar=document.getElementById("sidebar");
+const search=document.getElementById("search");
+const statusFilter=document.getElementById("statusFilter");
+const rows=Array.from(document.querySelectorAll("#studentBody tr"));
+const empty=document.getElementById("empty");
+const modalBg=document.getElementById("modalBg");
+const form=document.getElementById("studentForm");
+const studentName=document.getElementById("studentName");
+const studentCourse=document.getElementById("studentCourse");
+const studentService=document.getElementById("studentService");
+const studentStatus=document.getElementById("studentStatus");
+const modalTitle=document.getElementById("modalTitle");
+const toast=document.getElementById("toast");
+
+let editingRow=null;
+let timer;
+
+function showToast(message){
+
+clearTimeout(timer);
+toast.textContent=message;
+toast.classList.add("show");
+
+timer=setTimeout(function(){
+toast.classList.remove("show");
+},2200);
+
+}
+
+document.getElementById("mobileMenu")
+.addEventListener("click",function(){
+sidebar.classList.toggle("open");
+});
+
+
+function filterStudents(){
+
+const term=search.value.trim().toLowerCase();
+const status=statusFilter.value;
+let visible=0;
+
+rows.forEach(function(row){
+
+const name=row.dataset.name||"";
+const rowStatus=row.dataset.status||"";
+
+const matchName=!term||name.includes(term);
+const matchStatus=status==="all"||rowStatus===status;
+const show=matchName&&matchStatus;
+
+row.style.display=show?"":"none";
+
+if(show)visible++;
+
+});
+
+empty.classList.toggle("show",visible===0);
+
+}
+
+search.addEventListener("input",filterStudents);
+statusFilter.addEventListener("change",filterStudents);
+
+
+function openModal(title){
+
+modalTitle.textContent=title;
+modalBg.classList.add("show");
+
+setTimeout(function(){
+studentName.focus();
+},100);
+
+}
+
+
+function closeModal(){
+
+modalBg.classList.remove("show");
+form.reset();
+editingRow=null;
+
+}
+
+
+document.getElementById("addStudent")
+.addEventListener("click",function(){
+
+editingRow=null;
+openModal("Add Student");
+
+});
+
+
+document.querySelectorAll("[data-view]")
+.forEach(function(button){
+
+button.addEventListener("click",function(){
+
+showToast(
+"Opening student record: "+button.dataset.view
+);
+
+});
+
+});
+
+
+document.querySelectorAll("[data-edit]")
+.forEach(function(button){
+
+button.addEventListener("click",function(){
+
+editingRow=button.closest("tr");
+
+const name=editingRow.dataset.name;
+
+studentName.value=name
+.split(" ")
+.map(function(word){
+return word.charAt(0).toUpperCase()+word.slice(1);
+})
+.join(" ");
+
+studentCourse.value=editingRow.children[1].textContent.trim();
+studentService.value=editingRow.children[2].textContent.trim();
+studentStatus.value=editingRow.dataset.status;
+
+openModal("Edit Student");
+
+});
+
+});
+
+
+form.addEventListener("submit",function(event){
+
+event.preventDefault();
+
+const name=studentName.value.trim();
+
+if(!name)return;
+
+if(editingRow){
+
+editingRow.dataset.name=name.toLowerCase();
+editingRow.dataset.status=studentStatus.value;
+
+editingRow.children[0].querySelector("strong").textContent=name;
+editingRow.children[1].textContent=studentCourse.value;
+editingRow.children[2].textContent=studentService.value;
+
+const statusBox=editingRow.children[4].querySelector(".status");
+
+statusBox.className="status "+studentStatus.value;
+
+statusBox.textContent=
+studentStatus.value==="active"
+?"ACTIVE":
+studentStatus.value==="pending"
+?"PENDING":"COMPLETED";
+
+showToast(name+" updated successfully.");
+
+}else{
+
+showToast(
+name+" saved in this demo interface."
+);
+
+}
+
+closeModal();
+filterStudents();
+
+});
+
+
+document.getElementById("closeModal")
+.addEventListener("click",closeModal);
+
+document.getElementById("cancelModal")
+.addEventListener("click",closeModal);
+
+
+modalBg.addEventListener("click",function(event){
+
+if(event.target===modalBg){
+closeModal();
+}
+
+});
+
+
+document.getElementById("dashboard")
+.addEventListener("click",function(){
+window.location.href="dashboard.html";
+});
+
+
+document.getElementById("refresh")
+.addEventListener("click",function(){
+window.location.reload();
+});
+
+
+document.getElementById("backSite")
+.addEventListener("click",function(){
+window.open("../index.html","_blank");
+});
+
+
+document.getElementById("logout")
+.addEventListener("click",function(){
+
+if(!confirm("Logout from A1 Computer Admin?")){
+return;
+}
+
+sessionStorage.removeItem("a1_admin_logged_in");
+sessionStorage.removeItem("a1_admin_id");
+
+window.location.replace("login.html");
+
+});
+
+
+document.querySelectorAll("[data-coming]")
+.forEach(function(item){
+
+item.addEventListener("click",function(event){
+
+event.preventDefault();
+
+showToast(
+item.dataset.coming+
+" module will be connected in the next phase."
+);
+
+});
+
+});
+
+
+document.addEventListener("keydown",function(event){
+
+if(event.key==="Escape"){
+closeModal();
+sidebar.classList.remove("open");
+}
+
+});
+
+})();
+
+</script>
+
+</body>
+</html>
