@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Users Manager | A1 Computer</title>
+
+<style>
+:root{
+    --bg:#07111f;
+    --panel:#0d1b2d;
+    --panel2:#10243b;
+    --line:rgba(255,255,255,.10);
+    --text:#f5f7fb;
+    --muted:#91a4bb;
+    --gold:#f5c451;
+    --blue:#48a9ff;
+    --green:#35d49a;
+    --red:#ff667d;
+    --purple:#a98bff;
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(72,169,255,.12),transparent 28%),
+        radial-gradient(circle at 90% 15%,rgba(245,196,81,.08),transparent 25%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,input,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:270px;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    z-index:100;
+    overflow-y:auto;
+    padding:22px 16px;
+    background:rgba(8,18,31,.96);
+    border-right:1px solid var(--line);
+    backdrop-filter:blur(18px);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 10px 24px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:18px;
+}
+
+.logo{
+    width:44px;
+    height:44px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    background:linear-gradient(135deg,#f5c451,#d99b16);
+    color:#08111c;
+    font-weight:900;
+    box-shadow:0 10px 30px rgba(245,196,81,.2);
+}
+
+.brand h2{
+    font-size:18px;
+}
+
+.brand span{
+    color:var(--muted);
+    font-size:11px;
+    display:block;
+    margin-top:3px;
+}
+
+.menu-title{
+    color:#60758d;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    padding:12px 12px 8px;
+    text-transform:uppercase;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.nav a{
+    color:#b9c7d8;
+    text-decoration:none;
+    padding:11px 12px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    transition:.2s;
+}
+
+.nav a:hover{
+    background:rgba(255,255,255,.06);
+    color:white;
+}
+
+.nav a.active{
+    background:linear-gradient(
+        90deg,
+        rgba(245,196,81,.16),
+        rgba(72,169,255,.08)
+    );
+    color:white;
+    border:1px solid rgba(245,196,81,.16);
+}
+
+.nav-icon{
+    width:25px;
+    text-align:center;
+    font-size:16px;
+}
+
+/* MAIN */
+.main{
+    width:calc(100% - 270px);
+    margin-left:270px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:72px;
+    padding:0 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    background:rgba(7,17,31,.72);
+    backdrop-filter:blur(18px);
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.top-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.mobile-menu{
+    display:none;
+    width:42px;
+    height:42px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:white;
+    border-radius:12px;
+}
+
+.top-title{
+    font-size:18px;
+    font-weight:800;
+}
+
+.top-sub{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:2px;
+}
+
+.top-actions{
+    display:flex;
+    gap:8px;
+}
+
+.btn{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    color:#dce7f4;
+    padding:10px 14px;
+    border-radius:11px;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+    background:rgba(255,255,255,.08);
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,#f5c451,#d99b16);
+    color:#10151d;
+    border:none;
+    font-weight:800;
+}
+
+.btn-danger{
+    color:#ff9aaa;
+    background:rgba(255,102,125,.10);
+    border-color:rgba(255,102,125,.25);
+}
+
+/* CONTENT */
+.content{
+    padding:28px;
+}
+
+.hero{
+    padding:28px;
+    border:1px solid var(--line);
+    border-radius:24px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,196,81,.08),
+            rgba(72,169,255,.06)
+        ),
+        var(--panel);
+    box-shadow:var(--shadow);
+    margin-bottom:22px;
+}
+
+.hero-label{
+    color:var(--gold);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.hero h1{
+    font-size:32px;
+    margin:8px 0;
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:800px;
+    line-height:1.7;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:22px;
+}
+
+.stat{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px;
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.stat-value{
+    font-size:28px;
+    font-weight:900;
+    margin-top:8px;
+}
+
+.stat-icon{
+    font-size:20px;
+}
+
+/* TOOLBAR */
+.toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.search{
+    flex:1;
+    min-width:230px;
+    position:relative;
+}
+
+.search span{
+    position:absolute;
+    left:15px;
+    top:12px;
+    color:var(--muted);
+}
+
+.search input{
+    width:100%;
+    padding:13px 15px 13px 42px;
+    background:var(--panel);
+    color:white;
+    border:1px solid var(--line);
+    border-radius:13px;
+    outline:none;
+}
+
+select{
+    background:var(--panel);
+    color:#dce7f4;
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:13px 14px;
+    outline:none;
+}
+
+/* TABLE */
+.table-wrap{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:20px;
+    overflow:auto;
+    box-shadow:var(--shadow);
+}
+
+table{
+    width:100%;
+    min-width:900px;
+    border-collapse:collapse;
+}
+
+thead{
+    background:rgba(255,255,255,.035);
+}
+
+th{
+    text-align:left;
+    padding:15px;
+    color:#8fa4ba;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    border-bottom:1px solid var(--line);
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    color:#d9e4ef;
+    font-size:12px;
+}
+
+tbody tr:hover{
+    background:rgba(255,255,255,.025);
+}
+
+.user-cell{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:13px;
+    display:grid;
+    place-items:center;
+    font-weight:900;
+    color:#08111c;
+    background:linear-gradient(135deg,#f5c451,#48a9ff);
+}
+
+.user-name{
+    font-weight:800;
+    color:white;
+}
+
+.user-email{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:3px;
+}
+
+.badge{
+    display:inline-flex;
+    padding:5px 9px;
+    border-radius:30px;
+    font-size:10px;
+    font-weight:800;
+}
+
+.badge.active{
+    color:#72efbf;
+    background:rgba(53,212,154,.10);
+    border:1px solid rgba(53,212,154,.18);
+}
+
+.badge.blocked{
+    color:#ff9aaa;
+    background:rgba(255,102,125,.10);
+    border:1px solid rgba(255,102,125,.18);
+}
+
+.badge.admin{
+    color:#d2c1ff;
+    background:rgba(169,139,255,.10);
+    border:1px solid rgba(169,139,255,.18);
+}
+
+.badge.user{
+    color:#8ecbff;
+    background:rgba(72,169,255,.10);
+    border:1px solid rgba(72,169,255,.18);
+}
+
+.actions{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+}
+
+.small-btn{
+    padding:7px 9px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    color:#dce7f4;
+    background:rgba(255,255,255,.04);
+    font-size:10px;
+}
+
+.small-btn:hover{
+    background:rgba(255,255,255,.08);
+}
+
+.small-btn.primary{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:#07111f;
+    font-weight:800;
+}
+
+/* MODAL */
+.modal-bg{
+    position:fixed;
+    inset:0;
+    z-index:500;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+}
+
+.modal-bg.show{
+    display:flex;
+}
+
+.modal{
+    width:min(700px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#0b192a;
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);
+}
+
+.modal-head{
+    padding:20px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-head h2{
+    font-size:18px;
+}
+
+.close{
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    color:white;
+    font-size:20px;
+}
+
+.modal-body{
+    padding:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+.field label{
+    color:#b6c5d6;
+    font-size:12px;
+    font-weight:700;
+}
+
+.field input,
+.field select{
+    width:100%;
+    border:1px solid var(--line);
+    background:#081524;
+    color:white;
+    border-radius:11px;
+    padding:12px;
+    outline:none;
+}
+
+.modal-foot{
+    padding:16px 20px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+}
+
+/* EMPTY */
+.empty{
+    text-align:center;
+    padding:55px 20px;
+    color:var(--muted);
+}
+
+.empty-icon{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    z-index:1000;
+    max-width:340px;
+    padding:13px 16px;
+    border-radius:13px;
+    background:#10243b;
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    opacity:0;
+    transform:translateY(100px);
+    pointer-events:none;
+    transition:.3s;
+    font-size:13px;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:1000px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        width:100%;
+        margin-left:0;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .top-actions .btn:first-child{
+        display:none;
+    }
+
+    .content{
+        padding:16px;
+    }
+
+    .hero{
+        padding:20px;
+    }
+
+    .hero h1{
+        font-size:25px;
+    }
+
+    .stats{
+        gap:9px;
+    }
+
+    .stat{
+        padding:14px;
+    }
+
+    .stat-value{
+        font-size:23px;
+    }
+
+    .toolbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .search{
+        min-width:100%;
+    }
+
+    .toolbar select,
+    .toolbar .btn{
+        width:100%;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+}
+
+@media(max-width:450px){
+
+    .top-title{
+        font-size:15px;
+    }
+
+    .top-sub{
+        display:none;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <div class="logo">A1</div>
+        <div>
+            <h2>A1 Computer</h2>
+            <span>Admin Control Center</span>
+        </div>
+    </div>
+
+    <div class="menu-title">Main</div>
+
+    <nav class="nav">
+
+        <a href="dashboard.html">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="services.html">
+            <span class="nav-icon">⚡</span>
+            Services
+        </a>
+
+        <a href="categories.html">
+            <span class="nav-icon">▦</span>
+            Categories
+        </a>
+
+        <a href="students.html">
+            <span class="nav-icon">🎓</span>
+            Students
+        </a>
+
+        <a href="jobs.html">
+            <span class="nav-icon">💼</span>
+            Jobs
+        </a>
+
+        <a href="schemes.html">
+            <span class="nav-icon">🎁</span>
+            Schemes
+        </a>
+
+        <a href="land.html">
+            <span class="nav-icon">🏠</span>
+            Land Services
+        </a>
+
+        <a href="documents.html">
+            <span class="nav-icon">📄</span>
+            Documents
+        </a>
+
+        <a href="notices.html">
+            <span class="nav-icon">📢</span>
+            Notices
+        </a>
+
+        <a href="banners.html">
+            <span class="nav-icon">🖼️</span>
+            Banners
+        </a>
+
+        <div class="menu-title">System</div>
+
+        <a href="ai.html">
+            <span class="nav-icon">🤖</span>
+            AI Control
+        </a>
+
+        <a href="languages.html">
+            <span class="nav-icon">🌐</span>
+            Languages
+        </a>
+
+        <a href="official-links.html">
+            <span class="nav-icon">🔗</span>
+            Official Links
+        </a>
+
+        <a href="users.html" class="active">
+            <span class="nav-icon">👥</span>
+            Users
+        </a>
+
+        <a href="settings.html">
+            <span class="nav-icon">⚙️</span>
+            Settings
+        </a>
+
+    </nav>
+
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<header class="topbar">
+
+    <div class="top-left">
+
+        <button class="mobile-menu" onclick="toggleSidebar()">
+            ☰
+        </button>
+
+        <div>
+            <div class="top-title">Users Manager</div>
+            <div class="top-sub">
+                Manage portal users and access status
+            </div>
+        </div>
+
+    </div>
+
+    <div class="top-actions">
+        <button class="btn" onclick="openPublicSite()">
+            🌐 Public Site
+        </button>
+
+        <button class="btn btn-danger" onclick="logout()">
+            Logout
+        </button>
+    </div>
+
+</header>
+
+<section class="content">
+
+    <div class="hero">
+
+        <div class="hero-label">
+            A1 Computer • User Control
+        </div>
+
+        <h1>
+            User Management 👥
+        </h1>
+
+        <p>
+            Portal users ko manage karein — account status, role,
+            registration information aur access control yahin se handle karein.
+        </p>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-top">
+                <span>Total Users</span>
+                <span class="stat-icon">👥</span>
+            </div>
+            <div class="stat-value" id="totalCount">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top">
+                <span>Active</span>
+                <span class="stat-icon">🟢</span>
+            </div>
+            <div class="stat-value" id="activeCount">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top">
+                <span>Blocked</span>
+                <span class="stat-icon">🔴</span>
+            </div>
+            <div class="stat-value" id="blockedCount">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top">
+                <span>Admins</span>
+                <span class="stat-icon">🛡️</span>
+            </div>
+            <div class="stat-value" id="adminCount">0</div>
+        </div>
+
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+
+        <div class="search">
+            <span>🔎</span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search users..."
+                oninput="renderUsers()"
+            >
+        </div>
+
+        <select id="roleFilter" onchange="renderUsers()">
+            <option value="all">All Roles</option>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select>
+
+        <select id="statusFilter" onchange="renderUsers()">
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="blocked">Blocked</option>
+        </select>
+
+        <button class="btn btn-primary" onclick="openAddModal()">
+            + Add User
+        </button>
+
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>User</th>
+                    <th>Mobile</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Joined</th>
+                    <th>Last Login</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="usersBody"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+</main>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg">
+
+    <div class="modal">
+
+        <div class="modal-head">
+
+            <h2 id="modalTitle">
+                Add User
+            </h2>
+
+            <button class="close" onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+        <form id="userForm" onsubmit="saveUser(event)">
+
+            <div class="modal-body">
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label>Full Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="User full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="user@example.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label>Mobile Number</label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            placeholder="10 digit mobile number"
+                            maxlength="10"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label>Role</label>
+
+                        <select id="role">
+                            <option value="User">
+                                User
+                            </option>
+
+                            <option value="Admin">
+                                Admin
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Status</label>
+
+                        <select id="status">
+                            <option value="active">
+                                Active
+                            </option>
+
+                            <option value="blocked">
+                                Blocked
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Joined Date</label>
+
+                        <input
+                            type="date"
+                            id="joined"
+                        >
+                    </div>
+
+                    <div class="field full">
+                        <label>Last Login</label>
+
+                        <input
+                            type="text"
+                            id="lastLogin"
+                            placeholder="Example: Today, 12:30 PM"
+                        >
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-foot">
+
+                <button
+                    type="button"
+                    class="btn"
+                    onclick="closeModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Save User
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const AUTH_KEY = "a1_admin_logged_in";
+const STORAGE_KEY = "a1_users";
+
+let editingId = null;
+
+const demoUsers = [
+    {
+        id:1,
+        name:"A1 Admin",
+        email:"admin@a1computer.in",
+        mobile:"9993831755",
+        role:"Admin",
+        status:"active",
+        joined:"2026-01-05",
+        lastLogin:"Today, 10:30 AM"
+    },
+    {
+        id:2,
+        name:"Rahul Sharma",
+        email:"rahul@example.com",
+        mobile:"9876543210",
+        role:"User",
+        status:"active",
+        joined:"2026-02-12",
+        lastLogin:"Today, 09:20 AM"
+    },
+    {
+        id:3,
+        name:"Priya Verma",
+        email:"priya@example.com",
+        mobile:"9123456780",
+        role:"User",
+        status:"active",
+        joined:"2026-03-04",
+        lastLogin:"Yesterday, 06:45 PM"
+    },
+    {
+        id:4,
+        name:"Amit Patel",
+        email:"amit@example.com",
+        mobile:"9988776655",
+        role:"User",
+        status:"blocked",
+        joined:"2026-03-18",
+        lastLogin:"2026-08-29"
+    },
+    {
+        id:5,
+        name:"Neha Singh",
+        email:"neha@example.com",
+        mobile:"9012345678",
+        role:"User",
+        status:"active",
+        joined:"2026-04-10",
+        lastLogin:"Today, 08:15 AM"
+    }
+];
+
+function checkAuth(){
+
+    if(
+        sessionStorage.getItem(AUTH_KEY)
+        !== "true"
+    ){
+
+        window.location.href =
+            "login.html";
+
+        return false;
+    }
+
+    return true;
+}
+
+function getUsers(){
+
+    const saved =
+        localStorage.getItem(STORAGE_KEY);
+
+    if(saved){
+
+        try{
+            return JSON.parse(saved);
+        }catch(error){
+
+            localStorage.removeItem(STORAGE_KEY);
+        }
+    }
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(demoUsers)
+    );
+
+    return [...demoUsers];
+}
+
+function saveUsers(users){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(users)
+    );
+}
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+function initials(name){
+
+    return String(name)
+        .trim()
+        .split(/\s+/)
+        .slice(0,2)
+        .map(word => word.charAt(0))
+        .join("")
+        .toUpperCase();
+}
+
+function updateStats(){
+
+    const users =
+        getUsers();
+
+    const active =
+        users.filter(
+            user => user.status === "active"
+        );
+
+    const blocked =
+        users.filter(
+            user => user.status === "blocked"
+        );
+
+    const admins =
+        users.filter(
+            user => user.role === "Admin"
+        );
+
+    document.getElementById("totalCount")
+        .textContent = users.length;
+
+    document.getElementById("activeCount")
+        .textContent = active.length;
+
+    document.getElementById("blockedCount")
+        .textContent = blocked.length;
+
+    document.getElementById("adminCount")
+        .textContent = admins.length;
+}
+
+function renderUsers(){
+
+    const body =
+        document.getElementById("usersBody");
+
+    const search =
+        document.getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const role =
+        document.getElementById("roleFilter")
+            .value;
+
+    const status =
+        document.getElementById("statusFilter")
+            .value;
+
+    let users =
+        getUsers();
+
+    users =
+        users.filter(user => {
+
+            const matchesSearch =
+                !search ||
+                user.name.toLowerCase()
+                    .includes(search) ||
+                user.email.toLowerCase()
+                    .includes(search) ||
+                user.mobile.includes(search);
+
+            const matchesRole =
+                role === "all" ||
+                user.role === role;
+
+            const matchesStatus =
+                status === "all" ||
+                user.status === status;
+
+            return (
+                matchesSearch &&
+                matchesRole &&
+                matchesStatus
+            );
+        });
+
+    if(!users.length){
+
+        body.innerHTML = `
+            <tr>
+                <td colspan="7">
+                    <div class="empty">
+                        <div class="empty-icon">👥</div>
+                        <h3>No users found</h3>
+                        <p>
+                            Search/filter change karein
+                            ya new user add karein.
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        updateStats();
+        return;
+    }
+
+    body.innerHTML =
+        users.map(user => {
+
+            const statusClass =
+                user.status === "active"
+                ? "active"
+                : "blocked";
+
+            const roleClass =
+                user.role === "Admin"
+                ? "admin"
+                : "user";
+
+            const statusText =
+                user.status === "active"
+                ? "ACTIVE"
+                : "BLOCKED";
+
+            return `
+                <tr>
+
+                    <td>
+
+                        <div class="user-cell">
+
+                            <div class="avatar">
+                                ${escapeHTML(
+                                    initials(user.name)
+                                )}
+                            </div>
+
+                            <div>
+
+                                <div class="user-name">
+                                    ${escapeHTML(user.name)}
+                                </div>
+
+                                <div class="user-email">
+                                    ${escapeHTML(user.email)}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+                        ${escapeHTML(user.mobile)}
+                    </td>
+
+                    <td>
+                        <span class="badge ${roleClass}">
+                            ${escapeHTML(user.role)}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge ${statusClass}">
+                            ${statusText}
+                        </span>
+                    </td>
+
+                    <td>
+                        ${escapeHTML(user.joined || "-")}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(user.lastLogin || "-")}
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="small-btn primary"
+                                onclick="viewUser(${user.id})"
+                            >
+                                View
+                            </button>
+
+                            <button
+                                class="small-btn"
+                                onclick="editUser(${user.id})"
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                class="small-btn"
+                                onclick="toggleUserStatus(${user.id})"
+                            >
+                                ${
+                                    user.status === "active"
+                                    ? "Block"
+                                    : "Activate"
+                                }
+                            </button>
+
+                            <button
+                                class="small-btn"
+                                onclick="deleteUser(${user.id})"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("");
+
+    updateStats();
+}
+
+function openAddModal(){
+
+    editingId = null;
+
+    document.getElementById("modalTitle")
+        .textContent = "Add User";
+
+    document.getElementById("userForm")
+        .reset();
+
+    document.getElementById("status")
+        .value = "active";
+
+    document.getElementById("role")
+        .value = "User";
+
+    document.getElementById("modalBg")
+        .classList.add("show");
+}
+
+function editUser(id){
+
+    const users =
+        getUsers();
+
+    const user =
+        users.find(x => x.id === id);
+
+    if(!user) return;
+
+    editingId = id;
+
+    document.getElementById("modalTitle")
+        .textContent = "Edit User";
+
+    document.getElementById("name")
+        .value = user.name;
+
+    document.getElementById("email")
+        .value = user.email;
+
+    document.getElementById("mobile")
+        .value = user.mobile;
+
+    document.getElementById("role")
+        .value = user.role;
+
+    document.getElementById("status")
+        .value = user.status;
+
+    document.getElementById("joined")
+        .value = user.joined || "";
+
+    document.getElementById("lastLogin")
+        .value = user.lastLogin || "";
+
+    document.getElementById("modalBg")
+        .classList.add("show");
+}
+
+function saveUser(event){
+
+    event.preventDefault();
+
+    const users =
+        getUsers();
+
+    const data = {
+
+        name:
+            document.getElementById("name")
+                .value.trim(),
+
+        email:
+            document.getElementById("email")
+                .value.trim(),
+
+        mobile:
+            document.getElementById("mobile")
+                .value.trim(),
+
+        role:
+            document.getElementById("role")
+                .value,
+
+        status:
+            document.getElementById("status")
+                .value,
+
+        joined:
+            document.getElementById("joined")
+                .value,
+
+        lastLogin:
+            document.getElementById("lastLogin")
+                .value.trim()
+
+    };
+
+    if(editingId !== null){
+
+        const index =
+            users.findIndex(
+                x => x.id === editingId
+            );
+
+        if(index !== -1){
+
+            users[index] = {
+                ...users[index],
+                ...data
+            };
+        }
+
+        showToast(
+            "User updated successfully."
+        );
+
+    }else{
+
+        const newId =
+            users.length
+            ? Math.max(
+                ...users.map(
+                    x => Number(x.id)
+                )
+            ) + 1
+            : 1;
+
+        users.unshift({
+            id:newId,
+            ...data
+        });
+
+        showToast(
+            "User added successfully."
+        );
+    }
+
+    saveUsers(users);
+
+    closeModal();
+
+    renderUsers();
+}
+
+function viewUser(id){
+
+    const users =
+        getUsers();
+
+    const user =
+        users.find(x => x.id === id);
+
+    if(!user) return;
+
+    alert(
+        "Name: " + user.name +
+        "\n\nEmail: " + user.email +
+        "\n\nMobile: " + user.mobile +
+        "\n\nRole: " + user.role +
+        "\n\nStatus: " + user.status +
+        "\n\nJoined: " + (user.joined || "-") +
+        "\n\nLast Login: " + (user.lastLogin || "-")
+    );
+}
+
+function toggleUserStatus(id){
+
+    const users =
+        getUsers();
+
+    const user =
+        users.find(x => x.id === id);
+
+    if(!user) return;
+
+    user.status =
+        user.status === "active"
+        ? "blocked"
+        : "active";
+
+    saveUsers(users);
+
+    renderUsers();
+
+    showToast(
+        user.status === "active"
+        ? "User activated."
+        : "User blocked."
+    );
+}
+
+function deleteUser(id){
+
+    const users =
+        getUsers();
+
+    const user =
+        users.find(x => x.id === id);
+
+    if(!user) return;
+
+    if(user.role === "Admin"){
+
+        alert(
+            "Admin account ko demo user manager se delete nahi kiya ja sakta."
+        );
+
+        return;
+    }
+
+    const ok =
+        confirm(
+            'Delete "' +
+            user.name +
+            '"?'
+        );
+
+    if(!ok) return;
+
+    const updated =
+        users.filter(
+            x => x.id !== id
+        );
+
+    saveUsers(updated);
+
+    renderUsers();
+
+    showToast(
+        "User deleted successfully."
+    );
+}
+
+function closeModal(){
+
+    document.getElementById("modalBg")
+        .classList.remove("show");
+
+    editingId = null;
+}
+
+function toggleSidebar(){
+
+    document.getElementById("sidebar")
+        .classList.toggle("open");
+}
+
+function openPublicSite(){
+
+    window.open(
+        "../index.html",
+        "_blank"
+    );
+}
+
+function logout(){
+
+    const ok =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+    if(!ok) return;
+
+    sessionStorage.removeItem(
+        AUTH_KEY
+    );
+
+    window.location.href =
+        "login.html";
+}
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+    window.toastTimer =
+        setTimeout(
+            () => {
+                toast.classList.remove("show");
+            },
+            2500
+        );
+}
+
+document.getElementById("modalBg")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+                closeModal();
+            }
+
+        }
+    );
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+            closeModal();
+        }
+
+    }
+);
+
+if(checkAuth()){
+    renderUsers();
+}
+</script>
+
+</body>
+</html>
+```
