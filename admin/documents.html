@@ -1,9 +1,8 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Documents Manager | A1 Computer</title>
 
 <style>
@@ -40,7 +39,9 @@ button{
     border-right:1px solid rgba(255,255,255,.08);
     padding:22px 16px;
     position:fixed;
-    inset:0 auto 0 0;
+    left:0;
+    top:0;
+    bottom:0;
     z-index:1000;
     overflow-y:auto;
 }
@@ -64,5 +65,2053 @@ button{
     background:linear-gradient(135deg,#00d9ff,#6c5ce7);
     font-size:20px;
     font-weight:900;
-    box-shadow:0 8px 30px rgba
-```
+    color:white;
+    box-shadow:0 8px 30px rgba(0,217,255,.22);
+}
+
+.logo-text strong{
+    display:block;
+    font-size:17px;
+}
+
+.logo-text span{
+    display:block;
+    color:#7e8ba4;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.menu-title{
+    color:#68758e;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin:18px 10px 9px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.nav a{
+    color:#aebbd0;
+    text-decoration:none;
+    padding:12px 13px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-size:13px;
+    transition:.2s;
+}
+
+.nav a:hover{
+    background:rgba(255,255,255,.06);
+    color:#fff;
+}
+
+.nav a.active{
+    background:linear-gradient(
+        90deg,
+        rgba(0,217,255,.14),
+        rgba(108,92,231,.12)
+    );
+    color:#fff;
+    border:1px solid rgba(0,217,255,.16);
+}
+
+.nav-icon{
+    width:27px;
+    text-align:center;
+    font-size:17px;
+}
+
+.sidebar-bottom{
+    margin-top:25px;
+    padding:14px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:15px;
+    background:rgba(255,255,255,.025);
+}
+
+.admin-mini{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.admin-avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#6c5ce7,#00d9ff);
+    font-weight:800;
+}
+
+.admin-mini strong{
+    display:block;
+    font-size:12px;
+}
+
+.admin-mini span{
+    display:block;
+    font-size:10px;
+    color:#77849b;
+    margin-top:3px;
+}
+
+/* MAIN */
+.main{
+    margin-left:260px;
+    width:calc(100% - 260px);
+    min-height:100vh;
+}
+
+.topbar{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 28px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    background:rgba(7,11,20,.88);
+    backdrop-filter:blur(18px);
+    position:sticky;
+    top:0;
+    z-index:500;
+}
+
+.top-left{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.menu-btn{
+    display:none;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.04);
+    color:white;
+    width:40px;
+    height:40px;
+    border-radius:10px;
+}
+
+.page-title h1{
+    font-size:19px;
+}
+
+.page-title p{
+    color:#748198;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.top-actions{
+    display:flex;
+    gap:9px;
+}
+
+.top-btn{
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.04);
+    color:#dbe6f7;
+    padding:9px 13px;
+    border-radius:10px;
+    font-size:11px;
+}
+
+.top-btn:hover{
+    background:rgba(255,255,255,.08);
+}
+
+.content{
+    padding:25px 28px 45px;
+}
+
+/* HERO */
+.hero{
+    padding:24px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(0,217,255,.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 100%,
+            rgba(108,92,231,.12),
+            transparent 35%
+        ),
+        rgba(255,255,255,.025);
+    margin-bottom:22px;
+}
+
+.hero h2{
+    font-size:25px;
+    margin-bottom:7px;
+}
+
+.hero p{
+    color:#8794aa;
+    font-size:13px;
+    max-width:760px;
+    line-height:1.6;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:22px;
+}
+
+.stat{
+    padding:17px;
+    border-radius:16px;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.stat-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,217,255,.1);
+    font-size:18px;
+}
+
+.stat-value{
+    font-size:25px;
+    font-weight:800;
+    margin-top:13px;
+}
+
+.stat-label{
+    color:#7e8ba1;
+    font-size:11px;
+    margin-top:3px;
+}
+
+/* TOOLBAR */
+.toolbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:17px;
+}
+
+.search{
+    flex:1;
+    min-width:220px;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+    padding:12px 14px 12px 40px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.035);
+    color:#fff;
+    outline:none;
+}
+
+.search input:focus{
+    border-color:rgba(0,217,255,.45);
+}
+
+.search span{
+    position:absolute;
+    left:14px;
+    top:11px;
+    color:#718099;
+}
+
+select{
+    padding:12px 13px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#111827;
+    color:#dce7f7;
+    outline:none;
+}
+
+.primary{
+    padding:12px 16px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#00cfee,#5967ff);
+    color:white;
+    font-weight:700;
+    font-size:12px;
+    box-shadow:0 7px 22px rgba(0,207,238,.15);
+}
+
+/* PANEL */
+.panel{
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:17px;
+    overflow:hidden;
+    background:rgba(255,255,255,.022);
+}
+
+.panel-head{
+    padding:17px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.panel-head h3{
+    font-size:14px;
+}
+
+.panel-head span{
+    color:#738198;
+    font-size:11px;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+th{
+    text-align:left;
+    padding:13px 15px;
+    color:#718098;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+    background:rgba(255,255,255,.02);
+}
+
+td{
+    padding:14px 15px;
+    border-top:1px solid rgba(255,255,255,.055);
+    font-size:12px;
+    color:#c8d4e6;
+}
+
+td strong{
+    color:#f1f6ff;
+}
+
+.small{
+    color:#758299;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    padding:5px 8px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:700;
+}
+
+.badge.active{
+    background:rgba(46,213,115,.1);
+    color:#52e68b;
+}
+
+.badge.pending{
+    background:rgba(255,184,77,.1);
+    color:#ffbf61;
+}
+
+.badge.off{
+    background:rgba(255,82,82,.1);
+    color:#ff8585;
+}
+
+.actions{
+    display:flex;
+    gap:5px;
+}
+
+.action{
+    width:31px;
+    height:31px;
+    border:1px solid rgba(255,255,255,.07);
+    background:rgba(255,255,255,.035);
+    color:#b9c6d9;
+    border-radius:8px;
+}
+
+.action:hover{
+    background:rgba(255,255,255,.09);
+    color:white;
+}
+
+/* MODAL */
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(7px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    z-index:3000;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(680px,100%);
+    max-height:92vh;
+    overflow:auto;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    background:#0c1321;
+    box-shadow:0 30px 100px rgba(0,0,0,.55);
+}
+
+.modal-head{
+    padding:19px 20px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-head h3{
+    font-size:16px;
+}
+
+.close{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.04);
+    color:#b8c5d8;
+}
+
+.form{
+    padding:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+.field label{
+    display:block;
+    font-size:10px;
+    color:#8190a7;
+    margin-bottom:6px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.035);
+    color:#fff;
+    border-radius:10px;
+    padding:11px 12px;
+    outline:none;
+}
+
+.field textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.form-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:5px;
+}
+
+.secondary{
+    padding:11px 15px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.04);
+    color:#c7d3e4;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:5000;
+    background:#121c2c;
+    border:1px solid rgba(255,255,255,.1);
+    color:#e9f2ff;
+    padding:12px 16px;
+    border-radius:12px;
+    font-size:12px;
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+    transform:translateY(90px);
+    opacity:0;
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* MOBILE */
+@media(max-width:1000px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .top-actions .hide-mobile{
+        display:none;
+    }
+
+    .content{
+        padding:20px 15px 35px;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .stat{
+        padding:13px;
+    }
+
+    .stat-value{
+        font-size:21px;
+    }
+
+    .hero{
+        padding:18px;
+    }
+
+    .hero h2{
+        font-size:21px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .page-title h1{
+        font-size:16px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">A1</div>
+
+        <div class="logo-text">
+            <strong>A1 COMPUTER</strong>
+            <span>ADMIN CONTROL CENTER</span>
+        </div>
+    </div>
+
+    <div class="menu-title">Main</div>
+
+    <nav class="nav">
+
+        <a href="dashboard.html">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="services.html">
+            <span class="nav-icon">⚡</span>
+            Services
+        </a>
+
+        <a href="categories.html">
+            <span class="nav-icon">▦</span>
+            Categories
+        </a>
+
+        <a href="students.html">
+            <span class="nav-icon">🎓</span>
+            Students
+        </a>
+
+        <a href="jobs.html">
+            <span class="nav-icon">💼</span>
+            Jobs
+        </a>
+
+        <a href="schemes.html">
+            <span class="nav-icon">🎁</span>
+            Schemes
+        </a>
+
+        <a href="land.html">
+            <span class="nav-icon">🏠</span>
+            Land & Property
+        </a>
+
+        <a href="documents.html" class="active">
+            <span class="nav-icon">📄</span>
+            Documents
+        </a>
+
+        <a href="notices.html">
+            <span class="nav-icon">🔔</span>
+            Notices
+        </a>
+
+    </nav>
+
+    <div class="menu-title">System</div>
+
+    <nav class="nav">
+
+        <a href="banners.html">
+            <span class="nav-icon">🖼️</span>
+            Banners
+        </a>
+
+        <a href="ai.html">
+            <span class="nav-icon">🤖</span>
+            AI Assistant
+        </a>
+
+        <a href="languages.html">
+            <span class="nav-icon">🌐</span>
+            Languages
+        </a>
+
+        <a href="official-links.html">
+            <span class="nav-icon">🔗</span>
+            Official Links
+        </a>
+
+        <a href="users.html">
+            <span class="nav-icon">👥</span>
+            Users
+        </a>
+
+        <a href="settings.html">
+            <span class="nav-icon">⚙️</span>
+            Settings
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <div class="admin-mini">
+
+            <div class="admin-avatar">A</div>
+
+            <div>
+                <strong>Administrator</strong>
+                <span>Control Center</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="main">
+
+    <header class="topbar">
+
+        <div class="top-left">
+
+            <button
+                class="menu-btn"
+                onclick="toggleSidebar()"
+            >
+                ☰
+            </button>
+
+            <div class="page-title">
+
+                <h1>Documents Manager</h1>
+
+                <p>
+                    Manage document, certificate and application services
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="top-actions">
+
+            <button
+                class="top-btn hide-mobile"
+                onclick="openPublicSite()"
+            >
+                🌐 Public Site
+            </button>
+
+            <button
+                class="top-btn"
+                onclick="logout()"
+            >
+                ⇥ Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <section class="content">
+
+        <!-- HERO -->
+        <div class="hero">
+
+            <h2>📄 Documents Manager</h2>
+
+            <p>
+                Manage document services, certificates, ID applications,
+                printing, scanning and other digital document assistance
+                offered by A1 Computer.
+            </p>
+
+        </div>
+
+
+        <!-- STATS -->
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        📄
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="totalCount"
+                >
+                    10
+                </div>
+
+                <div class="stat-label">
+                    Total Documents
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="activeCount"
+                >
+                    8
+                </div>
+
+                <div class="stat-label">
+                    Active
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="pendingCount"
+                >
+                    1
+                </div>
+
+                <div class="stat-label">
+                    Pending
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ⛔
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="inactiveCount"
+                >
+                    1
+                </div>
+
+                <div class="stat-label">
+                    Inactive
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOOLBAR -->
+        <div class="toolbar">
+
+            <div class="search">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search document services..."
+                    oninput="renderTable()"
+                >
+
+            </div>
+
+
+            <select
+                id="categoryFilter"
+                onchange="renderTable()"
+            >
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="Identity">
+                    Identity
+                </option>
+
+                <option value="Certificate">
+                    Certificate
+                </option>
+
+                <option value="Application">
+                    Application
+                </option>
+
+                <option value="Printing">
+                    Printing
+                </option>
+
+                <option value="Digital">
+                    Digital
+                </option>
+
+            </select>
+
+
+            <select
+                id="statusFilter"
+                onchange="renderTable()"
+            >
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="Active">
+                    Active
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="Inactive">
+                    Inactive
+                </option>
+
+            </select>
+
+
+            <button
+                class="primary"
+                onclick="openAddModal()"
+            >
+                + Add Document
+            </button>
+
+        </div>
+
+
+        <!-- TABLE -->
+        <div class="panel">
+
+            <div class="panel-head">
+
+                <div>
+
+                    <h3>
+                        Document Services
+                    </h3>
+
+                    <span>
+                        Manage document-related services
+                    </span>
+
+                </div>
+
+                <span id="resultCount">
+                    10 records
+                </span>
+
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Document / Service
+                            </th>
+
+                            <th>
+                                Category
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Fee
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+</div>
+
+
+<!-- MODAL -->
+<div
+    class="modal-overlay"
+    id="modal"
+>
+
+    <div class="modal">
+
+        <div class="modal-head">
+
+            <h3 id="modalTitle">
+                Add Document Service
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <form
+            class="form"
+            onsubmit="saveDocument(event)"
+        >
+
+            <input
+                type="hidden"
+                id="editId"
+            >
+
+
+            <div class="grid">
+
+                <div class="field">
+
+                    <label>
+                        Document / Service Name
+                    </label>
+
+                    <input
+                        id="documentName"
+                        required
+                        placeholder="Example: Aadhaar Print"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <select
+                        id="documentCategory"
+                        required
+                    >
+
+                        <option value="Identity">
+                            Identity
+                        </option>
+
+                        <option value="Certificate">
+                            Certificate
+                        </option>
+
+                        <option value="Application">
+                            Application
+                        </option>
+
+                        <option value="Printing">
+                            Printing
+                        </option>
+
+                        <option value="Digital">
+                            Digital
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Department
+                    </label>
+
+                    <input
+                        id="department"
+                        required
+                        placeholder="Government / Private Department"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Fee
+                    </label>
+
+                    <input
+                        id="fee"
+                        placeholder="₹50"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select id="documentStatus">
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Inactive">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Processing Time
+                    </label>
+
+                    <input
+                        id="processingTime"
+                        placeholder="Same Day"
+                    >
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        placeholder="Enter service information..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary"
+                    onclick="closeModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary"
+                >
+                    Save Document
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+const STORAGE_KEY = "a1_document_services";
+
+
+const defaultDocuments = [
+
+    {
+        id:1,
+        name:"Aadhaar Print",
+        category:"Identity",
+        department:"UIDAI",
+        fee:"₹20",
+        status:"Active",
+        time:"Same Day",
+        description:"Aadhaar card print and assistance."
+    },
+
+    {
+        id:2,
+        name:"Aadhaar Update Assistance",
+        category:"Identity",
+        department:"UIDAI",
+        fee:"As Applicable",
+        status:"Active",
+        time:"As per process",
+        description:"Assistance for Aadhaar update related services."
+    },
+
+    {
+        id:3,
+        name:"PAN Card Application",
+        category:"Identity",
+        department:"Income Tax Department",
+        fee:"₹100+",
+        status:"Active",
+        time:"7–15 Days",
+        description:"New PAN card application assistance."
+    },
+
+    {
+        id:4,
+        name:"PAN Correction",
+        category:"Identity",
+        department:"Income Tax Department",
+        fee:"₹100+",
+        status:"Active",
+        time:"7–15 Days",
+        description:"PAN card correction application assistance."
+    },
+
+    {
+        id:5,
+        name:"Income Certificate",
+        category:"Certificate",
+        department:"Revenue Department",
+        fee:"₹50",
+        status:"Active",
+        time:"1–7 Days",
+        description:"Income certificate application assistance."
+    },
+
+    {
+        id:6,
+        name:"Domicile Certificate",
+        category:"Certificate",
+        department:"Revenue Department",
+        fee:"₹50",
+        status:"Active",
+        time:"1–7 Days",
+        description:"Residence and domicile certificate assistance."
+    },
+
+    {
+        id:7,
+        name:"Caste Certificate",
+        category:"Certificate",
+        department:"Revenue Department",
+        fee:"₹50",
+        status:"Active",
+        time:"1–7 Days",
+        description:"Caste certificate application assistance."
+    },
+
+    {
+        id:8,
+        name:"Online Form Filling",
+        category:"Application",
+        department:"Various Departments",
+        fee:"₹30+",
+        status:"Active",
+        time:"Same Day",
+        description:"Online government and private form filling."
+    },
+
+    {
+        id:9,
+        name:"Document Scanning",
+        category:"Digital",
+        department:"A1 Computer",
+        fee:"₹10+",
+        status:"Pending",
+        time:"Same Day",
+        description:"High quality document scanning service."
+    },
+
+    {
+        id:10,
+        name:"Colour Document Printing",
+        category:"Printing",
+        department:"A1 Computer",
+        fee:"₹10+",
+        status:"Inactive",
+        time:"Same Day",
+        description:"Colour document printing service."
+    }
+
+];
+
+
+let documents = loadDocuments();
+
+
+function loadDocuments(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(STORAGE_KEY);
+
+        if(saved){
+
+            return JSON.parse(saved);
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+    return [...defaultDocuments];
+
+}
+
+
+function saveToStorage(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(documents)
+    );
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function statusClass(status){
+
+    if(status === "Active"){
+        return "active";
+    }
+
+    if(status === "Pending"){
+        return "pending";
+    }
+
+    return "off";
+
+}
+
+
+function renderTable(){
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    const category =
+        document.getElementById("categoryFilter").value;
+
+
+    const status =
+        document.getElementById("statusFilter").value;
+
+
+    const filtered =
+        documents.filter(item => {
+
+            const matchesSearch =
+                item.name.toLowerCase().includes(search) ||
+                item.department.toLowerCase().includes(search) ||
+                item.category.toLowerCase().includes(search);
+
+
+            const matchesCategory =
+                category === "all" ||
+                item.category === category;
+
+
+            const matchesStatus =
+                status === "all" ||
+                item.status === status;
+
+
+            return (
+                matchesSearch &&
+                matchesCategory &&
+                matchesStatus
+            );
+
+        });
+
+
+    const tbody =
+        document.getElementById("tableBody");
+
+
+    if(!filtered.length){
+
+        tbody.innerHTML = `
+            <tr>
+                <td
+                    colspan="6"
+                    style="
+                        text-align:center;
+                        padding:35px;
+                        color:#758299;
+                    "
+                >
+                    No document services found.
+                </td>
+            </tr>
+        `;
+
+    }else{
+
+        tbody.innerHTML =
+            filtered.map(item => `
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            ${escapeHTML(item.name)}
+                        </strong>
+
+                        <div class="small">
+                            ${escapeHTML(item.time)}
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(item.category)}
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(item.department)}
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(item.fee)}
+                    </td>
+
+
+                    <td>
+
+                        <span
+                            class="badge ${statusClass(item.status)}"
+                        >
+                            ${escapeHTML(item.status)}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="action"
+                                title="View"
+                                onclick="viewDocument(${item.id})"
+                            >
+                                👁
+                            </button>
+
+
+                            <button
+                                class="action"
+                                title="Edit"
+                                onclick="editDocument(${item.id})"
+                            >
+                                ✎
+                            </button>
+
+
+                            <button
+                                class="action"
+                                title="Delete"
+                                onclick="deleteDocument(${item.id})"
+                            >
+                                🗑
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            `).join("");
+
+    }
+
+
+    document.getElementById("resultCount").textContent =
+        `${filtered.length} record${filtered.length === 1 ? "" : "s"}`;
+
+
+    updateStats();
+
+}
+
+
+function updateStats(){
+
+    const total =
+        documents.length;
+
+
+    const active =
+        documents.filter(
+            item => item.status === "Active"
+        ).length;
+
+
+    const pending =
+        documents.filter(
+            item => item.status === "Pending"
+        ).length;
+
+
+    const inactive =
+        documents.filter(
+            item => item.status === "Inactive"
+        ).length;
+
+
+    document.getElementById("totalCount").textContent =
+        total;
+
+    document.getElementById("activeCount").textContent =
+        active;
+
+    document.getElementById("pendingCount").textContent =
+        pending;
+
+    document.getElementById("inactiveCount").textContent =
+        inactive;
+
+}
+
+
+function openAddModal(){
+
+    document.getElementById("modalTitle").textContent =
+        "Add Document Service";
+
+
+    document.getElementById("editId").value = "";
+
+
+    document.getElementById("documentName").value = "";
+
+    document.getElementById("documentCategory").value =
+        "Identity";
+
+    document.getElementById("department").value =
+        "";
+
+    document.getElementById("fee").value =
+        "";
+
+    document.getElementById("documentStatus").value =
+        "Active";
+
+    document.getElementById("processingTime").value =
+        "";
+
+    document.getElementById("description").value =
+        "";
+
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+
+}
+
+
+function saveDocument(event){
+
+    event.preventDefault();
+
+
+    const editId =
+        Number(
+            document.getElementById("editId").value
+        );
+
+
+    const data = {
+
+        name:
+            document
+                .getElementById("documentName")
+                .value
+                .trim(),
+
+        category:
+            document
+                .getElementById("documentCategory")
+                .value,
+
+        department:
+            document
+                .getElementById("department")
+                .value
+                .trim(),
+
+        fee:
+            document
+                .getElementById("fee")
+                .value
+                .trim() ||
+            "As Applicable",
+
+        status:
+            document
+                .getElementById("documentStatus")
+                .value,
+
+        time:
+            document
+                .getElementById("processingTime")
+                .value
+                .trim() ||
+            "As per process",
+
+        description:
+            document
+                .getElementById("description")
+                .value
+                .trim()
+
+    };
+
+
+    if(editId){
+
+        const index =
+            documents.findIndex(
+                item => item.id === editId
+            );
+
+
+        if(index !== -1){
+
+            documents[index] = {
+
+                ...documents[index],
+
+                ...data
+
+            };
+
+
+            showToast(
+                "Document service updated successfully."
+            );
+
+        }
+
+    }else{
+
+        documents.unshift({
+
+            id:Date.now(),
+
+            ...data
+
+        });
+
+
+        showToast(
+            "Document service added successfully."
+        );
+
+    }
+
+
+    saveToStorage();
+
+    renderTable();
+
+    closeModal();
+
+}
+
+
+function editDocument(id){
+
+    const item =
+        documents.find(
+            x => x.id === id
+        );
+
+
+    if(!item) return;
+
+
+    document.getElementById("modalTitle").textContent =
+        "Edit Document Service";
+
+
+    document.getElementById("editId").value =
+        item.id;
+
+
+    document.getElementById("documentName").value =
+        item.name;
+
+
+    document.getElementById("documentCategory").value =
+        item.category;
+
+
+    document.getElementById("department").value =
+        item.department;
+
+
+    document.getElementById("fee").value =
+        item.fee;
+
+
+    document.getElementById("documentStatus").value =
+        item.status;
+
+
+    document.getElementById("processingTime").value =
+        item.time;
+
+
+    document.getElementById("description").value =
+        item.description;
+
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+function viewDocument(id){
+
+    const item =
+        documents.find(
+            x => x.id === id
+        );
+
+
+    if(!item) return;
+
+
+    alert(
+`DOCUMENT SERVICE
+
+Service: ${item.name}
+Category: ${item.category}
+Department: ${item.department}
+Fee: ${item.fee}
+Status: ${item.status}
+Processing Time: ${item.time}
+
+Description:
+${item.description || "No description available."}`
+    );
+
+}
+
+
+function deleteDocument(id){
+
+    const item =
+        documents.find(
+            x => x.id === id
+        );
+
+
+    if(!item) return;
+
+
+    const confirmed =
+        confirm(
+            `Delete "${item.name}"?`
+        );
+
+
+    if(!confirmed) return;
+
+
+    documents =
+        documents.filter(
+            x => x.id !== id
+        );
+
+
+    saveToStorage();
+
+    renderTable();
+
+
+    showToast(
+        "Document service deleted."
+    );
+
+}
+
+
+function toggleSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+function openPublicSite(){
+
+    window.open(
+        "../index.html",
+        "_blank"
+    );
+
+}
+
+
+function logout(){
+
+    sessionStorage.removeItem(
+        "a1_admin_logged_in"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(
+        window.a1ToastTimer
+    );
+
+
+    window.a1ToastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2500
+        );
+
+}
+
+
+/* AUTH CHECK */
+(function(){
+
+    const loggedIn =
+        sessionStorage.getItem(
+            "a1_admin_logged_in"
+        );
+
+
+    if(loggedIn !== "true"){
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    renderTable();
+
+})();
+
+
+/* MODAL BACKDROP */
+document
+    .getElementById("modal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* ESCAPE */
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
