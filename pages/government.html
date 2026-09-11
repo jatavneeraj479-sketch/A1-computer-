@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050914">
+<title>Government Services | A1 Computer</title>
+
+<style>
+:root{
+  --bg:#050914;
+  --bg2:#091426;
+  --card:rgba(15,28,49,.80);
+  --text:#f5f8ff;
+  --muted:#9eabc0;
+  --cyan:#36d9ff;
+  --blue:#5c7cff;
+  --violet:#9b6cff;
+  --green:#36e0a0;
+  --yellow:#ffd166;
+  --red:#ff6685;
+  --line:rgba(255,255,255,.10);
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 5%,rgba(54,217,255,.13),transparent 28%),
+    radial-gradient(circle at 90% 10%,rgba(155,108,255,.13),transparent 30%),
+    radial-gradient(circle at 50% 90%,rgba(92,124,255,.10),transparent 35%),
+    var(--bg);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:45px 45px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(5,9,20,.78);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+.nav{
+  min-height:74px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-mark{
+  width:43px;
+  height:43px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  font-weight:950;
+  background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));
+  box-shadow:0 0 30px rgba(54,217,255,.25);
+}
+
+.logo-text strong{
+  display:block;
+  font-size:17px;
+  line-height:1.1;
+}
+
+.logo-text span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1.5px;
+}
+
+.nav-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.nav-btn{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  color:white;
+  padding:10px 15px;
+  border-radius:14px;
+  transition:.25s;
+}
+
+.nav-btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(54,217,255,.45);
+}
+
+/* HERO */
+
+.hero{
+  padding:65px 0 30px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:24px;
+}
+
+.hero-main{
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:32px;
+  padding:42px;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(54,217,255,.15),transparent 28%),
+    radial-gradient(circle at 10% 90%,rgba(155,108,255,.15),transparent 30%),
+    var(--card);
+  box-shadow:var(--shadow);
+}
+
+.badge{
+  display:inline-flex;
+  padding:8px 13px;
+  border-radius:999px;
+  color:#b9f4ff;
+  background:rgba(54,217,255,.08);
+  border:1px solid rgba(54,217,255,.20);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.5px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(40px,6vw,70px);
+  line-height:.98;
+  letter-spacing:-2.5px;
+}
+
+.hero h1 span{
+  display:block;
+  background:linear-gradient(90deg,var(--cyan),#fff,var(--violet));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:680px;
+  line-height:1.8;
+  margin-top:20px;
+  font-size:16px;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:27px;
+}
+
+.primary,
+.secondary{
+  border-radius:15px;
+  padding:13px 18px;
+  font-weight:800;
+}
+
+.primary{
+  border:0;
+  color:white;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  box-shadow:0 10px 30px rgba(92,124,255,.22);
+}
+
+.secondary{
+  border:1px solid var(--line);
+  color:white;
+  background:rgba(255,255,255,.05);
+}
+
+/* HERO SIDE */
+
+.gov-visual{
+  min-height:100%;
+  border:1px solid var(--line);
+  border-radius:32px;
+  background:linear-gradient(145deg,rgba(18,35,61,.9),rgba(9,20,38,.8));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.gov-symbol{
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:1px dashed rgba(54,217,255,.35);
+  position:relative;
+  font-size:70px;
+}
+
+.gov-symbol:before{
+  content:"";
+  position:absolute;
+  width:125px;
+  height:125px;
+  border-radius:50%;
+  border:1px solid rgba(155,108,255,.25);
+}
+
+.gov-symbol:after{
+  content:"";
+  position:absolute;
+  width:210px;
+  height:210px;
+  border-radius:50%;
+  border:1px solid rgba(54,217,255,.12);
+}
+
+.gov-title{
+  margin-top:22px;
+  font-size:21px;
+  font-weight:900;
+}
+
+.gov-text{
+  margin-top:7px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* SEARCH */
+
+.search-section{
+  padding:18px 0 30px;
+}
+
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:7px 10px 7px 17px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.045);
+  box-shadow:0 15px 45px rgba(0,0,0,.18);
+}
+
+.search-box span{
+  font-size:21px;
+}
+
+.search-box input{
+  flex:1;
+  min-width:0;
+  border:0;
+  outline:0;
+  color:white;
+  background:transparent;
+  padding:10px 0;
+}
+
+.search-box input::placeholder{
+  color:#77849a;
+}
+
+/* SECTION */
+
+.section{
+  padding:35px 0;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.section-title{
+  font-size:29px;
+  letter-spacing:-.8px;
+}
+
+.section-sub{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+
+.count{
+  color:#aeefff;
+  font-size:13px;
+}
+
+/* FILTERS */
+
+.filters{
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding-bottom:8px;
+  margin-bottom:22px;
+  scrollbar-width:none;
+}
+
+.filters::-webkit-scrollbar{
+  display:none;
+}
+
+.filter{
+  flex:0 0 auto;
+  padding:9px 14px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  color:#b7c2d4;
+  font-size:12px;
+  font-weight:800;
+}
+
+.filter.active{
+  color:white;
+  border-color:rgba(54,217,255,.45);
+  background:rgba(54,217,255,.10);
+}
+
+/* CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.card{
+  min-height:190px;
+  position:relative;
+  overflow:hidden;
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(145deg,rgba(18,35,61,.82),rgba(10,20,35,.82));
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(54,217,255,.32);
+  box-shadow:0 18px 45px rgba(0,0,0,.25);
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  width:100px;
+  height:100px;
+  right:-40px;
+  top:-40px;
+  background:rgba(54,217,255,.08);
+  filter:blur(35px);
+}
+
+.card-icon{
+  width:49px;
+  height:49px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.06);
+  font-size:23px;
+  margin-bottom:16px;
+}
+
+.card h3{
+  position:relative;
+  font-size:17px;
+}
+
+.card p{
+  position:relative;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.65;
+  margin-top:7px;
+}
+
+.card-bottom{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-top:17px;
+}
+
+.open-btn{
+  border:1px solid rgba(54,217,255,.22);
+  background:rgba(54,217,255,.08);
+  color:#baf3ff;
+  border-radius:10px;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.info-btn{
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.06);
+  color:white;
+}
+
+/* INFO BANNER */
+
+.info-banner{
+  margin:25px 0 5px;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  background:
+    linear-gradient(100deg,rgba(54,217,255,.09),rgba(155,108,255,.08)),
+    rgba(255,255,255,.035);
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:20px;
+}
+
+.info-banner h2{
+  font-size:27px;
+}
+
+.info-banner p{
+  color:var(--muted);
+  margin-top:8px;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.info-icon{
+  font-size:48px;
+  padding:20px;
+}
+
+/* QUICK HELP */
+
+.help-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.help{
+  padding:21px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:rgba(255,255,255,.035);
+}
+
+.help-icon{
+  font-size:27px;
+}
+
+.help h3{
+  margin-top:12px;
+  font-size:16px;
+}
+
+.help p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+  margin-top:7px;
+}
+
+/* CONTACT */
+
+.contact{
+  margin:40px 0;
+  padding:32px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  text-align:center;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(54,217,255,.12),transparent 30%),
+    rgba(255,255,255,.035);
+}
+
+.contact h2{
+  font-size:28px;
+}
+
+.contact p{
+  max-width:650px;
+  margin:9px auto 20px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.contact-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.contact-actions a{
+  padding:11px 15px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  font-size:13px;
+  font-weight:800;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(10px);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(650px,100%);
+  max-height:85vh;
+  overflow:auto;
+  padding:27px;
+  border:1px solid var(--line);
+  border-radius:26px;
+  background:#0a1424;
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+}
+
+.modal-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.modal-title{
+  font-size:24px;
+}
+
+.close{
+  width:39px;
+  height:39px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  color:white;
+  font-size:20px;
+}
+
+.modal-content{
+  margin-top:18px;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:14px;
+}
+
+.modal-content ul{
+  margin:13px 0 0 20px;
+}
+
+.modal-content li{
+  margin:6px 0;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:25px 0;
+  color:#718097;
+  text-align:center;
+  font-size:12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .help-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:700px){
+
+  .nav{
+    min-height:66px;
+  }
+
+  .logo-text span{
+    display:none;
+  }
+
+  .nav-actions .lang-btn{
+    display:none;
+  }
+
+  .hero{
+    padding-top:35px;
+  }
+
+  .hero-main{
+    padding:28px 22px;
+    border-radius:25px;
+  }
+
+  .hero h1{
+    font-size:43px;
+    letter-spacing:-1.8px;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .info-banner{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .info-icon{
+    display:none;
+  }
+}
+
+@media(max-width:470px){
+
+  .container{
+    width:94%;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .hero-actions a,
+  .hero-actions button{
+    width:100%;
+    text-align:center;
+  }
+
+  .contact{
+    padding:25px 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">A1</div>
+
+      <div class="logo-text">
+        <strong>A1 Computer</strong>
+        <span>DIGITAL SERVICE HUB</span>
+      </div>
+    </a>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="nav-btn">⌂ Home</a>
+
+      <button class="nav-btn lang-btn" onclick="showLanguage()">
+        🌐 हिन्दी / English
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+
+  <div class="container hero-grid">
+
+    <div class="hero-main">
+
+      <div class="badge">
+        🏛️ A1 GOVERNMENT HUB • 2026
+      </div>
+
+      <h1>
+        Government services,
+        <span>made simpler.</span>
+      </h1>
+
+      <p>
+        MPOnline, e-District, Samagra, certificates, pension,
+        ration card, government schemes and citizen services —
+        organized in one modern A1 Computer portal.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="#services" class="primary">
+          🚀 Explore Government Services
+        </a>
+
+        <button class="secondary" onclick="showGovInfo()">
+          ✨ How it works
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="gov-visual">
+
+      <div class="gov-symbol">
+        🏛️
+      </div>
+
+      <div class="gov-title">
+        Citizen Digital Desk
+      </div>
+
+      <div class="gov-text">
+        Discover • Understand • Apply • Track
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="search-section">
+
+  <div class="container">
+
+    <div class="search-box">
+
+      <span>⌕</span>
+
+      <input
+        id="govSearch"
+        type="search"
+        placeholder="Search certificate, Samagra, pension, ration..."
+        autocomplete="off"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section" id="services">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div>
+        <h2 class="section-title">
+          Government & Citizen Services
+        </h2>
+
+        <p class="section-sub">
+          Important digital government services organized for easy access.
+        </p>
+      </div>
+
+      <div class="count" id="resultCount">
+        20 services
+      </div>
+
+    </div>
+
+    <div class="filters">
+
+      <button class="filter active" data-filter="all">
+        All
+      </button>
+
+      <button class="filter" data-filter="mp">
+        MP Services
+      </button>
+
+      <button class="filter" data-filter="certificate">
+        Certificates
+      </button>
+
+      <button class="filter" data-filter="welfare">
+        Welfare
+      </button>
+
+      <button class="filter" data-filter="citizen">
+        Citizen
+      </button>
+
+    </div>
+
+    <div class="cards" id="govCards">
+
+      <article
+        class="card service-card"
+        data-category="mp"
+        data-search="mponline mp online madhya pradesh"
+      >
+
+        <div class="card-icon">💻</div>
+
+        <h3>MPOnline</h3>
+
+        <p>
+          Madhya Pradesh online application and digital service guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'MPOnline',
+              'MPOnline related application, service and portal guidance can be organized here.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'MPOnline',
+              'Use A1 Computer for guidance with online forms, application steps and document requirements.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="mp"
+        data-search="e district edistrict mp madhya pradesh"
+      >
+
+        <div class="card-icon">🏢</div>
+
+        <h3>MP e-District</h3>
+
+        <p>
+          Digital citizen services and certificate-related guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'MP e-District',
+              'MP e-District related citizen service and application guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'MP e-District',
+              'A1 Computer can help you understand the required documents and online application process.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="mp"
+        data-search="samagra id samagra portal family member"
+      >
+
+        <div class="card-icon">🪪</div>
+
+        <h3>Samagra</h3>
+
+        <p>
+          Samagra ID, family and member-related digital guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Samagra',
+              'Samagra ID and related Madhya Pradesh citizen service guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Samagra',
+              'Keep your relevant identity and family information ready when applying for a Samagra-related service.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="certificate"
+        data-search="birth certificate janam praman patra"
+      >
+
+        <div class="card-icon">👶</div>
+
+        <h3>Birth Certificate</h3>
+
+        <p>
+          Birth certificate application and document guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Birth Certificate',
+              'Birth certificate application guidance and required-document information.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Birth Certificate',
+              'A1 Computer can help prepare the online application and understand the required documents.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="certificate"
+        data-search="death certificate mrityu praman patra"
+      >
+
+        <div class="card-icon">📜</div>
+
+        <h3>Death Certificate</h3>
+
+        <p>
+          Death certificate application and related guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Death Certificate',
+              'Death certificate application and documentation guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Death Certificate',
+              'Application steps and document guidance can be provided by A1 Computer.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="certificate"
+        data-search="caste certificate jati praman patra"
+      >
+
+        <div class="card-icon">📋</div>
+
+        <h3>Caste Certificate</h3>
+
+        <p>
+          Caste certificate application and documentation guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Caste Certificate',
+              'Caste certificate application, document preparation and digital process guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Caste Certificate',
+              'A1 Computer can assist with understanding the application process and required documents.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="certificate"
+        data-search="income certificate aay praman patra"
+      >
+
+        <div class="card-icon">💰</div>
+
+        <h3>Income Certificate</h3>
+
+        <p>
+          Income certificate application and eligibility guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Income Certificate',
+              'Income certificate application and required-document guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Income Certificate',
+              'A1 Computer can help with application preparation and document requirements.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="certificate"
+        data-search="domicile residence niwas mool niwasi certificate"
+      >
+
+        <div class="card-icon">🏠</div>
+
+        <h3>Residence Certificate</h3>
+
+        <p>
+          Residence and domicile certificate guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Residence Certificate',
+              'Residence/domicile certificate application and document guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Residence Certificate',
+              'Get help understanding application requirements and supporting documents.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="certificate"
+        data-search="ews economically weaker section certificate"
+      >
+
+        <div class="card-icon">📄</div>
+
+        <h3>EWS Certificate</h3>
+
+        <p>
+          Economically Weaker Section certificate guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'EWS Certificate',
+              'EWS certificate application and documentation guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'EWS Certificate',
+              'Eligibility and supporting-document guidance can be provided before applying.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="certificate"
+        data-search="character certificate police character"
+      >
+
+        <div class="card-icon">🛡️</div>
+
+        <h3>Character Certificate</h3>
+
+        <p>
+          Character certificate and verification-related guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Character Certificate',
+              'Character certificate and related application guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Character Certificate',
+              'Application requirements and supporting documents can be checked before submission.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="certificate"
+        data-search="disability certificate viklang divyang"
+      >
+
+        <div class="card-icon">♿</div>
+
+        <h3>Disability Certificate</h3>
+
+        <p>
+          Disability certificate and related government-service guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Disability Certificate',
+              'Disability certificate application and related service guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Disability Certificate',
+              'A1 Computer can help understand the online process and required documentation.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="welfare"
+        data-search="pension old age widow disability pension"
+      >
+
+        <div class="card-icon">👴</div>
+
+        <h3>Pension Services</h3>
+
+        <p>
+          Pension schemes and application-related guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Pension Services',
+              'Pension scheme information, application guidance and document requirements.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Pension Services',
+              'Different pension categories may have different eligibility and documents. Check before applying.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="welfare"
+        data-search="ration card food ration family"
+      >
+
+        <div class="card-icon">🍚</div>
+
+        <h3>Ration Card</h3>
+
+        <p>
+          Ration card application, update and service guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Ration Card',
+              'Ration card application, correction, family-member and related service guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Ration Card',
+              'A1 Computer can assist with digital forms and document preparation.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="welfare"
+        data-search="farmer kisan agriculture government scheme"
+      >
+
+        <div class="card-icon">🌾</div>
+
+        <h3>Farmer Services</h3>
+
+        <p>
+          Farmer schemes and agriculture-related digital services.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Farmer Services',
+              'Farmer welfare schemes, applications and digital-service guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Farmer Services',
+              'Government farmer services can include scheme applications and benefit-related processes.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="welfare"
+        data-search="labour shramik labour card worker"
+      >
+
+        <div class="card-icon">👷</div>
+
+        <h3>Labour Services</h3>
+
+        <p>
+          Worker and labour welfare service guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Labour Services',
+              'Labour-related registration, welfare and government service guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Labour Services',
+              'A1 Computer can help with digital applications and document preparation.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="welfare"
+        data-search="student scheme scholarship education benefit"
+      >
+
+        <div class="card-icon">🎓</div>
+
+        <h3>Student Benefits</h3>
+
+        <p>
+          Scholarships and student welfare scheme guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Student Benefits',
+              'Student scholarships, benefits and education-related scheme guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Student Benefits',
+              'Eligibility, documents and application process vary by scheme.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="citizen"
+        data-search="grievance complaint government complaint"
+      >
+
+        <div class="card-icon">📢</div>
+
+        <h3>Grievance Help</h3>
+
+        <p>
+          Government complaint and grievance guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Grievance Help',
+              'Guidance for understanding government grievance and complaint processes.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Grievance Help',
+              'A1 Computer can help organize information needed for submitting a grievance.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="citizen"
+        data-search="electricity bijli bill connection"
+      >
+
+        <div class="card-icon">⚡</div>
+
+        <h3>Electricity Services</h3>
+
+        <p>
+          Electricity bill and digital-service guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Electricity Services',
+              'Electricity bill, connection and online service guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Electricity Services',
+              'Keep your consumer number or relevant service details ready when required.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="citizen"
+        data-search="water bill nagar palika municipal"
+      >
+
+        <div class="card-icon">💧</div>
+
+        <h3>Water & Municipal</h3>
+
+        <p>
+          Water, municipal and local-body service guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Water & Municipal',
+              'Water and municipal digital service guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Water & Municipal',
+              'A1 Computer can help understand digital forms and online payment/service processes.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+      <article
+        class="card service-card"
+        data-category="citizen"
+        data-search="gas lpg connection subsidy"
+      >
+
+        <div class="card-icon">🔥</div>
+
+        <h3>Gas Services</h3>
+
+        <p>
+          LPG connection, booking and related digital guidance.
+        </p>
+
+        <div class="card-bottom">
+
+          <button
+            class="open-btn"
+            onclick="openService(
+              'Gas Services',
+              'LPG and gas-related online service guidance.'
+            )"
+          >
+            Open
+          </button>
+
+          <button
+            class="info-btn"
+            onclick="openService(
+              'Gas Services',
+              'Connection, booking and account-related digital services can be organized here.'
+            )"
+          >
+            i
+          </button>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="container">
+
+    <div class="info-banner">
+
+      <div>
+
+        <h2>
+          🧾 Documents ready = Faster applications
+        </h2>
+
+        <p>
+          Before starting a government service, keep the required
+          identity, address, mobile and supporting documents ready.
+          Exact requirements can vary by service and authority.
+        </p>
+
+      </div>
+
+      <div class="info-icon">
+        📁
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div>
+
+        <h2 class="section-title">
+          A1 Citizen Help
+        </h2>
+
+        <p class="section-sub">
+          Simple digital assistance for everyday government work.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="help-grid">
+
+      <div class="help">
+
+        <div class="help-icon">📝</div>
+
+        <h3>Form Assistance</h3>
+
+        <p>
+          Help understanding online application fields,
+          document requirements and submission steps.
+        </p>
+
+      </div>
+
+      <div class="help">
+
+        <div class="help-icon">📂</div>
+
+        <h3>Document Preparation</h3>
+
+        <p>
+          Organize the required documents before starting
+          an online government application.
+        </p>
+
+      </div>
+
+      <div class="help">
+
+        <div class="help-icon">💻</div>
+
+        <h3>Digital Support</h3>
+
+        <p>
+          Get practical assistance for online portals,
+          applications and digital citizen services.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="container">
+
+  <div class="contact">
+
+    <h2>
+      Need help with a government service?
+    </h2>
+
+    <p>
+      Visit A1 Computer, New Bus Stand, Ajaigarh,
+      or contact us for digital service assistance.
+    </p>
+
+    <div class="contact-actions">
+
+      <a href="tel:9993831755">
+        📞 Call 9993831755
+      </a>
+
+      <a
+        href="https://wa.me/919993831755"
+        target="_blank"
+      >
+        💬 WhatsApp
+      </a>
+
+      <a href="mailto:jatavneer479@gmail.com">
+        ✉️ Email
+      </a>
+
+      <a href="../index.html">
+        🏠 A1 Home
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-top">
+
+      <h2 class="modal-title" id="modalTitle">
+        Government Service
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div
+      class="modal-content"
+      id="modalContent"
+    ></div>
+
+  </div>
+
+</div>
+
+<footer>
+
+  <div class="container">
+    © 2026 A1 Computer • New Bus Stand, Ajaigarh •
+    Government & Citizen Digital Services
+  </div>
+
+</footer>
+
+<script>
+
+const cards = Array.from(
+  document.querySelectorAll(".service-card")
+);
+
+const filters = Array.from(
+  document.querySelectorAll(".filter")
+);
+
+const searchInput =
+  document.getElementById("govSearch");
+
+const resultCount =
+  document.getElementById("resultCount");
+
+let activeFilter = "all";
+
+function updateCards(){
+
+  const query =
+    searchInput.value.toLowerCase().trim();
+
+  let visible = 0;
+
+  cards.forEach(card => {
+
+    const category =
+      card.dataset.category || "";
+
+    const search =
+      (card.dataset.search || "").toLowerCase();
+
+    const title =
+      (card.querySelector("h3")?.innerText || "")
+      .toLowerCase();
+
+    const categoryMatch =
+      activeFilter === "all" ||
+      category === activeFilter;
+
+    const searchMatch =
+      !query ||
+      search.includes(query) ||
+      title.includes(query);
+
+    if(categoryMatch && searchMatch){
+
+      card.style.display = "";
+      visible++;
+
+    }else{
+
+      card.style.display = "none";
+
+    }
+
+  });
+
+  resultCount.textContent =
+    visible +
+    (visible === 1 ? " service" : " services");
+}
+
+filters.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    filters.forEach(item =>
+      item.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+    activeFilter =
+      button.dataset.filter;
+
+    updateCards();
+
+  });
+
+});
+
+searchInput.addEventListener(
+  "input",
+  updateCards
+);
+
+function openService(title, description){
+
+  document.getElementById("modalTitle")
+    .textContent = title;
+
+  document.getElementById("modalContent")
+    .innerHTML = `
+
+      <p>
+        ${description}
+      </p>
+
+      <ul>
+
+        <li>
+          Check eligibility before applying.
+        </li>
+
+        <li>
+          Keep required documents ready.
+        </li>
+
+        <li>
+          Verify information before final submission.
+        </li>
+
+        <li>
+          Save application or acknowledgement details
+          when available.
+        </li>
+
+      </ul>
+
+      <br>
+
+      <p>
+        <strong style="color:white;">
+          A1 Computer
+        </strong>
+        <br>
+        New Bus Stand, Ajaigarh
+        <br>
+        📞 9993831755
+      </p>
+
+    `;
+
+  document.getElementById("modal")
+    .classList.add("show");
+}
+
+function showGovInfo(){
+
+  document.getElementById("modalTitle")
+    .textContent =
+    "How A1 Government Hub Works";
+
+  document.getElementById("modalContent")
+    .innerHTML = `
+
+      <p>
+        A1 Government Hub is designed to organize
+        common digital government services in one place.
+      </p>
+
+      <ul>
+
+        <li>
+          Search the service you need.
+        </li>
+
+        <li>
+          Open the service information.
+        </li>
+
+        <li>
+          Understand the basic documents and process.
+        </li>
+
+        <li>
+          Get digital assistance from A1 Computer.
+        </li>
+
+      </ul>
+
+      <br>
+
+      <p>
+        Exact eligibility, fees, documents and processing
+        requirements may vary by service and authority.
+      </p>
+
+    `;
+
+  document.getElementById("modal")
+    .classList.add("show");
+}
+
+function showLanguage(){
+
+  document.getElementById("modalTitle")
+    .textContent =
+    "Language Support";
+
+  document.getElementById("modalContent")
+    .innerHTML = `
+
+      <p>
+        A1 Computer is being prepared for
+        a multilingual interface.
+      </p>
+
+      <ul>
+
+        <li>🇮🇳 हिन्दी</li>
+        <li>🇬🇧 English</li>
+        <li>मराठी</li>
+        <li>ગુજરાતી</li>
+        <li>বাংলা</li>
+        <li>தமிழ்</li>
+        <li>తెలుగు</li>
+
+      </ul>
+
+      <p>
+        Full language switching will be connected
+        through the A1 language system in a later stage.
+      </p>
+
+    `;
+
+  document.getElementById("modal")
+    .classList.add("show");
+}
+
+function closeModal(){
+
+  document.getElementById("modal")
+    .classList.remove("show");
+}
+
+document
+  .getElementById("modal")
+  .addEventListener("click",function(event){
+
+    if(event.target === this){
+      closeModal();
+    }
+
+  });
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+      closeModal();
+    }
+
+  }
+);
+
+updateCards();
+
+</script>
+
+</body>
+</html>
