@@ -1,0 +1,1611 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Official Links Manager | A1 Computer</title>
+
+<style>
+:root{
+    --bg:#07111f;
+    --panel:#0d1b2d;
+    --panel2:#10243b;
+    --line:rgba(255,255,255,.10);
+    --text:#f5f7fb;
+    --muted:#91a4bb;
+    --gold:#f5c451;
+    --blue:#48a9ff;
+    --green:#35d49a;
+    --red:#ff667d;
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+    --radius:20px;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:
+      radial-gradient(circle at 15% 10%,rgba(72,169,255,.12),transparent 28%),
+      radial-gradient(circle at 90% 20%,rgba(245,196,81,.09),transparent 25%),
+      var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,input,select,textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:270px;
+    background:rgba(8,18,31,.94);
+    border-right:1px solid var(--line);
+    padding:22px 16px;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    z-index:100;
+    overflow-y:auto;
+    backdrop-filter:blur(18px);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 10px 24px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:18px;
+}
+
+.logo{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#f5c451,#d99b16);
+    color:#08111c;
+    font-weight:900;
+    box-shadow:0 10px 30px rgba(245,196,81,.2);
+}
+
+.brand h2{
+    font-size:18px;
+}
+
+.brand span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-top:3px;
+}
+
+.menu-title{
+    color:#60758d;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    padding:12px 12px 8px;
+    text-transform:uppercase;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.nav a{
+    color:#b9c7d8;
+    text-decoration:none;
+    padding:11px 12px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    transition:.2s;
+}
+
+.nav a:hover{
+    background:rgba(255,255,255,.06);
+    color:white;
+}
+
+.nav a.active{
+    background:linear-gradient(90deg,rgba(245,196,81,.16),rgba(72,169,255,.08));
+    color:#fff;
+    border:1px solid rgba(245,196,81,.16);
+}
+
+.nav-icon{
+    width:25px;
+    text-align:center;
+    font-size:16px;
+}
+
+/* MAIN */
+.main{
+    width:calc(100% - 270px);
+    margin-left:270px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:72px;
+    padding:0 28px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(7,17,31,.72);
+    backdrop-filter:blur(18px);
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.top-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.mobile-menu{
+    display:none;
+    width:42px;
+    height:42px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:white;
+    border-radius:12px;
+}
+
+.top-title{
+    font-size:18px;
+    font-weight:800;
+}
+
+.top-sub{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:2px;
+}
+
+.top-actions{
+    display:flex;
+    gap:8px;
+}
+
+.btn{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    color:#dce7f4;
+    padding:10px 14px;
+    border-radius:11px;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+    background:rgba(255,255,255,.08);
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,#f5c451,#d99b16);
+    color:#10151d;
+    border:none;
+    font-weight:800;
+}
+
+.btn-danger{
+    background:rgba(255,102,125,.10);
+    border-color:rgba(255,102,125,.25);
+    color:#ff9aaa;
+}
+
+/* CONTENT */
+.content{
+    padding:28px;
+}
+
+.hero{
+    padding:28px;
+    border:1px solid var(--line);
+    border-radius:24px;
+    background:
+      linear-gradient(135deg,rgba(245,196,81,.08),rgba(72,169,255,.06)),
+      var(--panel);
+    box-shadow:var(--shadow);
+    margin-bottom:22px;
+}
+
+.hero-label{
+    color:var(--gold);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.hero h1{
+    font-size:32px;
+    margin:8px 0;
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:760px;
+    line-height:1.7;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:22px;
+}
+
+.stat{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px;
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.stat-value{
+    font-size:28px;
+    font-weight:900;
+    margin-top:8px;
+}
+
+.stat-icon{
+    font-size:20px;
+}
+
+/* TOOLBAR */
+.toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.search{
+    flex:1;
+    min-width:220px;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+    background:var(--panel);
+    border:1px solid var(--line);
+    color:white;
+    outline:none;
+    border-radius:13px;
+    padding:13px 15px 13px 42px;
+}
+
+.search span{
+    position:absolute;
+    left:15px;
+    top:12px;
+    color:var(--muted);
+}
+
+select{
+    background:var(--panel);
+    color:#dce7f4;
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:13px 14px;
+    outline:none;
+}
+
+/* LINK GRID */
+.links-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.link-card{
+    background:linear-gradient(145deg,rgba(16,36,59,.92),rgba(10,24,41,.92));
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:20px;
+    position:relative;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.link-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(245,196,81,.25);
+}
+
+.link-card::after{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:rgba(72,169,255,.06);
+    right:-50px;
+    top:-50px;
+}
+
+.link-head{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.link-title{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+}
+
+.link-icon{
+    width:46px;
+    height:46px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    background:rgba(72,169,255,.10);
+    border:1px solid rgba(72,169,255,.15);
+    font-size:21px;
+    flex:none;
+}
+
+.link-title h3{
+    font-size:16px;
+    margin-bottom:5px;
+}
+
+.link-title p{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.badge{
+    padding:5px 9px;
+    border-radius:30px;
+    font-size:10px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.badge.active{
+    color:#72efbf;
+    background:rgba(53,212,154,.10);
+    border:1px solid rgba(53,212,154,.18);
+}
+
+.badge.inactive{
+    color:#ff9aaa;
+    background:rgba(255,102,125,.10);
+    border:1px solid rgba(255,102,125,.18);
+}
+
+.link-url{
+    margin:16px 0;
+    padding:11px 12px;
+    background:rgba(0,0,0,.18);
+    border:1px solid var(--line);
+    border-radius:11px;
+    color:#8ecbff;
+    font-size:12px;
+    word-break:break-all;
+}
+
+.link-meta{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.meta{
+    color:#9eb0c4;
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:5px 8px;
+    font-size:10px;
+}
+
+.link-actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.small-btn{
+    padding:8px 10px;
+    border-radius:9px;
+    font-size:11px;
+    border:1px solid var(--line);
+    color:#dce7f4;
+    background:rgba(255,255,255,.04);
+}
+
+.small-btn:hover{
+    background:rgba(255,255,255,.08);
+}
+
+.small-btn.primary{
+    color:#07111f;
+    background:var(--gold);
+    border-color:var(--gold);
+    font-weight:800;
+}
+
+/* EMPTY */
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:55px 20px;
+    border:1px dashed var(--line);
+    border-radius:20px;
+    color:var(--muted);
+}
+
+.empty-icon{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+/* MODAL */
+.modal-bg{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:500;
+}
+
+.modal-bg.show{
+    display:flex;
+}
+
+.modal{
+    width:min(700px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#0b192a;
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);
+}
+
+.modal-head{
+    padding:20px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-head h2{
+    font-size:18px;
+}
+
+.close{
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    color:white;
+    font-size:20px;
+}
+
+.modal-body{
+    padding:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+.field label{
+    color:#b6c5d6;
+    font-size:12px;
+    font-weight:700;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    border:1px solid var(--line);
+    background:#081524;
+    color:white;
+    border-radius:11px;
+    padding:12px;
+    outline:none;
+}
+
+.field textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.modal-foot{
+    padding:16px 20px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    background:#10243b;
+    color:white;
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:13px 16px;
+    box-shadow:var(--shadow);
+    transform:translateY(100px);
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:1000;
+    max-width:340px;
+    font-size:13px;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* MOBILE */
+@media(max-width:1000px){
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        width:100%;
+        margin-left:0;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+    .topbar{
+        padding:0 15px;
+    }
+
+    .top-actions .btn:nth-child(1){
+        display:none;
+    }
+
+    .content{
+        padding:16px;
+    }
+
+    .hero{
+        padding:20px;
+    }
+
+    .hero h1{
+        font-size:25px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .stat{
+        padding:14px;
+    }
+
+    .stat-value{
+        font-size:23px;
+    }
+
+    .links-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+}
+
+@media(max-width:450px){
+    .top-title{
+        font-size:15px;
+    }
+
+    .top-sub{
+        display:none;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .toolbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .search{
+        min-width:100%;
+    }
+
+    .toolbar select,
+    .toolbar .btn{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <div class="logo">A1</div>
+        <div>
+            <h2>A1 Computer</h2>
+            <span>Admin Control Center</span>
+        </div>
+    </div>
+
+    <div class="menu-title">Main</div>
+
+    <nav class="nav">
+
+        <a href="dashboard.html">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="services.html">
+            <span class="nav-icon">⚡</span>
+            Services
+        </a>
+
+        <a href="categories.html">
+            <span class="nav-icon">▦</span>
+            Categories
+        </a>
+
+        <a href="students.html">
+            <span class="nav-icon">🎓</span>
+            Students
+        </a>
+
+        <a href="jobs.html">
+            <span class="nav-icon">💼</span>
+            Jobs
+        </a>
+
+        <a href="schemes.html">
+            <span class="nav-icon">🎁</span>
+            Schemes
+        </a>
+
+        <a href="land.html">
+            <span class="nav-icon">🏠</span>
+            Land Services
+        </a>
+
+        <a href="documents.html">
+            <span class="nav-icon">📄</span>
+            Documents
+        </a>
+
+        <a href="notices.html">
+            <span class="nav-icon">📢</span>
+            Notices
+        </a>
+
+        <a href="banners.html">
+            <span class="nav-icon">🖼️</span>
+            Banners
+        </a>
+
+        <div class="menu-title">System</div>
+
+        <a href="ai.html">
+            <span class="nav-icon">🤖</span>
+            AI Control
+        </a>
+
+        <a href="languages.html">
+            <span class="nav-icon">🌐</span>
+            Languages
+        </a>
+
+        <a href="official-links.html" class="active">
+            <span class="nav-icon">🔗</span>
+            Official Links
+        </a>
+
+        <a href="users.html">
+            <span class="nav-icon">👥</span>
+            Users
+        </a>
+
+        <a href="settings.html">
+            <span class="nav-icon">⚙️</span>
+            Settings
+        </a>
+
+    </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+    <header class="topbar">
+
+        <div class="top-left">
+
+            <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+
+            <div>
+                <div class="top-title">Official Links</div>
+                <div class="top-sub">Manage verified external service links</div>
+            </div>
+
+        </div>
+
+        <div class="top-actions">
+            <button class="btn" onclick="openPublicSite()">🌐 Public Site</button>
+            <button class="btn btn-danger" onclick="logout()">Logout</button>
+        </div>
+
+    </header>
+
+    <section class="content">
+
+        <div class="hero">
+            <div class="hero-label">A1 Computer • System Control</div>
+            <h1>Official Link Manager 🔗</h1>
+            <p>
+                Government, education, examination, scholarship, job and citizen-service
+                websites ko ek jagah manage karein. Customers ko verified official
+                websites tak direct access dene ke liye links maintain karein.
+            </p>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats">
+
+            <div class="stat">
+                <div class="stat-top">
+                    <span>Total Links</span>
+                    <span class="stat-icon">🔗</span>
+                </div>
+                <div class="stat-value" id="totalCount">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-top">
+                    <span>Active</span>
+                    <span class="stat-icon">✅</span>
+                </div>
+                <div class="stat-value" id="activeCount">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-top">
+                    <span>Important</span>
+                    <span class="stat-icon">⭐</span>
+                </div>
+                <div class="stat-value" id="importantCount">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-top">
+                    <span>Categories</span>
+                    <span class="stat-icon">📂</span>
+                </div>
+                <div class="stat-value" id="categoryCount">0</div>
+            </div>
+
+        </div>
+
+        <!-- TOOLBAR -->
+        <div class="toolbar">
+
+            <div class="search">
+                <span>🔎</span>
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search official links..."
+                    oninput="renderLinks()"
+                >
+            </div>
+
+            <select id="categoryFilter" onchange="renderLinks()">
+                <option value="all">All Categories</option>
+                <option value="Government">Government</option>
+                <option value="Education">Education</option>
+                <option value="Jobs">Jobs</option>
+                <option value="Exams">Exams</option>
+                <option value="Scholarship">Scholarship</option>
+                <option value="Citizen">Citizen Services</option>
+                <option value="Banking">Banking</option>
+            </select>
+
+            <select id="statusFilter" onchange="renderLinks()">
+                <option value="all">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+
+            <button class="btn btn-primary" onclick="openAddModal()">
+                + Add Official Link
+            </button>
+
+        </div>
+
+        <!-- LINKS -->
+        <div class="links-grid" id="linksGrid"></div>
+
+    </section>
+
+</main>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg">
+
+    <div class="modal">
+
+        <div class="modal-head">
+            <h2 id="modalTitle">Add Official Link</h2>
+            <button class="close" onclick="closeModal()">×</button>
+        </div>
+
+        <form id="linkForm" onsubmit="saveLink(event)">
+
+            <div class="modal-body">
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label>Website Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Example: Government of India"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label>Category</label>
+                        <select id="category" required>
+                            <option value="Government">Government</option>
+                            <option value="Education">Education</option>
+                            <option value="Jobs">Jobs</option>
+                            <option value="Exams">Exams</option>
+                            <option value="Scholarship">Scholarship</option>
+                            <option value="Citizen">Citizen Services</option>
+                            <option value="Banking">Banking</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">
+                        <label>Official URL</label>
+                        <input
+                            type="url"
+                            id="url"
+                            placeholder="https://example.gov.in"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label>Icon / Emoji</label>
+                        <input
+                            type="text"
+                            id="icon"
+                            placeholder="🏛️"
+                            maxlength="4"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label>Priority</label>
+                        <select id="priority">
+                            <option value="High">High</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Status</label>
+                        <select id="status">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Important Link</label>
+                        <select id="important">
+                            <option value="yes">Yes</option>
+                            <option value="no" selected>No</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">
+                        <label>Description</label>
+                        <textarea
+                            id="description"
+                            placeholder="Short information about this official website..."
+                        ></textarea>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-foot">
+                <button type="button" class="btn" onclick="closeModal()">
+                    Cancel
+                </button>
+
+                <button type="submit" class="btn btn-primary">
+                    Save Link
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const AUTH_KEY = "a1_admin_logged_in";
+const STORAGE_KEY = "a1_official_links";
+
+let editingId = null;
+
+const demoLinks = [
+    {
+        id: 1,
+        name: "Government of India",
+        category: "Government",
+        url: "https://www.india.gov.in/",
+        icon: "🇮🇳",
+        priority: "High",
+        status: "active",
+        important: "yes",
+        description: "India government ka official national portal."
+    },
+    {
+        id: 2,
+        name: "DigiLocker",
+        category: "Citizen",
+        url: "https://www.digilocker.gov.in/",
+        icon: "📁",
+        priority: "High",
+        status: "active",
+        important: "yes",
+        description: "Digital documents aur certificates access karne ke liye."
+    },
+    {
+        id: 3,
+        name: "National Scholarship Portal",
+        category: "Scholarship",
+        url: "https://scholarships.gov.in/",
+        icon: "🎓",
+        priority: "High",
+        status: "active",
+        important: "yes",
+        description: "Students ke scholarship applications aur related services."
+    },
+    {
+        id: 4,
+        name: "National Career Service",
+        category: "Jobs",
+        url: "https://www.ncs.gov.in/",
+        icon: "💼",
+        priority: "High",
+        status: "active",
+        important: "yes",
+        description: "Government-supported career aur employment services."
+    },
+    {
+        id: 5,
+        name: "SWAYAM",
+        category: "Education",
+        url: "https://swayam.gov.in/",
+        icon: "📚",
+        priority: "Medium",
+        status: "active",
+        important: "no",
+        description: "Online courses aur learning resources ka official platform."
+    },
+    {
+        id: 6,
+        name: "National Testing Agency",
+        category: "Exams",
+        url: "https://www.nta.ac.in/",
+        icon: "📝",
+        priority: "High",
+        status: "active",
+        important: "yes",
+        description: "Major national entrance examinations ke liye official portal."
+    }
+];
+
+function checkAuth(){
+    if(sessionStorage.getItem(AUTH_KEY) !== "true"){
+        window.location.href = "login.html";
+        return false;
+    }
+    return true;
+}
+
+function getLinks(){
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if(saved){
+        try{
+            return JSON.parse(saved);
+        }catch(error){
+            localStorage.removeItem(STORAGE_KEY);
+        }
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(demoLinks));
+    return [...demoLinks];
+}
+
+function saveLinks(data){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function escapeHTML(value){
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+function updateStats(){
+
+    const links = getLinks();
+
+    const active = links.filter(x => x.status === "active");
+    const important = links.filter(x => x.important === "yes");
+
+    const categories = new Set(
+        links.map(x => x.category)
+    );
+
+    document.getElementById("totalCount").textContent = links.length;
+    document.getElementById("activeCount").textContent = active.length;
+    document.getElementById("importantCount").textContent = important.length;
+    document.getElementById("categoryCount").textContent = categories.size;
+}
+
+function renderLinks(){
+
+    const grid = document.getElementById("linksGrid");
+
+    const search =
+        document.getElementById("searchInput").value
+        .trim()
+        .toLowerCase();
+
+    const category =
+        document.getElementById("categoryFilter").value;
+
+    const status =
+        document.getElementById("statusFilter").value;
+
+    let links = getLinks();
+
+    links = links.filter(link => {
+
+        const matchesSearch =
+            !search ||
+            link.name.toLowerCase().includes(search) ||
+            link.category.toLowerCase().includes(search) ||
+            link.url.toLowerCase().includes(search) ||
+            link.description.toLowerCase().includes(search);
+
+        const matchesCategory =
+            category === "all" ||
+            link.category === category;
+
+        const matchesStatus =
+            status === "all" ||
+            link.status === status;
+
+        return matchesSearch && matchesCategory && matchesStatus;
+    });
+
+    links.sort((a,b) => {
+
+        const priority = {
+            High: 1,
+            Medium: 2,
+            Low: 3
+        };
+
+        return priority[a.priority] - priority[b.priority];
+    });
+
+    if(!links.length){
+
+        grid.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">🔗</div>
+                <h3>No official links found</h3>
+                <p>Search/filter change karein ya new official link add karein.</p>
+            </div>
+        `;
+
+        updateStats();
+        return;
+    }
+
+    grid.innerHTML = links.map(link => {
+
+        const safeName = escapeHTML(link.name);
+        const safeCategory = escapeHTML(link.category);
+        const safeUrl = escapeHTML(link.url);
+        const safeIcon = escapeHTML(link.icon || "🔗");
+        const safeDescription = escapeHTML(
+            link.description || "Official website"
+        );
+
+        const statusClass =
+            link.status === "active"
+            ? "active"
+            : "inactive";
+
+        const statusText =
+            link.status === "active"
+            ? "ACTIVE"
+            : "INACTIVE";
+
+        return `
+            <article class="link-card">
+
+                <div class="link-head">
+
+                    <div class="link-title">
+
+                        <div class="link-icon">
+                            ${safeIcon}
+                        </div>
+
+                        <div>
+                            <h3>${safeName}</h3>
+                            <p>${safeDescription}</p>
+                        </div>
+
+                    </div>
+
+                    <span class="badge ${statusClass}">
+                        ${statusText}
+                    </span>
+
+                </div>
+
+                <div class="link-url">
+                    ${safeUrl}
+                </div>
+
+                <div class="link-meta">
+
+                    <span class="meta">
+                        📂 ${safeCategory}
+                    </span>
+
+                    <span class="meta">
+                        ⭐ ${escapeHTML(link.priority)}
+                    </span>
+
+                    ${
+                        link.important === "yes"
+                        ? `<span class="meta">🔥 Important</span>`
+                        : ""
+                    }
+
+                </div>
+
+                <div class="link-actions">
+
+                    <button
+                        class="small-btn primary"
+                        onclick="openLink('${escapeHTML(link.url)}')"
+                    >
+                        Open
+                    </button>
+
+                    <button
+                        class="small-btn"
+                        onclick="viewLink(${link.id})"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        class="small-btn"
+                        onclick="editLink(${link.id})"
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        class="small-btn"
+                        onclick="toggleStatus(${link.id})"
+                    >
+                        ${link.status === "active" ? "Disable" : "Enable"}
+                    </button>
+
+                    <button
+                        class="small-btn"
+                        onclick="deleteLink(${link.id})"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+
+            </article>
+        `;
+    }).join("");
+
+    updateStats();
+}
+
+function openAddModal(){
+
+    editingId = null;
+
+    document.getElementById("modalTitle").textContent =
+        "Add Official Link";
+
+    document.getElementById("linkForm").reset();
+
+    document.getElementById("icon").value = "🔗";
+    document.getElementById("priority").value = "Medium";
+    document.getElementById("status").value = "active";
+    document.getElementById("important").value = "no";
+
+    document.getElementById("modalBg").classList.add("show");
+}
+
+function editLink(id){
+
+    const links = getLinks();
+
+    const link = links.find(x => x.id === id);
+
+    if(!link) return;
+
+    editingId = id;
+
+    document.getElementById("modalTitle").textContent =
+        "Edit Official Link";
+
+    document.getElementById("name").value = link.name;
+    document.getElementById("category").value = link.category;
+    document.getElementById("url").value = link.url;
+    document.getElementById("icon").value = link.icon || "🔗";
+    document.getElementById("priority").value = link.priority;
+    document.getElementById("status").value = link.status;
+    document.getElementById("important").value = link.important;
+    document.getElementById("description").value = link.description || "";
+
+    document.getElementById("modalBg").classList.add("show");
+}
+
+function saveLink(event){
+
+    event.preventDefault();
+
+    const links = getLinks();
+
+    const data = {
+
+        name: document.getElementById("name").value.trim(),
+
+        category: document.getElementById("category").value,
+
+        url: document.getElementById("url").value.trim(),
+
+        icon:
+            document.getElementById("icon").value.trim()
+            || "🔗",
+
+        priority:
+            document.getElementById("priority").value,
+
+        status:
+            document.getElementById("status").value,
+
+        important:
+            document.getElementById("important").value,
+
+        description:
+            document.getElementById("description").value.trim()
+
+    };
+
+    if(editingId !== null){
+
+        const index =
+            links.findIndex(x => x.id === editingId);
+
+        if(index !== -1){
+            links[index] = {
+                ...links[index],
+                ...data
+            };
+        }
+
+        showToast("Official link updated successfully.");
+
+    }else{
+
+        const newId =
+            links.length
+            ? Math.max(...links.map(x => Number(x.id))) + 1
+            : 1;
+
+        links.unshift({
+            id:newId,
+            ...data
+        });
+
+        showToast("Official link added successfully.");
+    }
+
+    saveLinks(links);
+
+    closeModal();
+
+    renderLinks();
+}
+
+function viewLink(id){
+
+    const links = getLinks();
+
+    const link = links.find(x => x.id === id);
+
+    if(!link) return;
+
+    alert(
+        "Website: " + link.name +
+        "\n\nCategory: " + link.category +
+        "\n\nURL: " + link.url +
+        "\n\nPriority: " + link.priority +
+        "\n\nStatus: " + link.status +
+        "\n\nImportant: " + link.important +
+        "\n\nDescription: " + (link.description || "-")
+    );
+}
+
+function deleteLink(id){
+
+    const links = getLinks();
+
+    const link = links.find(x => x.id === id);
+
+    if(!link) return;
+
+    const confirmDelete = confirm(
+        "Delete \"" + link.name + "\"?"
+    );
+
+    if(!confirmDelete) return;
+
+    const updated =
+        links.filter(x => x.id !== id);
+
+    saveLinks(updated);
+
+    renderLinks();
+
+    showToast("Official link deleted.");
+}
+
+function toggleStatus(id){
+
+    const links = getLinks();
+
+    const link = links.find(x => x.id === id);
+
+    if(!link) return;
+
+    link.status =
+        link.status === "active"
+        ? "inactive"
+        : "active";
+
+    saveLinks(links);
+
+    renderLinks();
+
+    showToast(
+        link.status === "active"
+        ? "Link activated."
+        : "Link disabled."
+    );
+}
+
+function openLink(url){
+
+    if(!url) return;
+
+    window.open(
+        url,
+        "_blank",
+        "noopener,noreferrer"
+    );
+}
+
+function closeModal(){
+
+    document.getElementById("modalBg")
+        .classList.remove("show");
+
+    editingId = null;
+}
+
+function toggleSidebar(){
+
+    document.getElementById("sidebar")
+        .classList.toggle("open");
+}
+
+function openPublicSite(){
+
+    window.open(
+        "../index.html",
+        "_blank"
+    );
+}
+
+function logout(){
+
+    const ok = confirm(
+        "Are you sure you want to logout?"
+    );
+
+    if(!ok) return;
+
+    sessionStorage.removeItem(AUTH_KEY);
+
+    window.location.href = "login.html";
+}
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer =
+        setTimeout(() => {
+            toast.classList.remove("show");
+        },2500);
+}
+
+document.getElementById("modalBg")
+    .addEventListener("click", function(event){
+
+        if(event.target === this){
+            closeModal();
+        }
+
+    });
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+        closeModal();
+    }
+
+});
+
+if(checkAuth()){
+    renderLinks();
+}
+</script>
+
+</body>
+</html>
+```
