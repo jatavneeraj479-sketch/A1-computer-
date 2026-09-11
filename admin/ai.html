@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050b14">
+<title>AI Assistant | A1 Computer Admin</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#050b14;
+--panel:#0a1422;
+--panel2:#0d1a2b;
+--border:rgba(255,255,255,.09);
+--text:#f5f7fb;
+--muted:#91a0b7;
+--primary:#55d6ff;
+--purple:#8a6cff;
+--green:#39d98a;
+--yellow:#ffc857;
+--red:#ff5c7c;
+}
+body{
+min-height:100vh;
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+color:var(--text);
+background:
+radial-gradient(circle at 10% 10%,rgba(85,214,255,.10),transparent 30%),
+radial-gradient(circle at 90% 10%,rgba(138,108,255,.10),transparent 30%),
+var(--bg)
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.layout{display:flex;min-height:100vh}
+
+.sidebar{
+width:270px;
+position:fixed;
+left:0;
+top:0;
+bottom:0;
+z-index:1000;
+overflow-y:auto;
+padding:22px 16px;
+background:rgba(7,17,31,.97);
+border-right:1px solid var(--border)
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+padding:8px 10px 25px;
+margin-bottom:18px;
+border-bottom:1px solid var(--border)
+}
+
+.brand-logo{
+width:46px;
+height:46px;
+display:grid;
+place-items:center;
+border-radius:14px;
+color:#03111a;
+font-size:20px;
+font-weight:900;
+background:linear-gradient(135deg,var(--primary),var(--purple))
+}
+
+.brand-text strong{display:block;font-size:16px}
+.brand-text span{
+display:block;
+margin-top:3px;
+color:var(--muted);
+font-size:11px
+}
+
+.nav-title{
+margin:18px 10px 8px;
+color:#60728d;
+font-size:10px;
+letter-spacing:1.5px;
+text-transform:uppercase
+}
+
+.nav{display:grid;gap:5px}
+
+.nav a{
+display:flex;
+align-items:center;
+gap:11px;
+padding:11px 12px;
+border-radius:11px;
+color:#aebbd0;
+font-size:13px;
+text-decoration:none;
+transition:.2s
+}
+
+.nav a:hover,
+.nav a.active{
+color:#fff;
+background:rgba(85,214,255,.10)
+}
+
+.nav a.active{
+box-shadow:inset 3px 0 0 var(--primary)
+}
+
+.nav-icon{
+width:25px;
+text-align:center;
+font-size:16px
+}
+
+.main{
+width:calc(100% - 270px);
+margin-left:270px;
+min-height:100vh
+}
+
+.topbar{
+height:72px;
+position:sticky;
+top:0;
+z-index:900;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+background:rgba(5,11,20,.78);
+border-bottom:1px solid var(--border);
+backdrop-filter:blur(18px)
+}
+
+.top-title{font-size:18px;font-weight:800}
+.top-sub{
+margin-top:3px;
+color:var(--muted);
+font-size:12px
+}
+
+.top-actions{
+display:flex;
+align-items:center;
+gap:9px
+}
+
+.btn{
+padding:10px 13px;
+border:1px solid var(--border);
+border-radius:10px;
+color:#fff;
+background:rgba(255,255,255,.045);
+font-size:12px;
+transition:.2s
+}
+
+.btn:hover{
+transform:translateY(-1px);
+background:rgba(255,255,255,.08)
+}
+
+.btn-primary{
+border:0;
+color:#03101a;
+font-weight:800;
+background:linear-gradient(135deg,var(--primary),#278cff)
+}
+
+.btn-danger{
+color:#ff9caf;
+border-color:rgba(255,92,124,.25)
+}
+
+.content{padding:30px}
+
+.hero{
+position:relative;
+overflow:hidden;
+padding:26px;
+margin-bottom:24px;
+border:1px solid var(--border);
+border-radius:22px;
+background:
+linear-gradient(135deg,rgba(85,214,255,.08),rgba(138,108,255,.07)),
+rgba(255,255,255,.025)
+}
+
+.hero:after{
+content:"🤖";
+position:absolute;
+right:35px;
+top:25px;
+font-size:90px;
+opacity:.08
+}
+
+.hero small{
+color:var(--primary);
+font-size:10px;
+font-weight:800;
+letter-spacing:2px;
+text-transform:uppercase
+}
+
+.hero h1{
+margin-top:8px;
+font-size:30px
+}
+
+.hero p{
+max-width:780px;
+margin-top:9px;
+color:var(--muted);
+font-size:13px;
+line-height:1.7
+}
+
+.ai-control{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+margin-bottom:24px
+}
+
+.panel{
+padding:22px;
+border:1px solid var(--border);
+border-radius:20px;
+background:rgba(255,255,255,.025)
+}
+
+.panel-title{
+font-size:16px;
+font-weight:800
+}
+
+.panel-sub{
+margin-top:5px;
+color:var(--muted);
+font-size:11px;
+line-height:1.5
+}
+
+.ai-status{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+margin-top:20px;
+padding:18px;
+border-radius:15px;
+background:rgba(255,255,255,.03);
+border:1px solid var(--border)
+}
+
+.status-left{
+display:flex;
+align-items:center;
+gap:13px
+}
+
+.ai-icon{
+width:48px;
+height:48px;
+display:grid;
+place-items:center;
+border-radius:14px;
+font-size:23px;
+background:linear-gradient(135deg,rgba(85,214,255,.16),rgba(138,108,255,.16))
+}
+
+.status-name{font-size:14px;font-weight:800}
+
+.status-text{
+margin-top:4px;
+font-size:11px;
+color:var(--muted)
+}
+
+.toggle{
+position:relative;
+width:58px;
+height:32px;
+border:0;
+border-radius:50px;
+background:#263447;
+transition:.2s
+}
+
+.toggle span{
+position:absolute;
+width:24px;
+height:24px;
+left:4px;
+top:4px;
+border-radius:50%;
+background:#fff;
+transition:.2s
+}
+
+.toggle.on{
+background:linear-gradient(135deg,var(--green),#19a968)
+}
+
+.toggle.on span{
+transform:translateX(26px)
+}
+
+.setting-list{
+display:grid;
+gap:10px;
+margin-top:18px
+}
+
+.setting{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+padding:13px;
+border:1px solid var(--border);
+border-radius:11px;
+background:rgba(255,255,255,.02)
+}
+
+.setting strong{
+font-size:12px
+}
+
+.setting span{
+color:var(--muted);
+font-size:10px
+}
+
+.mini-toggle{
+width:42px;
+height:23px;
+border:0;
+border-radius:30px;
+background:#263447;
+position:relative
+}
+
+.mini-toggle:after{
+content:"";
+position:absolute;
+width:17px;
+height:17px;
+left:3px;
+top:3px;
+border-radius:50%;
+background:#fff;
+transition:.2s
+}
+
+.mini-toggle.on{
+background:var(--primary)
+}
+
+.mini-toggle.on:after{
+transform:translateX(19px)
+}
+
+.test-box{
+display:grid;
+gap:10px;
+margin-top:18px
+}
+
+.textarea{
+width:100%;
+min-height:105px;
+padding:12px;
+resize:vertical;
+outline:none;
+color:#fff;
+background:#07111e;
+border:1px solid var(--border);
+border-radius:11px
+}
+
+.textarea:focus,
+.input:focus,
+.select:focus{
+border-color:rgba(85,214,255,.55);
+box-shadow:0 0 0 3px rgba(85,214,255,.07)
+}
+
+.ai-response{
+display:none;
+margin-top:12px;
+padding:14px;
+line-height:1.6;
+font-size:12px;
+color:#cbd5e4;
+background:rgba(85,214,255,.045);
+border:1px solid rgba(85,214,255,.12);
+border-radius:12px
+}
+
+.ai-response.show{display:block}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-bottom:24px
+}
+
+.stat{
+padding:18px;
+border:1px solid var(--border);
+border-radius:17px;
+background:rgba(255,255,255,.025)
+}
+
+.stat-label{
+color:var(--muted);
+font-size:11px
+}
+
+.stat-number{
+margin-top:7px;
+font-size:28px;
+font-weight:900
+}
+
+.stat-info{
+margin-top:4px;
+color:var(--muted);
+font-size:11px
+}
+
+.toolbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:16px
+}
+
+.filters{
+display:flex;
+gap:9px;
+flex:1;
+flex-wrap:wrap
+}
+
+.input,.select{
+width:100%;
+padding:11px 12px;
+outline:none;
+color:#fff;
+background:#081321;
+border:1px solid var(--border);
+border-radius:10px
+}
+
+.search{max-width:320px}
+.filter-select{max-width:180px}
+
+.knowledge-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:15px
+}
+
+.knowledge-card{
+padding:18px;
+border:1px solid var(--border);
+border-radius:17px;
+background:rgba(255,255,255,.025)
+}
+
+.knowledge-head{
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:10px
+}
+
+.knowledge-title{
+font-size:15px;
+font-weight:800
+}
+
+.category{
+display:inline-block;
+margin-top:6px;
+padding:5px 8px;
+border-radius:7px;
+color:#8ee8ff;
+background:rgba(85,214,255,.08);
+font-size:9px
+}
+
+.knowledge-answer{
+margin-top:13px;
+color:#aebbd0;
+font-size:11px;
+line-height:1.7
+}
+
+.knowledge-actions{
+display:flex;
+gap:7px;
+margin-top:15px
+}
+
+.action{
+padding:8px 10px;
+border:1px solid var(--border);
+border-radius:8px;
+color:#fff;
+background:rgba(255,255,255,.04);
+font-size:10px
+}
+
+.action:hover{background:rgba(255,255,255,.08)}
+
+.badge{
+display:inline-flex;
+padding:5px 9px;
+border-radius:999px;
+font-size:9px;
+font-weight:800
+}
+
+.badge-green{
+color:#7ff0b6;
+background:rgba(57,217,138,.10);
+border:1px solid rgba(57,217,138,.18)
+}
+
+.badge-red{
+color:#ff9db0;
+background:rgba(255,92,124,.10);
+border:1px solid rgba(255,92,124,.18)
+}
+
+.empty{
+grid-column:1/-1;
+padding:50px 20px;
+text-align:center;
+color:var(--muted);
+border:1px solid var(--border);
+border-radius:18px
+}
+
+.modal-backdrop{
+position:fixed;
+inset:0;
+z-index:2000;
+display:none;
+align-items:center;
+justify-content:center;
+padding:18px;
+background:rgba(0,0,0,.72);
+backdrop-filter:blur(8px)
+}
+
+.modal-backdrop.show{display:flex}
+
+.modal{
+width:min(680px,100%);
+max-height:92vh;
+overflow-y:auto;
+background:#091421;
+border:1px solid var(--border);
+border-radius:20px;
+box-shadow:0 30px 100px rgba(0,0,0,.55)
+}
+
+.modal-head{
+position:sticky;
+top:0;
+z-index:2;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:20px 22px;
+background:#091421;
+border-bottom:1px solid var(--border)
+}
+
+.modal-head h2{font-size:18px}
+
+.close{
+width:34px;
+height:34px;
+color:#fff;
+background:rgba(255,255,255,.04);
+border:1px solid var(--border);
+border-radius:9px;
+font-size:18px
+}
+
+.modal-body{padding:22px}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px
+}
+
+.field{
+display:grid;
+gap:7px
+}
+
+.field.full{grid-column:1/-1}
+
+.field label{
+color:#9eacc0;
+font-size:11px;
+font-weight:700
+}
+
+.modal-foot{
+position:sticky;
+bottom:0;
+display:flex;
+justify-content:flex-end;
+gap:9px;
+padding:17px 22px;
+background:#091421;
+border-top:1px solid var(--border)
+}
+
+.toast{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:3000;
+padding:12px 15px;
+opacity:0;
+pointer-events:none;
+color:#fff;
+background:#101e31;
+border:1px solid var(--border);
+border-radius:12px;
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+transform:translateY(20px);
+transition:.25s;
+font-size:12px
+}
+
+.toast.show{
+opacity:1;
+transform:translateY(0)
+}
+
+.mobile-menu{
+display:none;
+width:40px;
+height:40px;
+color:#fff;
+background:rgba(255,255,255,.04);
+border:1px solid var(--border);
+border-radius:10px;
+font-size:19px
+}
+
+@media(max-width:1000px){
+.sidebar{
+transform:translateX(-100%);
+transition:.25s
+}
+.sidebar.open{transform:translateX(0)}
+.main{
+width:100%;
+margin-left:0
+}
+.mobile-menu{display:block}
+.topbar{padding:0 18px}
+.content{padding:20px}
+.ai-control{
+grid-template-columns:1fr
+}
+.stats{
+grid-template-columns:repeat(2,1fr)
+}
+.knowledge-grid{
+grid-template-columns:1fr
+}
+}
+
+@media(max-width:650px){
+.top-actions .desktop-only{display:none}
+.top-title{font-size:15px}
+.top-sub{font-size:10px}
+.hero{padding:20px}
+.hero h1{font-size:24px}
+.stats{gap:9px}
+.stat{padding:14px}
+.stat-number{font-size:22px}
+.filters{
+display:grid;
+grid-template-columns:1fr
+}
+.search,.filter-select{max-width:none}
+.form-grid{grid-template-columns:1fr}
+.field.full{grid-column:auto}
+.modal-body{padding:17px}
+.modal-foot{padding:13px 17px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar" id="sidebar">
+
+<div class="brand">
+<div class="brand-logo">A1</div>
+<div class="brand-text">
+<strong>A1 Computer</strong>
+<span>Admin Control Center</span>
+</div>
+</div>
+
+<div class="nav-title">Main</div>
+
+<nav class="nav">
+<a href="dashboard.html"><span class="nav-icon">⌂</span>Dashboard</a>
+<a href="services.html"><span class="nav-icon">⚡</span>Services</a>
+<a href="categories.html"><span class="nav-icon">▦</span>Categories</a>
+<a href="students.html"><span class="nav-icon">🎓</span>Students</a>
+<a href="jobs.html"><span class="nav-icon">💼</span>Jobs</a>
+<a href="schemes.html"><span class="nav-icon">🏛</span>Schemes</a>
+<a href="land.html"><span class="nav-icon">🌐</span>Land Services</a>
+<a href="documents.html"><span class="nav-icon">📄</span>Documents</a>
+<a href="notices.html"><span class="nav-icon">🔔</span>Notices</a>
+</nav>
+
+<div class="nav-title">Management</div>
+
+<nav class="nav">
+<a href="banners.html"><span class="nav-icon">🖼</span>Banners</a>
+<a href="ai.html" class="active"><span class="nav-icon">🤖</span>AI Assistant</a>
+<a href="languages.html"><span class="nav-icon">文</span>Languages</a>
+<a href="official-links.html"><span class="nav-icon">🔗</span>Official Links</a>
+<a href="users.html"><span class="nav-icon">👥</span>Users</a>
+<a href="settings.html"><span class="nav-icon">⚙</span>Settings</a>
+</nav>
+
+</aside>
+
+
+<main class="main">
+
+<header class="topbar">
+
+<div style="display:flex;align-items:center;gap:12px">
+
+<button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+
+<div>
+<div class="top-title">AI Assistant</div>
+<div class="top-sub">Control A1 Computer smart assistant</div>
+</div>
+
+</div>
+
+<div class="top-actions">
+<button class="btn desktop-only" onclick="openPublicSite()">🌐 Public Site</button>
+<button class="btn" onclick="refreshPage()">↻ Refresh</button>
+<button class="btn btn-danger" onclick="logout()">Logout</button>
+</div>
+
+</header>
+
+
+<section class="content">
+
+<div class="hero">
+
+<small>A1 Computer • Artificial Intelligence</small>
+
+<h1>AI Assistant Control Center</h1>
+
+<p>
+Manage the temporary AI assistant, its availability, response behaviour
+and knowledge base from one premium control panel.
+</p>
+
+</div>
+
+
+<div class="ai-control">
+
+
+<!-- AI CONTROL -->
+
+<div class="panel">
+
+<div class="panel-title">AI System Control</div>
+
+<div class="panel-sub">
+Turn the temporary AI assistant ON or OFF for the public website.
+</div>
+
+
+<div class="ai-status">
+
+<div class="status-left">
+
+<div class="ai-icon">🤖</div>
+
+<div>
+<div class="status-name" id="aiStatusName">
+AI Assistant
+</div>
+
+<div class="status-text" id="aiStatusText">
+Checking status...
+</div>
+</div>
+
+</div>
+
+
+<button
+id="aiToggle"
+class="toggle"
+onclick="toggleAI()"
+>
+<span></span>
+</button>
+
+</div>
+
+
+<div class="setting-list">
+
+<div class="setting">
+<div>
+<strong>Smart Search</strong>
+<br>
+<span>Allow AI to understand search queries</span>
+</div>
+
+<button
+id="searchToggle"
+class="mini-toggle on"
+onclick="toggleMini(this)"
+></button>
+</div>
+
+
+<div class="setting">
+<div>
+<strong>Quick Replies</strong>
+<br>
+<span>Show predefined service responses</span>
+</div>
+
+<button
+id="replyToggle"
+class="mini-toggle on"
+onclick="toggleMini(this)"
+></button>
+</div>
+
+
+<div class="setting">
+<div>
+<strong>Public AI Button</strong>
+<br>
+<span>Display AI button on homepage</span>
+</div>
+
+<button
+id="publicToggle"
+class="mini-toggle on"
+onclick="toggleMini(this)"
+></button>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- AI TEST -->
+
+<div class="panel">
+
+<div class="panel-title">Test AI Assistant</div>
+
+<div class="panel-sub">
+Try a sample question before enabling AI for visitors.
+</div>
+
+
+<div class="test-box">
+
+<textarea
+id="testQuestion"
+class="textarea"
+placeholder="Example: A1 Computer par kaun-kaun si services milti hain?"
+></textarea>
+
+<button
+class="btn btn-primary"
+onclick="testAI()"
+>
+🤖 Test Response
+</button>
+
+<div id="aiResponse" class="ai-response"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<div class="stat-label">Knowledge Entries</div>
+<div class="stat-number" id="totalCount">0</div>
+<div class="stat-info">Saved AI information</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">Active</div>
+<div class="stat-number" id="activeCount">0</div>
+<div class="stat-info">Currently usable</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">Categories</div>
+<div class="stat-number" id="categoryCount">0</div>
+<div class="stat-info">Knowledge groups</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">AI Status</div>
+<div class="stat-number" id="systemCount">ON</div>
+<div class="stat-info">Public assistant state</div>
+</div>
+
+</div>
+
+
+<div class="toolbar">
+
+<div class="filters">
+
+<input
+id="searchInput"
+class="input search"
+type="search"
+placeholder="Search knowledge..."
+oninput="renderKnowledge()"
+>
+
+<select
+id="categoryFilter"
+class="select filter-select"
+onchange="renderKnowledge()"
+>
+<option value="all">All Categories</option>
+<option value="services">Services</option>
+<option value="student">Student</option>
+<option value="government">Government</option>
+<option value="contact">Contact</option>
+<option value="general">General</option>
+</select>
+
+</div>
+
+<button class="btn btn-primary" onclick="openAddModal()">
++ Add Knowledge
+</button>
+
+</div>
+
+
+<div class="knowledge-grid" id="knowledgeGrid"></div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- KNOWLEDGE MODAL -->
+
+<div class="modal-backdrop" id="knowledgeModal">
+
+<div class="modal">
+
+<div class="modal-head">
+
+<h2 id="modalTitle">Add Knowledge</h2>
+
+<button class="close" onclick="closeModal()">×</button>
+
+</div>
+
+
+<div class="modal-body">
+
+<form id="knowledgeForm">
+
+<div class="form-grid">
+
+<div class="field full">
+
+<label>Question / Topic</label>
+
+<input
+id="knowledgeTitle"
+class="input"
+type="text"
+placeholder="e.g. What services are available?"
+required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Category</label>
+
+<select id="knowledgeCategory" class="select">
+
+<option value="services">Services</option>
+<option value="student">Student</option>
+<option value="government">Government</option>
+<option value="contact">Contact</option>
+<option value="general">General</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Status</label>
+
+<select id="knowledgeStatus" class="select">
+
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+
+</select>
+
+</div>
+
+
+<div class="field full">
+
+<label>AI Answer</label>
+
+<textarea
+id="knowledgeAnswer"
+class="textarea"
+placeholder="Write the answer AI should use..."
+required
+></textarea>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+
+<div class="modal-foot">
+
+<button class="btn" onclick="closeModal()">Cancel</button>
+
+<button class="btn btn-primary" onclick="saveKnowledge()">
+Save Knowledge
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+const AUTH_KEY="a1_admin_logged_in";
+const KNOWLEDGE_KEY="a1_ai_knowledge";
+const AI_STATUS_KEY="a1_ai_enabled";
+
+let editingId=null;
+
+
+/* AUTH */
+
+function checkAuth(){
+
+if(sessionStorage.getItem(AUTH_KEY)!=="true"){
+
+window.location.href="login.html";
+return false;
+
+}
+
+return true;
+
+}
+
+
+/* DEMO KNOWLEDGE */
+
+const demoKnowledge=[
+
+{
+id:1,
+title:"A1 Computer services",
+category:"services",
+status:"active",
+answer:"A1 Computer par online forms, government services, document services, student services, job forms, land services aur digital assistance available hai."
+},
+
+{
+id:2,
+title:"A1 Computer address",
+category:"contact",
+status:"active",
+answer:"A1 Computer, New Bus Stand, Ajaigarh mein located hai."
+},
+
+{
+id:3,
+title:"A1 Computer mobile number",
+category:"contact",
+status:"active",
+answer:"A1 Computer se contact karne ke liye 9993831755 par call ya WhatsApp kar sakte hain."
+},
+
+{
+id:4,
+title:"Student services",
+category:"student",
+status:"active",
+answer:"Students ke liye admission forms, scholarship assistance, exam forms, results, admit cards aur other education services available hain."
+},
+
+{
+id:5,
+title:"Government services",
+category:"government",
+status:"active",
+answer:"Government related online applications, certificates, schemes aur digital service assistance ke liye A1 Computer se contact kiya ja sakta hai."
+},
+
+{
+id:6,
+title:"A1 Computer email",
+category:"contact",
+status:"active",
+answer:"A1 Computer ka email hai jatavneeraj479@gmail.com."
+}
+
+];
+
+
+/* STORAGE */
+
+function getKnowledge(){
+
+const saved=localStorage.getItem(KNOWLEDGE_KEY);
+
+if(saved){
+
+try{
+return JSON.parse(saved);
+}catch(e){}
+
+}
+
+localStorage.setItem(
+KNOWLEDGE_KEY,
+JSON.stringify(demoKnowledge)
+);
+
+return [...demoKnowledge];
+
+}
+
+
+function setKnowledge(data){
+
+localStorage.setItem(
+KNOWLEDGE_KEY,
+JSON.stringify(data)
+);
+
+}
+
+
+/* AI STATUS */
+
+function getAIStatus(){
+
+const value=localStorage.getItem(AI_STATUS_KEY);
+
+if(value===null){
+
+localStorage.setItem(AI_STATUS_KEY,"true");
+return true;
+
+}
+
+return value==="true";
+
+}
+
+
+function setAIStatus(value){
+
+localStorage.setItem(
+AI_STATUS_KEY,
+String(value)
+);
+
+}
+
+
+/* UPDATE AI UI */
+
+function updateAIStatus(){
+
+const enabled=getAIStatus();
+
+const toggle=document.getElementById("aiToggle");
+
+const name=document.getElementById("aiStatusName");
+
+const text=document.getElementById("aiStatusText");
+
+const count=document.getElementById("systemCount");
+
+
+if(enabled){
+
+toggle.classList.add("on");
+
+name.textContent="AI Assistant is ON";
+
+text.textContent="Public AI assistant is enabled";
+
+count.textContent="ON";
+
+}else{
+
+toggle.classList.remove("on");
+
+name.textContent="AI Assistant is OFF";
+
+text.textContent="Public AI assistant is disabled";
+
+count.textContent="OFF";
+
+}
+
+}
+
+
+/* TOGGLE AI */
+
+function toggleAI(){
+
+const current=getAIStatus();
+
+const next=!current;
+
+setAIStatus(next);
+
+updateAIStatus();
+
+showToast(
+next
+?"AI Assistant enabled"
+:"AI Assistant disabled"
+);
+
+}
+
+
+/* MINI TOGGLES */
+
+function toggleMini(button){
+
+button.classList.toggle("on");
+
+showToast(
+button.classList.contains("on")
+?"Setting enabled"
+:"Setting disabled"
+);
+
+}
+
+
+/* STATS */
+
+function updateStats(){
+
+const data=getKnowledge();
+
+document.getElementById("totalCount").textContent=data.length;
+
+document.getElementById("activeCount").textContent=
+data.filter(x=>x.status==="active").length;
+
+const categories=new Set(
+data.map(x=>x.category)
+);
+
+document.getElementById("categoryCount").textContent=
+categories.size;
+
+updateAIStatus();
+
+}
+
+
+/* CATEGORY LABEL */
+
+function categoryLabel(value){
+
+const map={
+services:"Services",
+student:"Student",
+government:"Government",
+contact:"Contact",
+general:"General"
+};
+
+return map[value]||value;
+
+}
+
+
+/* RENDER */
+
+function renderKnowledge(){
+
+const data=getKnowledge();
+
+const search=
+document.getElementById("searchInput").value
+.trim()
+.toLowerCase();
+
+const category=
+document.getElementById("categoryFilter").value;
+
+
+const filtered=data.filter(item=>{
+
+const searchMatch=
+!search||
+item.title.toLowerCase().includes(search)||
+item.answer.toLowerCase().includes(search);
+
+const categoryMatch=
+category==="all"||item.category===category;
+
+return searchMatch&&categoryMatch;
+
+});
+
+
+const grid=document.getElementById("knowledgeGrid");
+
+grid.innerHTML="";
+
+
+if(filtered.length===0){
+
+grid.innerHTML=`
+<div class="empty">
+<div style="font-size:38px;margin-bottom:10px">🤖</div>
+<div>No knowledge entry found.</div>
+</div>
+`;
+
+return;
+
+}
+
+
+filtered.forEach(item=>{
+
+const card=document.createElement("article");
+
+card.className="knowledge-card";
+
+const badge=
+item.status==="active"
+?'<span class="badge badge-green">ACTIVE</span>'
+:'<span class="badge badge-red">INACTIVE</span>';
+
+
+card.innerHTML=`
+
+<div class="knowledge-head">
+
+<div>
+
+<div class="knowledge-title">
+${escapeHtml(item.title)}
+</div>
+
+<div class="category">
+${escapeHtml(categoryLabel(item.category))}
+</div>
+
+</div>
+
+${badge}
+
+</div>
+
+
+<div class="knowledge-answer">
+${escapeHtml(item.answer)}
+</div>
+
+
+<div class="knowledge-actions">
+
+<button
+class="action"
+onclick="editKnowledge(${item.id})"
+>
+Edit
+</button>
+
+<button
+class="action"
+onclick="toggleKnowledge(${item.id})"
+>
+${item.status==="active"?"Disable":"Enable"}
+</button>
+
+<button
+class="action"
+onclick="deleteKnowledge(${item.id})"
+>
+Delete
+</button>
+
+</div>
+
+`;
+
+grid.appendChild(card);
+
+});
+
+}
+
+
+/* ADD */
+
+function openAddModal(){
+
+editingId=null;
+
+document.getElementById("modalTitle").textContent=
+"Add Knowledge";
+
+document.getElementById("knowledgeForm").reset();
+
+document.getElementById("knowledgeCategory").value="services";
+
+document.getElementById("knowledgeStatus").value="active";
+
+document.getElementById("knowledgeModal")
+.classList.add("show");
+
+}
+
+
+/* EDIT */
+
+function editKnowledge(id){
+
+const data=getKnowledge();
+
+const item=data.find(x=>x.id===id);
+
+if(!item){
+
+showToast("Knowledge not found");
+return;
+
+}
+
+editingId=id;
+
+document.getElementById("modalTitle").textContent=
+"Edit Knowledge";
+
+document.getElementById("knowledgeTitle").value=item.title;
+
+document.getElementById("knowledgeCategory").value=item.category;
+
+document.getElementById("knowledgeStatus").value=item.status;
+
+document.getElementById("knowledgeAnswer").value=item.answer;
+
+document.getElementById("knowledgeModal")
+.classList.add("show");
+
+}
+
+
+/* SAVE */
+
+function saveKnowledge(){
+
+const title=
+document.getElementById("knowledgeTitle")
+.value.trim();
+
+const category=
+document.getElementById("knowledgeCategory").value;
+
+const status=
+document.getElementById("knowledgeStatus").value;
+
+const answer=
+document.getElementById("knowledgeAnswer")
+.value.trim();
+
+
+if(!title){
+
+showToast("Question / topic required");
+return;
+
+}
+
+if(!answer){
+
+showToast("AI answer required");
+return;
+
+}
+
+
+const data=getKnowledge();
+
+
+if(editingId){
+
+const index=
+data.findIndex(x=>x.id===editingId);
+
+if(index!==-1){
+
+data[index]={
+...data[index],
+title,
+category,
+status,
+answer
+};
+
+}
+
+showToast("Knowledge updated");
+
+}else{
+
+data.push({
+
+id:Date.now(),
+title,
+category,
+status,
+answer
+
+});
+
+showToast("Knowledge added");
+
+}
+
+
+setKnowledge(data);
+
+closeModal();
+
+renderKnowledge();
+
+updateStats();
+
+}
+
+
+/* ENABLE / DISABLE */
+
+function toggleKnowledge(id){
+
+const data=getKnowledge();
+
+const item=data.find(x=>x.id===id);
+
+if(!item)return;
+
+item.status=
+item.status==="active"
+?"inactive"
+:"active";
+
+setKnowledge(data);
+
+renderKnowledge();
+
+updateStats();
+
+showToast(
+item.status==="active"
+?"Knowledge enabled"
+:"Knowledge disabled"
+);
+
+}
+
+
+/* DELETE */
+
+function deleteKnowledge(id){
+
+const data=getKnowledge();
+
+const item=data.find(x=>x.id===id);
+
+if(!item)return;
+
+if(!confirm(`Delete "${item.title}"?`))return;
+
+const updated=
+data.filter(x=>x.id!==id);
+
+setKnowledge(updated);
+
+renderKnowledge();
+
+updateStats();
+
+showToast("Knowledge deleted");
+
+}
+
+
+/* TEST AI */
+
+function testAI(){
+
+const question=
+document.getElementById("testQuestion")
+.value.trim();
+
+const response=
+document.getElementById("aiResponse");
+
+
+if(!question){
+
+showToast("Please enter a question");
+return;
+
+}
+
+
+if(!getAIStatus()){
+
+response.innerHTML=
+"⚠️ AI Assistant is currently OFF. Enable AI from the control panel to test the public assistant.";
+
+response.classList.add("show");
+
+return;
+
+}
+
+
+const data=getKnowledge();
+
+const words=
+question
+.toLowerCase()
+.split(/\s+/)
+.filter(Boolean);
+
+
+let best=null;
+let score=0;
+
+
+data
+.filter(x=>x.status==="active")
+.forEach(item=>{
+
+const text=
+(item.title+" "+item.answer)
+.toLowerCase();
+
+let current=0;
+
+words.forEach(word=>{
+
+if(word.length>2&&text.includes(word)){
+current++;
+}
+
+});
+
+if(current>score){
+
+score=current;
+best=item;
+
+}
+
+});
+
+
+if(best){
+
+response.innerHTML=
+"<strong>AI Response:</strong><br><br>"+
+escapeHtml(best.answer);
+
+}else{
+
+response.innerHTML=
+"<strong>AI Response:</strong><br><br>"+
+"Namaste! A1 Computer ke baare mein exact information ke liye aap 9993831755 par contact kar sakte hain.";
+
+}
+
+response.classList.add("show");
+
+}
+
+
+/* MODAL */
+
+function closeModal(){
+
+document.getElementById("knowledgeModal")
+.classList.remove("show");
+
+}
+
+
+/* SIDEBAR */
+
+function toggleSidebar(){
+
+document
+.getElementById("sidebar")
+.classList.toggle("open");
+
+}
+
+
+/* PUBLIC */
+
+function openPublicSite(){
+
+window.open("../index.html","_blank");
+
+}
+
+
+/* REFRESH */
+
+function refreshPage(){
+
+renderKnowledge();
+
+updateStats();
+
+showToast("AI data refreshed");
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+if(!confirm("Logout from admin panel?"))return;
+
+sessionStorage.removeItem(AUTH_KEY);
+
+window.location.href="login.html";
+
+}
+
+
+/* TOAST */
+
+let toastTimer;
+
+function showToast(message){
+
+const toast=
+document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+clearTimeout(toastTimer);
+
+toastTimer=setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2500);
+
+}
+
+
+/* ESCAPE */
+
+function escapeHtml(value){
+
+return String(value??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* BACKDROP */
+
+document
+.getElementById("knowledgeModal")
+.addEventListener("click",function(e){
+
+if(e.target===this){
+closeModal();
+}
+
+});
+
+
+/* ESC KEY */
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+closeModal();
+}
+
+});
+
+
+/* INIT */
+
+if(checkAuth()){
+
+renderKnowledge();
+
+updateStats();
+
+}
+
+</script>
+
+</body>
+</html>
