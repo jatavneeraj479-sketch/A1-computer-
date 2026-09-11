@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050b14">
+<title>Languages | A1 Computer Admin</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#050b14;--panel:#0a1422;--border:rgba(255,255,255,.09);
+--text:#f5f7fb;--muted:#91a0b7;--primary:#55d6ff;
+--purple:#8a6cff;--green:#39d98a;--yellow:#ffc857;--red:#ff5c7c
+}
+body{
+min-height:100vh;color:var(--text);
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:
+radial-gradient(circle at 10% 10%,rgba(85,214,255,.10),transparent 30%),
+radial-gradient(circle at 90% 10%,rgba(138,108,255,.10),transparent 30%),
+var(--bg)
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.layout{display:flex;min-height:100vh}
+.sidebar{
+width:270px;position:fixed;left:0;top:0;bottom:0;z-index:1000;
+overflow-y:auto;padding:22px 16px;background:rgba(7,17,31,.97);
+border-right:1px solid var(--border)
+}
+.brand{
+display:flex;align-items:center;gap:12px;padding:8px 10px 25px;
+margin-bottom:18px;border-bottom:1px solid var(--border)
+}
+.brand-logo{
+width:46px;height:46px;display:grid;place-items:center;border-radius:14px;
+color:#03111a;font-size:20px;font-weight:900;
+background:linear-gradient(135deg,var(--primary),var(--purple))
+}
+.brand-text strong{display:block;font-size:16px}
+.brand-text span{display:block;margin-top:3px;color:var(--muted);font-size:11px}
+.nav-title{
+margin:18px 10px 8px;color:#60728d;font-size:10px;
+letter-spacing:1.5px;text-transform:uppercase
+}
+.nav{display:grid;gap:5px}
+.nav a{
+display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;
+color:#aebbd0;font-size:13px;text-decoration:none;transition:.2s
+}
+.nav a:hover,.nav a.active{
+color:#fff;background:rgba(85,214,255,.10)
+}
+.nav a.active{box-shadow:inset 3px 0 0 var(--primary)}
+.nav-icon{width:25px;text-align:center;font-size:16px}
+.main{width:calc(100% - 270px);margin-left:270px;min-height:100vh}
+.topbar{
+height:72px;position:sticky;top:0;z-index:900;display:flex;
+align-items:center;justify-content:space-between;padding:0 30px;
+background:rgba(5,11,20,.78);border-bottom:1px solid var(--border);
+backdrop-filter:blur(18px)
+}
+.top-title{font-size:18px;font-weight:800}
+.top-sub{margin-top:3px;color:var(--muted);font-size:12px}
+.top-actions{display:flex;align-items:center;gap:9px}
+.btn{
+padding:10px 13px;border:1px solid var(--border);border-radius:10px;
+color:#fff;background:rgba(255,255,255,.045);font-size:12px;transition:.2s
+}
+.btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08)}
+.btn-primary{
+border:0;color:#03101a;font-weight:800;
+background:linear-gradient(135deg,var(--primary),#278cff)
+}
+.btn-danger{color:#ff9caf;border-color:rgba(255,92,124,.25)}
+.content{padding:30px}
+.hero{
+position:relative;overflow:hidden;padding:26px;margin-bottom:24px;
+border:1px solid var(--border);border-radius:22px;
+background:linear-gradient(135deg,rgba(85,214,255,.08),rgba(138,108,255,.07)),rgba(255,255,255,.025)
+}
+.hero:after{
+content:"文";position:absolute;right:45px;top:8px;
+font-size:120px;font-weight:900;opacity:.045
+}
+.hero small{
+color:var(--primary);font-size:10px;font-weight:800;
+letter-spacing:2px;text-transform:uppercase
+}
+.hero h1{margin-top:8px;font-size:30px}
+.hero p{
+max-width:780px;margin-top:9px;color:var(--muted);
+font-size:13px;line-height:1.7
+}
+.stats{
+display:grid;grid-template-columns:repeat(4,1fr);
+gap:15px;margin-bottom:24px
+}
+.stat{
+padding:18px;border:1px solid var(--border);border-radius:17px;
+background:rgba(255,255,255,.025)
+}
+.stat-label{color:var(--muted);font-size:11px}
+.stat-number{margin-top:7px;font-size:28px;font-weight:900}
+.stat-info{margin-top:4px;color:var(--muted);font-size:11px}
+.toolbar{
+display:flex;align-items:center;justify-content:space-between;
+gap:10px;flex-wrap:wrap;margin-bottom:16px
+}
+.filters{display:flex;gap:9px;flex:1;flex-wrap:wrap}
+.input,.select{
+width:100%;padding:11px 12px;outline:none;color:#fff;
+background:#081321;border:1px solid var(--border);border-radius:10px
+}
+.input:focus,.select:focus{
+border-color:rgba(85,214,255,.55);
+box-shadow:0 0 0 3px rgba(85,214,255,.07)
+}
+.search{max-width:320px}.filter-select{max-width:180px}
+.language-grid{
+display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px
+}
+.language-card{
+position:relative;padding:20px;border:1px solid var(--border);
+border-radius:18px;background:rgba(255,255,255,.025);
+transition:.2s
+}
+.language-card:hover{
+transform:translateY(-2px);
+border-color:rgba(85,214,255,.2)
+}
+.lang-top{
+display:flex;align-items:center;justify-content:space-between;gap:10px
+}
+.lang-icon{
+width:52px;height:52px;display:grid;place-items:center;
+border-radius:15px;font-size:24px;
+background:linear-gradient(135deg,rgba(85,214,255,.13),rgba(138,108,255,.13))
+}
+.lang-code{
+margin-top:17px;color:var(--primary);
+font-size:10px;font-weight:800;letter-spacing:1.5px
+}
+.lang-name{margin-top:5px;font-size:18px;font-weight:800}
+.lang-native{margin-top:3px;color:var(--muted);font-size:12px}
+.lang-info{
+display:flex;gap:7px;flex-wrap:wrap;margin-top:14px
+}
+.tag{
+padding:5px 8px;border-radius:7px;
+color:#aebbd0;background:rgba(255,255,255,.04);
+border:1px solid var(--border);font-size:9px
+}
+.badge{
+display:inline-flex;padding:5px 9px;border-radius:999px;
+font-size:9px;font-weight:800
+}
+.badge-green{
+color:#7ff0b6;background:rgba(57,217,138,.10);
+border:1px solid rgba(57,217,138,.18)
+}
+.badge-red{
+color:#ff9db0;background:rgba(255,92,124,.10);
+border:1px solid rgba(255,92,124,.18)
+}
+.default-badge{
+margin-top:12px;display:inline-block;padding:5px 8px;
+border-radius:7px;color:#ffd978;
+background:rgba(255,200,87,.09);
+font-size:9px
+}
+.actions{display:flex;gap:7px;margin-top:16px}
+.action{
+padding:8px 10px;color:#fff;background:rgba(255,255,255,.04);
+border:1px solid var(--border);border-radius:8px;font-size:10px
+}
+.action:hover{background:rgba(255,255,255,.08)}
+.empty{
+grid-column:1/-1;padding:50px 20px;text-align:center;
+color:var(--muted);border:1px solid var(--border);border-radius:18px
+}
+.modal-backdrop{
+position:fixed;inset:0;z-index:2000;display:none;align-items:center;
+justify-content:center;padding:18px;background:rgba(0,0,0,.72);
+backdrop-filter:blur(8px)
+}
+.modal-backdrop.show{display:flex}
+.modal{
+width:min(650px,100%);max-height:92vh;overflow-y:auto;
+background:#091421;border:1px solid var(--border);border-radius:20px;
+box-shadow:0 30px 100px rgba(0,0,0,.55)
+}
+.modal-head{
+position:sticky;top:0;z-index:2;display:flex;align-items:center;
+justify-content:space-between;padding:20px 22px;background:#091421;
+border-bottom:1px solid var(--border)
+}
+.modal-head h2{font-size:18px}
+.close{
+width:34px;height:34px;color:#fff;background:rgba(255,255,255,.04);
+border:1px solid var(--border);border-radius:9px;font-size:18px
+}
+.modal-body{padding:22px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field{display:grid;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{color:#9eacc0;font-size:11px;font-weight:700}
+.modal-foot{
+position:sticky;bottom:0;display:flex;justify-content:flex-end;gap:9px;
+padding:17px 22px;background:#091421;border-top:1px solid var(--border)
+}
+.toast{
+position:fixed;right:20px;bottom:20px;z-index:3000;padding:12px 15px;
+opacity:0;pointer-events:none;color:#fff;background:#101e31;
+border:1px solid var(--border);border-radius:12px;
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+transform:translateY(20px);transition:.25s;font-size:12px
+}
+.toast.show{opacity:1;transform:translateY(0)}
+.mobile-menu{
+display:none;width:40px;height:40px;color:#fff;
+background:rgba(255,255,255,.04);border:1px solid var(--border);
+border-radius:10px;font-size:19px
+}
+@media(max-width:1100px){
+.language-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:1000px){
+.sidebar{transform:translateX(-100%);transition:.25s}
+.sidebar.open{transform:translateX(0)}
+.main{width:100%;margin-left:0}
+.mobile-menu{display:block}
+.topbar{padding:0 18px}
+.content{padding:20px}
+.stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+.top-actions .desktop-only{display:none}
+.top-title{font-size:15px}.top-sub{font-size:10px}
+.hero{padding:20px}.hero h1{font-size:24px}
+.stats{gap:9px}.stat{padding:14px}.stat-number{font-size:22px}
+.filters{display:grid;grid-template-columns:1fr}
+.search,.filter-select{max-width:none}
+.language-grid{grid-template-columns:1fr}
+.form-grid{grid-template-columns:1fr}
+.field.full{grid-column:auto}
+.modal-body{padding:17px}.modal-foot{padding:13px 17px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar" id="sidebar">
+
+<div class="brand">
+<div class="brand-logo">A1</div>
+<div class="brand-text">
+<strong>A1 Computer</strong>
+<span>Admin Control Center</span>
+</div>
+</div>
+
+<div class="nav-title">Main</div>
+
+<nav class="nav">
+<a href="dashboard.html"><span class="nav-icon">⌂</span>Dashboard</a>
+<a href="services.html"><span class="nav-icon">⚡</span>Services</a>
+<a href="categories.html"><span class="nav-icon">▦</span>Categories</a>
+<a href="students.html"><span class="nav-icon">🎓</span>Students</a>
+<a href="jobs.html"><span class="nav-icon">💼</span>Jobs</a>
+<a href="schemes.html"><span class="nav-icon">🏛</span>Schemes</a>
+<a href="land.html"><span class="nav-icon">🌐</span>Land Services</a>
+<a href="documents.html"><span class="nav-icon">📄</span>Documents</a>
+<a href="notices.html"><span class="nav-icon">🔔</span>Notices</a>
+</nav>
+
+<div class="nav-title">Management</div>
+
+<nav class="nav">
+<a href="banners.html"><span class="nav-icon">🖼</span>Banners</a>
+<a href="ai.html"><span class="nav-icon">🤖</span>AI Assistant</a>
+<a href="languages.html" class="active"><span class="nav-icon">文</span>Languages</a>
+<a href="official-links.html"><span class="nav-icon">🔗</span>Official Links</a>
+<a href="users.html"><span class="nav-icon">👥</span>Users</a>
+<a href="settings.html"><span class="nav-icon">⚙</span>Settings</a>
+</nav>
+
+</aside>
+
+
+<main class="main">
+
+<header class="topbar">
+
+<div style="display:flex;align-items:center;gap:12px">
+
+<button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+
+<div>
+<div class="top-title">Language Manager</div>
+<div class="top-sub">Manage multilingual website interface</div>
+</div>
+
+</div>
+
+<div class="top-actions">
+<button class="btn desktop-only" onclick="openPublicSite()">🌐 Public Site</button>
+<button class="btn" onclick="refreshPage()">↻ Refresh</button>
+<button class="btn btn-danger" onclick="logout()">Logout</button>
+</div>
+
+</header>
+
+
+<section class="content">
+
+<div class="hero">
+
+<small>A1 Computer • Multilingual System</small>
+
+<h1>Language Control Center</h1>
+
+<p>
+Manage the languages available across the A1 Computer website.
+Set a default language and enable or disable individual languages
+for visitors.
+</p>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<div class="stat-label">Total Languages</div>
+<div class="stat-number" id="totalCount">0</div>
+<div class="stat-info">Configured languages</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">Enabled</div>
+<div class="stat-number" id="enabledCount">0</div>
+<div class="stat-info">Available to visitors</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">Disabled</div>
+<div class="stat-number" id="disabledCount">0</div>
+<div class="stat-info">Currently hidden</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">Default</div>
+<div class="stat-number" id="defaultCount">HI</div>
+<div class="stat-info">Primary interface</div>
+</div>
+
+</div>
+
+
+<div class="toolbar">
+
+<div class="filters">
+
+<input
+id="searchInput"
+class="input search"
+type="search"
+placeholder="Search language..."
+oninput="renderLanguages()"
+>
+
+<select
+id="statusFilter"
+class="select filter-select"
+onchange="renderLanguages()"
+>
+<option value="all">All Status</option>
+<option value="enabled">Enabled</option>
+<option value="disabled">Disabled</option>
+</select>
+
+</div>
+
+<button class="btn btn-primary" onclick="openAddModal()">
++ Add Language
+</button>
+
+</div>
+
+
+<div class="language-grid" id="languageGrid"></div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<div class="modal-backdrop" id="languageModal">
+
+<div class="modal">
+
+<div class="modal-head">
+
+<h2 id="modalTitle">Add Language</h2>
+
+<button class="close" onclick="closeModal()">×</button>
+
+</div>
+
+
+<div class="modal-body">
+
+<form id="languageForm">
+
+<div class="form-grid">
+
+<div class="field">
+
+<label>Language Name</label>
+
+<input
+id="languageName"
+class="input"
+type="text"
+placeholder="Hindi"
+required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Native Name</label>
+
+<input
+id="nativeName"
+class="input"
+type="text"
+placeholder="हिन्दी"
+required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Language Code</label>
+
+<input
+id="languageCode"
+class="input"
+type="text"
+placeholder="hi"
+maxlength="10"
+required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Icon / Emoji</label>
+
+<input
+id="languageIcon"
+class="input"
+type="text"
+placeholder="🇮🇳"
+maxlength="8"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Status</label>
+
+<select id="languageStatus" class="select">
+<option value="enabled">Enabled</option>
+<option value="disabled">Disabled</option>
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Default Language</label>
+
+<select id="languageDefault" class="select">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+
+<div class="modal-foot">
+
+<button class="btn" onclick="closeModal()">Cancel</button>
+
+<button class="btn btn-primary" onclick="saveLanguage()">
+Save Language
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+const AUTH_KEY="a1_admin_logged_in";
+const STORAGE_KEY="a1_languages";
+const DEFAULT_KEY="a1_default_language";
+
+let editingId=null;
+
+
+/* AUTH */
+
+function checkAuth(){
+
+if(sessionStorage.getItem(AUTH_KEY)!=="true"){
+
+window.location.href="login.html";
+return false;
+
+}
+
+return true;
+
+}
+
+
+/* DEMO LANGUAGES */
+
+const demoLanguages=[
+
+{
+id:1,
+name:"Hindi",
+native:"हिन्दी",
+code:"hi",
+icon:"🇮🇳",
+status:"enabled",
+default:true
+},
+
+{
+id:2,
+name:"English",
+native:"English",
+code:"en",
+icon:"🇬🇧",
+status:"enabled",
+default:false
+},
+
+{
+id:3,
+name:"Marathi",
+native:"मराठी",
+code:"mr",
+icon:"🇮🇳",
+status:"enabled",
+default:false
+},
+
+{
+id:4,
+name:"Gujarati",
+native:"ગુજરાતી",
+code:"gu",
+icon:"🇮🇳",
+status:"enabled",
+default:false
+},
+
+{
+id:5,
+name:"Bengali",
+native:"বাংলা",
+code:"bn",
+icon:"🇮🇳",
+status:"enabled",
+default:false
+},
+
+{
+id:6,
+name:"Tamil",
+native:"தமிழ்",
+code:"ta",
+icon:"🇮🇳",
+status:"enabled",
+default:false
+},
+
+{
+id:7,
+name:"Telugu",
+native:"తెలుగు",
+code:"te",
+icon:"🇮🇳",
+status:"enabled",
+default:false
+}
+
+];
+
+
+/* STORAGE */
+
+function getLanguages(){
+
+const saved=localStorage.getItem(STORAGE_KEY);
+
+if(saved){
+
+try{
+return JSON.parse(saved);
+}catch(e){}
+
+}
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(demoLanguages)
+);
+
+return [...demoLanguages];
+
+}
+
+
+function setLanguages(data){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(data)
+);
+
+}
+
+
+/* DEFAULT */
+
+function getDefaultLanguage(){
+
+const value=localStorage.getItem(DEFAULT_KEY);
+
+if(value)return value;
+
+localStorage.setItem(DEFAULT_KEY,"hi");
+
+return "hi";
+
+}
+
+
+function setDefaultLanguage(code){
+
+localStorage.setItem(DEFAULT_KEY,code);
+
+}
+
+
+/* STATS */
+
+function updateStats(){
+
+const data=getLanguages();
+
+document.getElementById("totalCount").textContent=data.length;
+
+document.getElementById("enabledCount").textContent=
+data.filter(x=>x.status==="enabled").length;
+
+document.getElementById("disabledCount").textContent=
+data.filter(x=>x.status==="disabled").length;
+
+document.getElementById("defaultCount").textContent=
+getDefaultLanguage().toUpperCase();
+
+}
+
+
+/* RENDER */
+
+function renderLanguages(){
+
+const data=getLanguages();
+
+const search=
+document.getElementById("searchInput")
+.value.trim().toLowerCase();
+
+const status=
+document.getElementById("statusFilter").value;
+
+const filtered=data.filter(item=>{
+
+const searchMatch=
+!search||
+item.name.toLowerCase().includes(search)||
+item.native.toLowerCase().includes(search)||
+item.code.toLowerCase().includes(search);
+
+const statusMatch=
+status==="all"||item.status===status;
+
+return searchMatch&&statusMatch;
+
+});
+
+
+const grid=document.getElementById("languageGrid");
+
+grid.innerHTML="";
+
+
+if(filtered.length===0){
+
+grid.innerHTML=`
+<div class="empty">
+<div style="font-size:40px;margin-bottom:10px">文</div>
+<div>No language found.</div>
+</div>
+`;
+
+return;
+
+}
+
+
+const defaultCode=getDefaultLanguage();
+
+
+filtered.forEach(item=>{
+
+const card=document.createElement("article");
+
+card.className="language-card";
+
+
+const badge=
+item.status==="enabled"
+?'<span class="badge badge-green">ENABLED</span>'
+:'<span class="badge badge-red">DISABLED</span>';
+
+
+const defaultBadge=
+item.code===defaultCode
+?'<div class="default-badge">★ Default Language</div>'
+:"";
+
+
+card.innerHTML=`
+
+<div class="lang-top">
+
+<div class="lang-icon">
+${escapeHtml(item.icon||"文")}
+</div>
+
+${badge}
+
+</div>
+
+
+<div class="lang-code">
+${escapeHtml(item.code.toUpperCase())}
+</div>
+
+<div class="lang-name">
+${escapeHtml(item.name)}
+</div>
+
+<div class="lang-native">
+${escapeHtml(item.native)}
+</div>
+
+
+${defaultBadge}
+
+
+<div class="lang-info">
+
+<span class="tag">
+Code: ${escapeHtml(item.code)}
+</span>
+
+<span class="tag">
+${item.status==="enabled"?"Visible":"Hidden"}
+</span>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="action"
+onclick="editLanguage(${item.id})"
+>
+Edit
+</button>
+
+<button
+class="action"
+onclick="toggleLanguage(${item.id})"
+>
+${item.status==="enabled"?"Disable":"Enable"}
+</button>
+
+<button
+class="action"
+onclick="makeDefault(${item.id})"
+>
+Set Default
+</button>
+
+<button
+class="action"
+onclick="deleteLanguage(${item.id})"
+>
+Delete
+</button>
+
+</div>
+
+`;
+
+grid.appendChild(card);
+
+});
+
+}
+
+
+/* ADD */
+
+function openAddModal(){
+
+editingId=null;
+
+document.getElementById("modalTitle").textContent=
+"Add Language";
+
+document.getElementById("languageForm").reset();
+
+document.getElementById("languageStatus").value="enabled";
+
+document.getElementById("languageDefault").value="no";
+
+document.getElementById("languageModal")
+.classList.add("show");
+
+}
+
+
+/* EDIT */
+
+function editLanguage(id){
+
+const data=getLanguages();
+
+const item=data.find(x=>x.id===id);
+
+if(!item){
+
+showToast("Language not found");
+return;
+
+}
+
+editingId=id;
+
+document.getElementById("modalTitle").textContent=
+"Edit Language";
+
+document.getElementById("languageName").value=item.name;
+
+document.getElementById("nativeName").value=item.native;
+
+document.getElementById("languageCode").value=item.code;
+
+document.getElementById("languageIcon").value=item.icon||"";
+
+document.getElementById("languageStatus").value=item.status;
+
+document.getElementById("languageDefault").value=
+item.code===getDefaultLanguage()?"yes":"no";
+
+document.getElementById("languageModal")
+.classList.add("show");
+
+}
+
+
+/* SAVE */
+
+function saveLanguage(){
+
+const name=
+document.getElementById("languageName")
+.value.trim();
+
+const native=
+document.getElementById("nativeName")
+.value.trim();
+
+const code=
+document.getElementById("languageCode")
+.value.trim().toLowerCase();
+
+const icon=
+document.getElementById("languageIcon")
+.value.trim()||"文";
+
+const status=
+document.getElementById("languageStatus").value;
+
+const isDefault=
+document.getElementById("languageDefault").value==="yes";
+
+
+if(!name||!native||!code){
+
+showToast("Please complete all required fields");
+return;
+
+}
+
+
+const data=getLanguages();
+
+const duplicate=data.find(
+x=>x.code===code&&x.id!==editingId
+);
+
+if(duplicate){
+
+showToast("Language code already exists");
+return;
+
+}
+
+
+if(editingId){
+
+const index=data.findIndex(x=>x.id===editingId);
+
+if(index!==-1){
+
+data[index]={
+...data[index],
+name,
+native,
+code,
+icon,
+status
+};
+
+}
+
+showToast("Language updated");
+
+}else{
+
+data.push({
+
+id:Date.now(),
+name,
+native,
+code,
+icon,
+status,
+default:false
+
+});
+
+showToast("Language added");
+
+}
+
+
+if(isDefault){
+
+setDefaultLanguage(code);
+
+data.forEach(item=>{
+item.default=item.code===code;
+});
+
+}else if(
+editingId &&
+getDefaultLanguage()===code
+){
+
+const other=data.find(
+item=>item.code!==code&&item.status==="enabled"
+);
+
+if(other){
+
+setDefaultLanguage(other.code);
+
+data.forEach(item=>{
+item.default=item.code===other.code;
+});
+
+}
+
+}
+
+
+setLanguages(data);
+
+closeModal();
+
+renderLanguages();
+
+updateStats();
+
+}
+
+
+/* TOGGLE */
+
+function toggleLanguage(id){
+
+const data=getLanguages();
+
+const item=data.find(x=>x.id===id);
+
+if(!item)return;
+
+item.status=
+item.status==="enabled"
+?"disabled"
+:"enabled";
+
+
+if(
+item.status==="disabled" &&
+getDefaultLanguage()===item.code
+){
+
+const other=data.find(
+x=>x.id!==id&&x.status==="enabled"
+);
+
+if(other){
+
+setDefaultLanguage(other.code);
+
+data.forEach(x=>{
+x.default=x.code===other.code;
+});
+
+}
+
+}
+
+
+setLanguages(data);
+
+renderLanguages();
+
+updateStats();
+
+showToast(
+item.status==="enabled"
+?"Language enabled"
+:"Language disabled"
+);
+
+}
+
+
+/* SET DEFAULT */
+
+function makeDefault(id){
+
+const data=getLanguages();
+
+const item=data.find(x=>x.id===id);
+
+if(!item)return;
+
+
+if(item.status!=="enabled"){
+
+showToast("Enable language before setting default");
+return;
+
+}
+
+
+setDefaultLanguage(item.code);
+
+data.forEach(x=>{
+x.default=x.code===item.code;
+});
+
+setLanguages(data);
+
+renderLanguages();
+
+updateStats();
+
+showToast(
+`${item.name} set as default language`
+);
+
+}
+
+
+/* DELETE */
+
+function deleteLanguage(id){
+
+const data=getLanguages();
+
+const item=data.find(x=>x.id===id);
+
+if(!item)return;
+
+
+if(item.code===getDefaultLanguage()){
+
+showToast("Default language cannot be deleted");
+
+return;
+
+}
+
+
+if(!confirm(`Delete "${item.name}"?`))return;
+
+
+const updated=
+data.filter(x=>x.id!==id);
+
+setLanguages(updated);
+
+renderLanguages();
+
+updateStats();
+
+showToast("Language deleted");
+
+}
+
+
+/* MODAL */
+
+function closeModal(){
+
+document.getElementById("languageModal")
+.classList.remove("show");
+
+}
+
+
+/* SIDEBAR */
+
+function toggleSidebar(){
+
+document.getElementById("sidebar")
+.classList.toggle("open");
+
+}
+
+
+/* PUBLIC SITE */
+
+function openPublicSite(){
+
+window.open("../index.html","_blank");
+
+}
+
+
+/* REFRESH */
+
+function refreshPage(){
+
+renderLanguages();
+
+updateStats();
+
+showToast("Language data refreshed");
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+if(!confirm("Logout from admin panel?"))return;
+
+sessionStorage.removeItem(AUTH_KEY);
+
+window.location.href="login.html";
+
+}
+
+
+/* TOAST */
+
+let toastTimer;
+
+function showToast(message){
+
+const toast=document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+clearTimeout(toastTimer);
+
+toastTimer=setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2500);
+
+}
+
+
+/* ESCAPE */
+
+function escapeHtml(value){
+
+return String(value??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* BACKDROP */
+
+document
+.getElementById("languageModal")
+.addEventListener("click",function(e){
+
+if(e.target===this){
+closeModal();
+}
+
+});
+
+
+/* ESC */
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+closeModal();
+}
+
+});
+
+
+/* INIT */
+
+if(checkAuth()){
+
+renderLanguages();
+
+updateStats();
+
+}
+
+</script>
+
+</body>
+</html>
