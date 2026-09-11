@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "code": "en",
+    "name": "English",
+    "nativeName": "English",
+    "direction": "ltr"
+  },
+
+  "site": {
+    "name": "A1 Computer",
+    "tagline": "Digital Services, Education & Government Facilities in One Place",
+    "address": "New Bus Stand, Ajaigarh",
+    "phone": "9993831755",
+    "email": "jatavneeraj479@gmail.com"
+  },
+
+  "common": {
+    "home": "Home",
+    "search": "Search",
+    "searchPlaceholder": "Search service, job, scheme or information...",
+    "open": "Open",
+    "view": "View",
+    "viewAll": "View All",
+    "details": "Details",
+    "submit": "Submit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "loading": "Loading...",
+    "available": "Available",
+    "active": "Active",
+    "new": "New",
+    "important": "Important",
+    "free": "Free",
+    "yes": "Yes",
+    "no": "No",
+    "call": "Call",
+    "whatsapp": "WhatsApp",
+    "email": "Email"
+  },
+
+  "header": {
+    "home": "Home",
+    "services": "Services",
+    "students": "Student Hub",
+    "government": "Government",
+    "jobs": "Jobs",
+    "land": "Land & Property",
+    "documents": "Documents",
+    "schemes": "Schemes",
+    "notices": "Notices",
+    "contact": "Contact",
+    "notifications": "Notifications",
+    "language": "Language"
+  },
+
+  "hero": {
+    "badge": "Your Trusted Digital Service Center",
+    "title": "Every Digital Service,",
+    "titleHighlight": "In One Place",
+    "description": "Access government services, online forms, education, jobs, documents, schemes and digital facilities easily at A1 Computer.",
+    "searchTitle": "What do you need?",
+    "searchPlaceholder": "Search service or information...",
+    "aiButton": "Ask AI",
+    "exploreButton": "Explore Services"
+  },
+
+  "quickServices": {
+    "title": "Quick Services",
+    "subtitle": "Most frequently used digital services",
+    "mpOnline": "MP Online",
+    "aadhaar": "Aadhaar Services",
+    "panCard": "PAN Card",
+    "documents": "Documents",
+    "jobs": "Government Jobs",
+    "scholarship": "Scholarship",
+    "exam": "Exams",
+    "results": "Results"
+  },
+
+  "categories": {
+    "title": "Service Categories",
+    "subtitle": "Choose a service according to your needs",
+
+    "student": {
+      "title": "Student Hub",
+      "description": "Exams, admissions, scholarships, results and education services."
+    },
+
+    "government": {
+      "title": "Government Services",
+      "description": "Government portals and citizen services."
+    },
+
+    "jobs": {
+      "title": "Jobs & Career",
+      "description": "Government jobs, recruitment, exams and career updates."
+    },
+
+    "land": {
+      "title": "Land & Property",
+      "description": "Land records, khasra, maps and property services."
+    },
+
+    "documents": {
+      "title": "Documents",
+      "description": "Aadhaar, PAN, certificates and digital documents."
+    },
+
+    "schemes": {
+      "title": "Schemes & Benefits",
+      "description": "Government schemes, benefits and eligibility information."
+    },
+
+    "travel": {
+      "title": "Travel",
+      "description": "Train, bus, travel and related online services."
+    },
+
+    "citizen": {
+      "title": "Citizen Services",
+      "description": "Digital services for citizens."
+    }
+  },
+
+  "student": {
+    "title": "Student Hub",
+    "subtitle": "All essential student services in one place",
+    "jee": "JEE",
+    "neet": "NEET",
+    "cuet": "CUET",
+    "ssc": "SSC",
+    "upsc": "UPSC",
+    "banking": "Banking",
+    "railway": "Railway",
+    "school": "School",
+    "college": "College",
+    "admission": "Admission",
+    "result": "Result",
+    "admitCard": "Admit Card",
+    "timetable": "Time Table",
+    "syllabus": "Syllabus"
+  },
+
+  "government": {
+    "title": "Government Services",
+    "subtitle": "Important government portals and services",
+    "mpOnline": "MP Online",
+    "mpesb": "MPESB",
+    "incomeCertificate": "Income Certificate",
+    "casteCertificate": "Caste Certificate",
+    "domicile": "Domicile Certificate",
+    "birthCertificate": "Birth Certificate",
+    "deathCertificate": "Death Certificate",
+    "rationCard": "Ration Card",
+    "pension": "Pension Services"
+  },
+
+  "jobs": {
+    "title": "Jobs & Career",
+    "subtitle": "Government jobs and recruitment information",
+    "latestJobs": "Latest Jobs",
+    "governmentJobs": "Government Jobs",
+    "privateJobs": "Private Jobs",
+    "admitCards": "Admit Cards",
+    "results": "Results",
+    "answerKeys": "Answer Keys",
+    "jobDetails": "Job Details",
+    "applyNow": "Apply Now"
+  },
+
+  "land": {
+    "title": "Land & Property",
+    "subtitle": "Online land records and property services",
+    "khasra": "Khasra",
+    "khatauni": "Khatauni",
+    "map": "Land Map",
+    "landRecord": "Land Records",
+    "property": "Property",
+    "registration": "Registration",
+    "stamp": "Stamp"
+  },
+
+  "documents": {
+    "title": "Document Services",
+    "subtitle": "Essential digital documents and certificates",
+    "aadhaar": "Aadhaar Card",
+    "pan": "PAN Card",
+    "voterId": "Voter ID",
+    "drivingLicense": "Driving License",
+    "passport": "Passport",
+    "income": "Income Certificate",
+    "caste": "Caste Certificate",
+    "domicile": "Domicile Certificate"
+  },
+
+  "schemes": {
+    "title": "Government Schemes",
+    "subtitle": "Information about government schemes and benefits",
+    "eligibility": "Eligibility",
+    "benefits": "Benefits",
+    "documents": "Required Documents",
+    "application": "Application Process",
+    "deadline": "Last Date"
+  },
+
+  "notices": {
+    "title": "Important Notices",
+    "subtitle": "Latest updates related to A1 Computer and government services",
+    "latest": "Latest",
+    "important": "Important",
+    "readMore": "Read More"
+  },
+
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Contact A1 Computer for any digital service",
+    "address": "Address",
+    "phone": "Mobile Number",
+    "email": "Email",
+    "callNow": "Call Now",
+    "whatsappNow": "WhatsApp Now",
+    "sendEmail": "Send Email",
+    "location": "New Bus Stand, Ajaigarh"
+  },
+
+  "ai": {
+    "title": "A1 AI Assistant",
+    "subtitle": "Ask about any service or information",
+    "placeholder": "Type your question...",
+    "send": "Send",
+    "thinking": "AI is thinking...",
+    "welcome": "Hello! I am the A1 Computer AI Assistant. I can help you find information about services, government schemes, jobs and education."
+  },
+
+  "search": {
+    "title": "Universal Search",
+    "results": "Results",
+    "noResults": "No results found.",
+    "searching": "Searching...",
+    "tryAgain": "Try searching with another keyword."
+  },
+
+  "footer": {
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "importantLinks": "Important Links",
+    "contact": "Contact",
+    "copyright": "All Rights Reserved.",
+    "poweredBy": "Powered by A1 Computer",
+    "disclaimer": "This portal is intended to provide information and convenience. For government applications, always verify information on the relevant official website."
+  },
+
+  "messages": {
+    "saved": "Information saved successfully.",
+    "updated": "Information updated successfully.",
+    "deleted": "Information deleted successfully.",
+    "error": "Something went wrong. Please try again.",
+    "offline": "You are offline. Please check your internet connection.",
+    "comingSoon": "This feature will be available soon."
+  }
+}
