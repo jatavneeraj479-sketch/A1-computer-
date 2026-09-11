@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A1 Computer | Manage Services</title>
+  <meta name="theme-color" content="#050a13">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050a13;
+      --sidebar: rgba(8,17,31,.94);
+      --card: rgba(13,24,42,.74);
+      --border: rgba(255,255,255,.09);
+      --text: #f5f7fb;
+      --muted: #8e9bb0;
+      --cyan: #5ee7ff;
+      --purple: #8d6cff;
+      --green: #43e6a4;
+      --orange: #ffb45c;
+      --red: #ff637f;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 80% 5%, rgba(94,231,255,.08), transparent 28%),
+        radial-gradient(circle at 15% 90%, rgba(141,108,255,.08), transparent 30%),
+        var(--bg);
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .layout {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: 250px;
+      padding: 18px 13px;
+      background: var(--sidebar);
+      border-right: 1px solid var(--border);
+      backdrop-filter: blur(25px);
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 9px 24px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #04101a;
+      font-weight: 950;
+      background: linear-gradient(
+        135deg,
+        var(--cyan),
+        #baf7ff,
+        var(--purple)
+      );
+    }
+
+    .brand strong {
+      font-size: 16px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      margin-top: 2px;
+    }
+
+    .section-title {
+      color: #59677d;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 10px 11px 7px;
+    }
+
+    .nav {
+      display: grid;
+      gap: 4px;
+    }
+
+    .nav a {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0 12px;
+      border-radius: 12px;
+      color: #98a5b9;
+      font-size: 11px;
+      font-weight: 650;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: .2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: white;
+      background: rgba(94,231,255,.07);
+      border-color: rgba(94,231,255,.12);
+    }
+
+    .nav a.active {
+      box-shadow: inset 3px 0 var(--cyan);
+    }
+
+    .nav-icon {
+      width: 22px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .sidebar-bottom {
+      position: absolute;
+      left: 13px;
+      right: 13px;
+      bottom: 16px;
+    }
+
+    .back-site {
+      width: 100%;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: rgba(255,255,255,.03);
+      color: #aeb9ca;
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+
+    .logout {
+      width: 100%;
+      height: 40px;
+      border: 1px solid rgba(255,99,127,.16);
+      border-radius: 11px;
+      color: #ff9caf;
+      background: rgba(255,99,127,.05);
+      font-size: 10px;
+      font-weight: 750;
+    }
+
+    /* MAIN */
+
+    .main {
+      width: calc(100% - 250px);
+      margin-left: 250px;
+      padding: 22px;
+    }
+
+    .topbar {
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .mobile-menu {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      color: white;
+    }
+
+    .title-wrap small {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .title-wrap h1 {
+      margin-top: 4px;
+      font-size: 29px;
+      letter-spacing: -1.2px;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .top-btn {
+      height: 40px;
+      padding: 0 13px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: #c8d3e2;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .top-btn:hover {
+      border-color: rgba(94,231,255,.25);
+      color: var(--cyan);
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 23px;
+      border-radius: 21px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(
+          120deg,
+          rgba(94,231,255,.07),
+          rgba(141,108,255,.06)
+        ),
+        var(--card);
+      margin-bottom: 16px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--cyan);
+      background: rgba(94,231,255,.05);
+      border: 1px solid rgba(94,231,255,.13);
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .hero h2 {
+      margin-top: 10px;
+      font-size: 24px;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+      margin-top: 7px;
+    }
+
+    /* TOOLBAR */
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .search {
+      flex: 1;
+      position: relative;
+    }
+
+    .search span {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #718097;
+    }
+
+    .search input {
+      width: 100%;
+      height: 45px;
+      padding: 0 14px 0 39px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      background: var(--card);
+      color: white;
+      font-size: 11px;
+    }
+
+    .search input:focus {
+      border-color: rgba(94,231,255,.35);
+      box-shadow: 0 0 0 3px rgba(94,231,255,.05);
+    }
+
+    .filter {
+      height: 45px;
+      min-width: 145px;
+      padding: 0 11px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      color: #cbd5e3;
+      outline: none;
+      font-size: 10px;
+    }
+
+    .add-btn {
+      height: 45px;
+      padding: 0 17px;
+      border: 0;
+      border-radius: 12px;
+      color: #04101a;
+      background: linear-gradient(
+        100deg,
+        var(--cyan),
+        #a9f4ff,
+        #9a86ff
+      );
+      font-size: 10px;
+      font-weight: 850;
+      box-shadow: 0 12px 30px rgba(94,231,255,.10);
+    }
+
+    /* STATS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .stat {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+    }
+
+    .stat-icon {
+      font-size: 17px;
+    }
+
+    .stat-number {
+      margin-top: 8px;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 9px;
+      margin-top: 2px;
+    }
+
+    /* SERVICE GRID */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .service-card {
+      position: relative;
+      padding: 17px;
+      min-height: 190px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--card);
+      overflow: hidden;
+      transition: .2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(94,231,255,.20);
+    }
+
+    .service-card.hidden {
+      display: none;
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .service-icon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(94,231,255,.07);
+      font-size: 21px;
+    }
+
+    .status {
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .status.active {
+      color: #9af1ca;
+      background: rgba(67,230,164,.08);
+    }
+
+    .status.draft {
+      color: #ffd18f;
+      background: rgba(255,180,92,.08);
+    }
+
+    .service-card h3 {
+      margin-top: 13px;
+      font-size: 13px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.6;
+      margin-top: 5px;
+      min-height: 30px;
+    }
+
+    .service-meta {
+      display: flex;
+      gap: 7px;
+      margin-top: 12px;
+      color: #718097;
+      font-size: 8px;
+    }
+
+    .service-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 13px;
+    }
+
+    .service-actions button {
+      flex: 1;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: rgba(255,255,255,.025);
+      color: #b6c2d2;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .service-actions button:hover {
+      color: white;
+      border-color: rgba(94,231,255,.25);
+    }
+
+    .service-actions .delete:hover {
+      color: #ff91a7;
+      border-color: rgba(255,99,127,.25);
+    }
+
+    .empty {
+      display: none;
+      padding: 45px 20px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--card);
+    }
+
+    .empty.show {
+      display: block;
+    }
+
+    /* MODAL */
+
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(6px);
+    }
+
+    .modal-bg.show {
+      display: flex;
+    }
+
+    .modal {
+      width: min(520px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: #0a1424;
+      box-shadow: 0 30px 90px rgba(0,0,0,.45);
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 17px;
+    }
+
+    .modal-head h2 {
+      font-size: 18px;
+    }
+
+    .close {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #aeb9c9;
+      background: rgba(255,255,255,.03);
+    }
+
+    .form-group {
+      margin-bottom: 13px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #b8c3d3;
+      font-size: 9px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      background: rgba(255,255,255,.025);
+      color: white;
+      padding: 11px;
+      font-size: 10px;
+    }
+
+    .form-group textarea {
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(94,231,255,.3);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 17px;
+    }
+
+    .form-actions button {
+      flex: 1;
+      height: 43px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: #b9c5d5;
+      font-size: 10px;
+      font-weight: 750;
+    }
+
+    .form-actions .save {
+      border: 0;
+      color: #04101a;
+      background: linear-gradient(
+        100deg,
+        var(--cyan),
+        #a4f2ff,
+        #9883ff
+      );
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 200;
+      max-width: 320px;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(94,231,255,.16);
+      background: rgba(8,17,31,.96);
+      color: #dce7f5;
+      font-size: 10px;
+      opacity: 0;
+      transform: translateY(15px);
+      pointer-events: none;
+      transition: .25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1050px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .sidebar {
+        transform: translateX(-105%);
+        transition: transform .25s ease;
+        box-shadow: 20px 0 60px rgba(0,0,0,.4);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main {
+        width: 100%;
+        margin-left: 0;
+        padding: 15px;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .toolbar {
+        flex-wrap: wrap;
+      }
+
+      .search {
+        flex-basis: 100%;
+      }
+
+      .filter,
+      .add-btn {
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        gap: 7px;
+      }
+
+      .stat {
+        padding: 11px;
+      }
+
+      .stat-number {
+        font-size: 19px;
+      }
+
+      .title-wrap h1 {
+        font-size: 23px;
+      }
+
+      .top-actions .top-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="brand">
+        <div class="logo">A1</div>
+        <div>
+          <strong>A1 Computer</strong>
+          <small>Admin Control Center</small>
+        </div>
+      </div>
+
+      <div class="section-title">Overview</div>
+
+      <nav class="nav">
+
+        <a href="dashboard.html">
+          <span class="nav-icon">⌂</span>
+          Dashboard
+        </a>
+
+        <a href="services.html" class="active">
+          <span class="nav-icon">⚡</span>
+          Services
+        </a>
+
+        <a href="#" data-coming="Categories">
+          <span class="nav-icon">▦</span>
+          Categories
+        </a>
+
+        <a href="#" data-coming="Students">
+          <span class="nav-icon">🎓</span>
+          Students
+        </a>
+
+        <a href="#" data-coming="Jobs">
+          <span class="nav-icon">💼</span>
+          Jobs
+        </a>
+
+        <a href="#" data-coming="Schemes">
+          <span class="nav-icon">🏛️</span>
+          Schemes
+        </a>
+
+        <a href="#" data-coming="Land & Property">
+          <span class="nav-icon">🏠</span>
+          Land & Property
+        </a>
+
+      </nav>
+
+      <div class="section-title">Content</div>
+
+      <nav class="nav">
+
+        <a href="#" data-coming="Documents">
+          <span class="nav-icon">📄</span>
+          Documents
+        </a>
+
+        <a href="#" data-coming="Notices">
+          <span class="nav-icon">🔔</span>
+          Notices
+        </a>
+
+        <a href="#" data-coming="Banners">
+          <span class="nav-icon">🖼️</span>
+          Banners
+        </a>
+
+        <a href="#" data-coming="A1 AI">
+          <span class="nav-icon">🤖</span>
+          A1 AI
+        </a>
+
+        <a href="#" data-coming="Languages">
+          <span class="nav-icon">🌐</span>
+          Languages
+        </a>
+
+        <a href="#" data-coming="Official Links">
+          <span class="nav-icon">🔗</span>
+          Official Links
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <button
+          class="back-site"
+          id="backSite"
+        >
+          ↗ Open Public Website
+        </button>
+
+        <button
+          class="logout"
+          id="logout"
+        >
+          ⇥ Logout
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <header class="topbar">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenu"
+        >
+          ☰
+        </button>
+
+        <div class="title-wrap">
+          <small>Admin / Content Management</small>
+          <h1>Services Manager</h1>
+        </div>
+
+        <div class="top-actions">
+
+          <button
+            class="top-btn"
+            id="refresh"
+          >
+            ⟳ Refresh
+          </button>
+
+          <button
+            class="top-btn"
+            id="dashboard"
+          >
+            ← Dashboard
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- HERO -->
+      <section class="hero">
+
+        <div class="hero-badge">
+          ⚡ SERVICE CONTROL
+        </div>
+
+        <h2>
+          Manage your A1 Computer services
+        </h2>
+
+        <p>
+          Organize digital services, study resources, citizen
+          services, government help, documents and other sections
+          from one centralized administration interface.
+        </p>
+
+      </section>
+
+
+      <!-- TOOLBAR -->
+      <section class="toolbar">
+
+        <div class="search">
+
+          <span>⌕</span>
+
+          <input
+            type="search"
+            id="search"
+            placeholder="Search services..."
+          >
+
+        </div>
+
+        <select
+          class="filter"
+          id="categoryFilter"
+        >
+          <option value="all">All Categories</option>
+          <option value="student">Student</option>
+          <option value="government">Government</option>
+          <option value="documents">Documents</option>
+          <option value="jobs">Jobs</option>
+          <option value="schemes">Schemes</option>
+          <option value="land">Land</option>
+          <option value="travel">Travel</option>
+          <option value="citizen">Citizen</option>
+        </select>
+
+        <button
+          class="add-btn"
+          id="addService"
+        >
+          + Add Service
+        </button>
+
+      </section>
+
+
+      <!-- STATS -->
+      <section class="stats">
+
+        <div class="stat">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-number" id="totalCount">12</div>
+          <div class="stat-label">Total Services</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">🟢</div>
+          <div class="stat-number" id="activeCount">10</div>
+          <div class="stat-label">Active</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">📝</div>
+          <div class="stat-number" id="draftCount">02</div>
+          <div class="stat-label">Draft</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">▦</div>
+          <div class="stat-number">08</div>
+          <div class="stat-label">Categories</div>
+        </div>
+
+      </section>
+
+
+      <!-- SERVICE CARDS -->
+      <section class="services-grid" id="servicesGrid">
+
+        <article
+          class="service-card"
+          data-category="student"
+          data-name="student hub"
+        >
+          <div class="service-top">
+            <div class="service-icon">🎓</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Student Hub</h3>
+
+          <p>
+            Exams, admissions, results, syllabus,
+            scholarships and study resources.
+          </p>
+
+          <div class="service-meta">
+            <span>🎓 Student</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Student Hub">Edit</button>
+            <button data-preview="Student Hub">Preview</button>
+            <button
+              class="delete"
+              data-delete="Student Hub"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="government"
+          data-name="government services"
+        >
+          <div class="service-top">
+            <div class="service-icon">🏛️</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Government Services</h3>
+
+          <p>
+            MPOnline, certificates, pension,
+            Samagra and citizen assistance.
+          </p>
+
+          <div class="service-meta">
+            <span>🏛️ Government</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Government Services">Edit</button>
+            <button data-preview="Government Services">Preview</button>
+            <button
+              class="delete"
+              data-delete="Government Services"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="land"
+          data-name="land property"
+        >
+          <div class="service-top">
+            <div class="service-icon">🏠</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Land & Property</h3>
+
+          <p>
+            Khasra, Khatauni, B-1, Naksha,
+            mutation and property assistance.
+          </p>
+
+          <div class="service-meta">
+            <span>🏠 Land</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Land & Property">Edit</button>
+            <button data-preview="Land & Property">Preview</button>
+            <button
+              class="delete"
+              data-delete="Land & Property"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="documents"
+          data-name="documents id"
+        >
+          <div class="service-top">
+            <div class="service-icon">📄</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Documents & ID</h3>
+
+          <p>
+            Aadhaar, PAN, Voter, DigiLocker,
+            printing, scanning and document help.
+          </p>
+
+          <div class="service-meta">
+            <span>📄 Documents</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Documents & ID">Edit</button>
+            <button data-preview="Documents & ID">Preview</button>
+            <button
+              class="delete"
+              data-delete="Documents & ID"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="jobs"
+          data-name="jobs career"
+        >
+          <div class="service-top">
+            <div class="service-icon">💼</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Jobs & Career</h3>
+
+          <p>
+            Government jobs, private jobs,
+            admit cards, results and career help.
+          </p>
+
+          <div class="service-meta">
+            <span>💼 Jobs</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Jobs & Career">Edit</button>
+            <button data-preview="Jobs & Career">Preview</button>
+            <button
+              class="delete"
+              data-delete="Jobs & Career"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="schemes"
+          data-name="schemes benefits"
+        >
+          <div class="service-top">
+            <div class="service-icon">💰</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Schemes & Benefits</h3>
+
+          <p>
+            Scholarships, pensions, farmer schemes,
+            subsidies and welfare information.
+          </p>
+
+          <div class="service-meta">
+            <span>💰 Schemes</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Schemes & Benefits">Edit</button>
+            <button data-preview="Schemes & Benefits">Preview</button>
+            <button
+              class="delete"
+              data-delete="Schemes & Benefits"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="travel"
+          data-name="travel services"
+        >
+          <div class="service-top">
+            <div class="service-icon">✈️</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Travel Services</h3>
+
+          <p>
+            Railway, PNR, bus, flight,
+            passport and travel assistance.
+          </p>
+
+          <div class="service-meta">
+            <span>✈️ Travel</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Travel Services">Edit</button>
+            <button data-preview="Travel Services">Preview</button>
+            <button
+              class="delete"
+              data-delete="Travel Services"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="citizen"
+          data-name="citizen help"
+        >
+          <div class="service-top">
+            <div class="service-icon">🧑‍💻</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Citizen Help</h3>
+
+          <p>
+            Emergency help, cyber crime,
+            utility services and grievance support.
+          </p>
+
+          <div class="service-meta">
+            <span>🧑‍💻 Citizen</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Citizen Help">Edit</button>
+            <button data-preview="Citizen Help">Preview</button>
+            <button
+              class="delete"
+              data-delete="Citizen Help"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="student"
+          data-name="study material"
+        >
+          <div class="service-top">
+            <div class="service-icon">📚</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Study Material</h3>
+
+          <p>
+            Notes, previous papers, learning
+            resources and exam preparation.
+          </p>
+
+          <div class="service-meta">
+            <span>📚 Student</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Study Material">Edit</button>
+            <button data-preview="Study Material">Preview</button>
+            <button
+              class="delete"
+              data-delete="Study Material"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="government"
+          data-name="certificate help"
+        >
+          <div class="service-top">
+            <div class="service-icon">📜</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Certificate Help</h3>
+
+          <p>
+            Birth, death, caste, income,
+            residence and EWS assistance.
+          </p>
+
+          <div class="service-meta">
+            <span>📜 Government</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Certificate Help">Edit</button>
+            <button data-preview="Certificate Help">Preview</button>
+            <button
+              class="delete"
+              data-delete="Certificate Help"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="documents"
+          data-name="print scan pdf"
+        >
+          <div class="service-top">
+            <div class="service-icon">🖨️</div>
+            <span class="status active">ACTIVE</span>
+          </div>
+
+          <h3>Print • Scan • PDF</h3>
+
+          <p>
+            Printing, scanning, PDF conversion,
+            photo and document assistance.
+          </p>
+
+          <div class="service-meta">
+            <span>🖨️ Documents</span>
+            <span>•</span>
+            <span>Public</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Print • Scan • PDF">Edit</button>
+            <button data-preview="Print • Scan • PDF">Preview</button>
+            <button
+              class="delete"
+              data-delete="Print • Scan • PDF"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="jobs"
+          data-name="exam calendar"
+        >
+          <div class="service-top">
+            <div class="service-icon">📅</div>
+            <span class="status draft">DRAFT</span>
+          </div>
+
+          <h3>Exam Calendar</h3>
+
+          <p>
+            Upcoming examinations, application
+            dates and important deadlines.
+          </p>
+
+          <div class="service-meta">
+            <span>📅 Jobs</span>
+            <span>•</span>
+            <span>Draft</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="Exam Calendar">Edit</button>
+            <button data-preview="Exam Calendar">Preview</button>
+            <button
+              class="delete"
+              data-delete="Exam Calendar"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="service-card"
+          data-category="government"
+          data-name="mp online assistance"
+        >
+          <div class="service-top">
+            <div class="service-icon">🏢</div>
+            <span class="status draft">DRAFT</span>
+          </div>
+
+          <h3>MPOnline Assistance</h3>
+
+          <p>
+            Online forms, government portals,
+            applications and citizen assistance.
+          </p>
+
+          <div class="service-meta">
+            <span>🏢 Government</span>
+            <span>•</span>
+            <span>Draft</span>
+          </div>
+
+          <div class="service-actions">
+            <button data-edit="MPOnline Assistance">Edit</button>
+            <button data-preview="MPOnline Assistance">Preview</button>
+            <button
+              class="delete"
+              data-delete="MPOnline Assistance"
+            >
+              Delete
+            </button>
+          </div>
+        </article>
+
+      </section>
+
+
+      <div class="empty" id="empty">
+        <div style="font-size:30px;">🔎</div>
+        <h3 style="margin-top:10px;color:white;font-size:14px;">
+          No services found
+        </h3>
+        <p style="margin-top:5px;font-size:10px;">
+          Try another search term or category.
+        </p>
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <!-- MODAL -->
+  <div class="modal-bg" id="modalBg">
+
+    <div class="modal">
+
+      <div class="modal-head">
+        <h2 id="modalTitle">Add Service</h2>
+
+        <button
+          class="close"
+          id="closeModal"
+        >
+          ×
+        </button>
+      </div>
+
+      <form id="serviceForm">
+
+        <div class="form-group">
+          <label>Service Name</label>
+
+          <input
+            id="serviceName"
+            type="text"
+            placeholder="Enter service name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+
+          <select id="serviceCategory" required>
+            <option value="">Select category</option>
+            <option value="student">Student</option>
+            <option value="government">Government</option>
+            <option value="documents">Documents</option>
+            <option value="jobs">Jobs</option>
+            <option value="schemes">Schemes</option>
+            <option value="land">Land</option>
+            <option value="travel">Travel</option>
+            <option value="citizen">Citizen</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+
+          <textarea
+            id="serviceDescription"
+            placeholder="Describe this service..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Public Status</label>
+
+          <select id="serviceStatus">
+            <option value="active">Active</option>
+            <option value="draft">Draft</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+
+          <button
+            type="button"
+            id="cancelModal"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="save"
+          >
+            Save Service
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <div class="toast" id="toast"></div>
+
+
+  <script>
+    (function () {
+
+      /* AUTH */
+      if (
+        sessionStorage.getItem("a1_admin_logged_in") !== "true"
+      ) {
+        window.location.replace("login.html");
+        return;
+      }
+
+
+      const sidebar = document.getElementById("sidebar");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const search = document.getElementById("search");
+      const categoryFilter =
+        document.getElementById("categoryFilter");
+
+      const cards =
+        Array.from(
+          document.querySelectorAll(".service-card")
+        );
+
+      const empty =
+        document.getElementById("empty");
+
+      const modalBg =
+        document.getElementById("modalBg");
+
+      const modalTitle =
+        document.getElementById("modalTitle");
+
+      const serviceForm =
+        document.getElementById("serviceForm");
+
+      const serviceName =
+        document.getElementById("serviceName");
+
+      const serviceCategory =
+        document.getElementById("serviceCategory");
+
+      const serviceDescription =
+        document.getElementById("serviceDescription");
+
+      const serviceStatus =
+        document.getElementById("serviceStatus");
+
+      const toast =
+        document.getElementById("toast");
+
+      let editingCard = null;
+
+      let toastTimer;
+
+
+      /* TOAST */
+
+      function showToast(text) {
+
+        clearTimeout(toastTimer);
+
+        toast.textContent = text;
+        toast.classList.add("show");
+
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("show");
+        }, 2200);
+
+      }
+
+
+      /* MOBILE MENU */
+
+      mobileMenu.addEventListener("click", function () {
+        sidebar.classList.toggle("open");
+      });
+
+
+      /* SEARCH + FILTER */
+
+      function filterServices() {
+
+        const term =
+          search.value.trim().toLowerCase();
+
+        const category =
+          categoryFilter.value;
+
+        let visible = 0;
+
+        cards.forEach(function (card) {
+
+          const name =
+            card.dataset.name || "";
+
+          const cardCategory =
+            card.dataset.category || "";
+
+          const matchesSearch =
+            !term ||
+            name.includes(term);
+
+          const matchesCategory =
+            category === "all" ||
+            cardCategory === category;
+
+          const show =
+            matchesSearch &&
+            matchesCategory;
+
+          card.classList.toggle(
+            "hidden",
+            !show
+          );
+
+          if (show) {
+            visible++;
+          }
+
+        });
+
+        empty.classList.toggle(
+          "show",
+          visible === 0
+        );
+
+      }
+
+
+      search.addEventListener(
+        "input",
+        filterServices
+      );
+
+      categoryFilter.addEventListener(
+        "change",
+        filterServices
+      );
+
+
+      /* ADD SERVICE */
+
+      document
+        .getElementById("addService")
+        .addEventListener("click", function () {
+
+          editingCard = null;
+
+          modalTitle.textContent =
+            "Add Service";
+
+          serviceForm.reset();
+
+          modalBg.classList.add("show");
+
+          setTimeout(function () {
+            serviceName.focus();
+          }, 100);
+
+        });
+
+
+      /* EDIT */
+
+      document
+        .querySelectorAll("[data-edit]")
+        .forEach(function (button) {
+
+          button.addEventListener(
+            "click",
+            function () {
+
+              const name =
+                button.dataset.edit;
+
+              const card =
+                button.closest(".service-card");
+
+              editingCard = card;
+
+              modalTitle.textContent =
+                "Edit Service";
+
+              serviceName.value =
+                name;
+
+              serviceCategory.value =
+                card.dataset.category;
+
+              serviceDescription.value =
+                card.querySelector("p").textContent.trim();
+
+              const status =
+                card.querySelector(".status");
+
+              serviceStatus.value =
+                status.classList.contains("draft")
+                  ? "draft"
+                  : "active";
+
+              modalBg.classList.add("show");
+
+              setTimeout(function () {
+                serviceName.focus();
+              }, 100);
+
+            }
+          );
+
+        });
+
+
+      /* PREVIEW */
+
+      document
+        .querySelectorAll("[data-preview]")
+        .forEach(function (button) {
+
+          button.addEventListener(
+            "click",
+            function () {
+
+              showToast(
+                "Preview for " +
+                button.dataset.preview +
+                " will connect to the public service page."
+              );
+
+            }
+          );
+
+        });
+
+
+      /* DELETE */
+
+      document
+        .querySelectorAll("[data-delete]")
+        .forEach(function (button) {
+
+          button.addEventListener(
+            "click",
+            function () {
+
+              const name =
+                button.dataset.delete;
+
+              const confirmed =
+                window.confirm(
+                  "Delete \"" +
+                  name +
+                  "\" from this admin view?"
+                );
+
+              if (!confirmed) {
+                return;
+              }
+
+              const card =
+                button.closest(".service-card");
+
+              card.remove();
+
+              const index =
+                cards.indexOf(card);
+
+              if (index !== -1) {
+                cards.splice(index, 1);
+              }
+
+              filterServices();
+
+              showToast(
+                name +
+                " removed from the current view."
+              );
+
+            }
+          );
+
+        });
+
+
+      /* MODAL CLOSE */
+
+      function closeModal() {
+        modalBg.classList.remove("show");
+        serviceForm.reset();
+        editingCard = null;
+      }
+
+      document
+        .getElementById("closeModal")
+        .addEventListener(
+          "click",
+          closeModal
+        );
+
+      document
+        .getElementById("cancelModal")
+        .addEventListener(
+          "click",
+          closeModal
+        );
+
+
+      modalBg.addEventListener(
+        "click",
+        function (event) {
+
+          if (event.target === modalBg) {
+            closeModal();
+          }
+
+        }
+      );
+
+
+      /* SAVE */
+
+      serviceForm.addEventListener(
+        "submit",
+        function (event) {
+
+          event.preventDefault();
+
+          const name =
+            serviceName.value.trim();
+
+          if (!name) {
+            return;
+          }
+
+          if (editingCard) {
+
+            editingCard.dataset.name =
+              name.toLowerCase();
+
+            editingCard.dataset.category =
+              serviceCategory.value;
+
+            const heading =
+              editingCard.querySelector("h3");
+
+            const description =
+              editingCard.querySelector("p");
+
+            const status =
+              editingCard.querySelector(".status");
+
+            heading.textContent = name;
+
+            description.textContent =
+              serviceDescription.value.trim();
+
+            status.className =
+              "status " +
+              serviceStatus.value;
+
+            status.textContent =
+              serviceStatus.value === "draft"
+                ? "DRAFT"
+                : "ACTIVE";
+
+            showToast(
+              name + " updated successfully."
+            );
+
+          } else {
+
+            showToast(
+              name +
+              " saved in this demo interface."
+            );
+
+          }
+
+          closeModal();
+
+          filterServices();
+
+        }
+      );
+
+
+      /* DASHBOARD */
+
+      document
+        .getElementById("dashboard")
+        .addEventListener(
+          "click",
+          function () {
+            window.location.href =
+              "dashboard.html";
+          }
+        );
+
+
+      /* REFRESH */
+
+      document
+        .getElementById("refresh")
+        .addEventListener(
+          "click",
+          function () {
+            window.location.reload();
+          }
+        );
+
+
+      /* PUBLIC WEBSITE */
+
+      document
+        .getElementById("backSite")
+        .addEventListener(
+          "click",
+          function () {
+
+            window.open(
+              "../index.html",
+              "_blank"
+            );
+
+          }
+        );
+
+
+      /* LOGOUT */
+
+      document
+        .getElementById("logout")
+        .addEventListener(
+          "click",
+          function () {
+
+            const ok =
+              window.confirm(
+                "Logout from A1 Computer Admin?"
+              );
+
+            if (!ok) {
+              return;
+            }
+
+            sessionStorage.removeItem(
+              "a1_admin_logged_in"
+            );
+
+            sessionStorage.removeItem(
+              "a1_admin_id"
+            );
+
+            window.location.replace(
+              "login.html"
+            );
+
+          }
+        );
+
+
+      /* FUTURE MODULES */
+
+      document
+        .querySelectorAll("[data-coming]")
+        .forEach(function (item) {
+
+          item.addEventListener(
+            "click",
+            function (event) {
+
+              event.preventDefault();
+
+              showToast(
+                item.dataset.coming +
+                " module will be connected in the next phase."
+              );
+
+            }
+          );
+
+        });
+
+
+      /* ESCAPE */
+
+      document.addEventListener(
+        "keydown",
+        function (event) {
+
+          if (event.key === "Escape") {
+            closeModal();
+            sidebar.classList.remove("open");
+          }
+
+        }
+      );
+
+    })();
+  </script>
+
+</body>
+</html>
