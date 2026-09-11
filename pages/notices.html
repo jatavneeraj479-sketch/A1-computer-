@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#06101d">
+<title>Notices & Updates | A1 Computer</title>
+
+<style>
+:root{
+  --bg:#050b14;
+  --bg2:#091525;
+  --card:rgba(15,28,47,.72);
+  --text:#f5f8ff;
+  --muted:#9aaac0;
+  --line:rgba(255,255,255,.10);
+  --blue:#45aaff;
+  --cyan:#42e8ff;
+  --green:#45dfa5;
+  --orange:#ffb35c;
+  --red:#ff637c;
+  --purple:#a88bff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 10%,rgba(69,170,255,.14),transparent 27%),
+    radial-gradient(circle at 90% 15%,rgba(168,139,255,.13),transparent 25%),
+    radial-gradient(circle at 50% 90%,rgba(66,232,255,.07),transparent 30%),
+    linear-gradient(135deg,var(--bg),var(--bg2));
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:45px 45px;
+  mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+/* HEADER */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(5,11,20,.80);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:900;
+}
+
+.logo-mark{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  color:#03101b;
+  font-weight:1000;
+  box-shadow:0 0 30px rgba(66,232,255,.25);
+}
+
+.logo-text span{
+  display:block;
+  font-size:10px;
+  color:var(--cyan);
+  letter-spacing:2px;
+  margin-top:2px;
+}
+
+.nav-links{
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+
+.nav-links a{
+  padding:10px 13px;
+  border-radius:12px;
+  color:var(--muted);
+  font-size:14px;
+  transition:.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:#fff;
+  background:rgba(255,255,255,.07);
+}
+
+.nav-actions{
+  display:flex;
+  gap:8px;
+}
+
+.icon-btn{
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:rgba(255,255,255,.045);
+  color:#fff;
+  display:grid;
+  place-items:center;
+}
+
+/* HERO */
+
+.hero{
+  padding:78px 0 45px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:35px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-flex;
+  padding:8px 13px;
+  border-radius:999px;
+  border:1px solid rgba(66,232,255,.20);
+  background:rgba(66,232,255,.07);
+  color:var(--cyan);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.hero h1{
+  margin-top:18px;
+  font-size:clamp(42px,6vw,70px);
+  line-height:.98;
+  letter-spacing:-3px;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#fff,var(--cyan),var(--blue));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  margin-top:20px;
+  max-width:690px;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:16px;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:11px;
+  margin-top:27px;
+}
+
+.btn{
+  border:0;
+  border-radius:14px;
+  padding:13px 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-weight:800;
+  transition:.25s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  color:#03101b;
+}
+
+.btn-secondary{
+  color:#fff;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.045);
+}
+
+.hero-panel{
+  min-height:310px;
+  padding:25px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 65% 20%,rgba(66,232,255,.17),transparent 34%),
+    linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.015));
+  box-shadow:0 25px 70px rgba(0,0,0,.35);
+  position:relative;
+  overflow:hidden;
+}
+
+.panel-label{
+  color:var(--muted);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.notice-visual{
+  height:235px;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+
+.notice-ring{
+  width:185px;
+  height:185px;
+  border:1px dashed rgba(66,232,255,.25);
+  border-radius:50%;
+  position:absolute;
+}
+
+.notice-core{
+  width:95px;
+  height:95px;
+  border-radius:28px;
+  display:grid;
+  place-items:center;
+  font-size:42px;
+  background:rgba(66,232,255,.08);
+  border:1px solid rgba(66,232,255,.25);
+  box-shadow:0 0 45px rgba(66,232,255,.12);
+}
+
+.float-notice{
+  position:absolute;
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  border:1px solid var(--line);
+  background:rgba(8,19,33,.9);
+  font-size:20px;
+}
+
+.float-notice.one{
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.float-notice.two{
+  right:12px;
+  top:78px;
+}
+
+.float-notice.three{
+  right:40px;
+  bottom:12px;
+}
+
+.float-notice.four{
+  left:40px;
+  bottom:12px;
+}
+
+.float-notice.five{
+  left:12px;
+  top:78px;
+}
+
+/* SEARCH */
+
+.search-area{
+  padding:12px 0 25px;
+}
+
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:7px 8px 7px 17px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.045);
+}
+
+.search-icon{
+  color:var(--cyan);
+  font-size:21px;
+}
+
+.search-box input{
+  flex:1;
+  min-width:0;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#fff;
+  font-size:15px;
+}
+
+.search-box input::placeholder{
+  color:#708198;
+}
+
+.search-button{
+  border:0;
+  border-radius:13px;
+  padding:12px 18px;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  color:#03101b;
+  font-weight:900;
+}
+
+/* FILTER */
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:18px 0 30px;
+}
+
+.filter{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
+  color:var(--muted);
+  padding:9px 13px;
+  border-radius:999px;
+  transition:.2s;
+}
+
+.filter:hover,
+.filter.active{
+  color:#03101b;
+  background:var(--cyan);
+  border-color:var(--cyan);
+}
+
+/* SECTION */
+
+.section{
+  padding:30px 0 70px;
+}
+
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.eyebrow{
+  color:var(--cyan);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:900;
+}
+
+.section-heading h2{
+  margin-top:7px;
+  font-size:30px;
+}
+
+.section-heading p{
+  color:var(--muted);
+  max-width:500px;
+  line-height:1.6;
+  font-size:13px;
+}
+
+/* NOTICE GRID */
+
+.notice-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
+}
+
+.notice-card{
+  position:relative;
+  padding:21px;
+  min-height:280px;
+  border:1px solid var(--line);
+  border-radius:23px;
+  background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018));
+  overflow:hidden;
+  transition:.3s;
+  cursor:pointer;
+}
+
+.notice-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(66,232,255,.32);
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+}
+
+.notice-card:after{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  right:-60px;
+  top:-60px;
+  background:rgba(66,232,255,.07);
+}
+
+.notice-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.notice-icon{
+  width:53px;
+  height:53px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.055);
+  font-size:25px;
+}
+
+.notice-type{
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.7px;
+  color:var(--cyan);
+  background:rgba(66,232,255,.08);
+  border:1px solid rgba(66,232,255,.13);
+}
+
+.notice-card h3{
+  margin-top:20px;
+  font-size:18px;
+  line-height:1.3;
+}
+
+.notice-card p{
+  margin-top:9px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.65;
+}
+
+.notice-meta{
+  position:absolute;
+  left:21px;
+  right:21px;
+  bottom:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.notice-date{
+  color:#71839a;
+  font-size:11px;
+}
+
+.read-more{
+  color:var(--cyan);
+  font-size:12px;
+  font-weight:900;
+}
+
+/* FEATURED */
+
+.featured{
+  margin-bottom:45px;
+  padding:28px;
+  border:1px solid rgba(255,179,92,.2);
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 85% 25%,rgba(255,179,92,.10),transparent 32%),
+    rgba(255,255,255,.025);
+}
+
+.featured-content{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:18px;
+  align-items:center;
+}
+
+.featured-icon{
+  width:62px;
+  height:62px;
+  border-radius:19px;
+  display:grid;
+  place-items:center;
+  font-size:29px;
+  background:rgba(255,179,92,.08);
+  border:1px solid rgba(255,179,92,.2);
+}
+
+.featured h2{
+  font-size:23px;
+}
+
+.featured p{
+  margin-top:6px;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:13px;
+}
+
+/* CALENDAR */
+
+.calendar-box{
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:25px;
+  background:rgba(255,255,255,.03);
+}
+
+.calendar-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:20px;
+}
+
+.calendar-header h2{
+  font-size:24px;
+}
+
+.calendar-header p{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:11px;
+}
+
+.calendar-item{
+  padding:17px;
+  border-radius:17px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.035);
+}
+
+.calendar-item strong{
+  display:block;
+  font-size:15px;
+}
+
+.calendar-item span{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* CONTACT */
+
+.contact{
+  padding:20px 0 75px;
+}
+
+.contact-box{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:25px;
+  padding:32px;
+  border:1px solid rgba(66,232,255,.2);
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 85% 20%,rgba(66,232,255,.10),transparent 30%),
+    rgba(255,255,255,.035);
+}
+
+.contact-box h2{
+  font-size:28px;
+}
+
+.contact-box p{
+  margin-top:8px;
+  color:var(--muted);
+}
+
+.contact-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+/* EMPTY */
+
+.empty{
+  display:none;
+  padding:55px 20px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--line);
+  border-radius:22px;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  display:none;
+  place-items:center;
+  padding:20px;
+  background:rgba(0,0,0,.74);
+  backdrop-filter:blur(10px);
+}
+
+.modal.show{
+  display:grid;
+}
+
+.modal-box{
+  width:min(600px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:26px;
+  border-radius:25px;
+  border:1px solid var(--line);
+  background:#091422;
+  box-shadow:0 30px 100px rgba(0,0,0,.65);
+  position:relative;
+  animation:modalIn .22s ease;
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:translateY(15px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.close{
+  position:absolute;
+  right:17px;
+  top:17px;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  color:#fff;
+  font-size:20px;
+}
+
+.modal-icon{
+  width:60px;
+  height:60px;
+  display:grid;
+  place-items:center;
+  border-radius:18px;
+  background:rgba(66,232,255,.08);
+  border:1px solid rgba(66,232,255,.18);
+  font-size:28px;
+}
+
+.modal-box h2{
+  margin-top:17px;
+  padding-right:40px;
+}
+
+.modal-box p{
+  color:var(--muted);
+  line-height:1.7;
+  margin-top:10px;
+}
+
+.modal-list{
+  margin-top:17px;
+  display:grid;
+  gap:8px;
+}
+
+.modal-list div{
+  padding:11px 13px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  color:#dbe7f6;
+}
+
+.modal-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:20px;
+}
+
+/* MOBILE NAV */
+
+.mobile-nav{
+  display:none;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .notice-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .calendar-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:760px){
+
+  .nav{
+    min-height:64px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero{
+    padding:52px 0 32px;
+  }
+
+  .hero h1{
+    font-size:47px;
+    letter-spacing:-2px;
+  }
+
+  .notice-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section-heading{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .featured-content{
+    grid-template-columns:auto 1fr;
+  }
+
+  .featured-content .btn{
+    grid-column:1 / -1;
+  }
+
+  .contact-box{
+    grid-template-columns:1fr;
+  }
+
+  .mobile-nav{
+    position:fixed;
+    display:flex;
+    z-index:2000;
+    left:12px;
+    right:12px;
+    bottom:12px;
+    padding:8px;
+    justify-content:space-around;
+    border:1px solid var(--line);
+    border-radius:19px;
+    background:rgba(7,17,31,.92);
+    backdrop-filter:blur(20px);
+    box-shadow:0 15px 50px rgba(0,0,0,.5);
+  }
+
+  .mobile-nav a{
+    color:var(--muted);
+    text-align:center;
+    font-size:10px;
+    padding:7px 10px;
+    border-radius:12px;
+  }
+
+  .mobile-nav a span{
+    display:block;
+    font-size:18px;
+    margin-bottom:2px;
+  }
+
+  .mobile-nav a.active{
+    color:var(--cyan);
+    background:rgba(66,232,255,.08);
+  }
+
+}
+
+@media(max-width:480px){
+
+  .container{
+    width:94%;
+  }
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .search-button{
+    display:none;
+  }
+
+  .calendar-grid{
+    grid-template-columns:1fr;
+  }
+
+  .featured{
+    padding:22px;
+  }
+
+  .featured-content{
+    grid-template-columns:1fr;
+  }
+
+  .featured-content .btn{
+    grid-column:auto;
+  }
+
+  .contact-box{
+    padding:24px;
+  }
+
+  .contact-box h2{
+    font-size:24px;
+  }
+
+  .footer{
+    padding-bottom:100px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">A1</div>
+
+      <div class="logo-text">
+        A1 COMPUTER
+        <span>DIGITAL SERVICE HUB</span>
+      </div>
+    </a>
+
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="student.html">Student</a>
+      <a href="government.html">Government</a>
+      <a href="notices.html" class="active">Notices</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="showLanguage()">🌐</button>
+      <button class="icon-btn" onclick="showNotice()">🔔</button>
+    </div>
+
+  </div>
+</header>
+
+
+<main>
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+
+      <div class="badge">
+        🔔 A1 Live Updates • Notice Center
+      </div>
+
+      <h1>
+        Notices & <span>Updates</span>
+      </h1>
+
+      <p>
+        Government updates, exam notifications, admission news,
+        job alerts, scholarships, important dates and A1 Computer
+        announcements — all organized in one place.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="#notices" class="btn btn-primary">
+          🔎 Explore Notices
+        </a>
+
+        <a href="tel:9993831755" class="btn btn-secondary">
+          📞 Call A1
+        </a>
+
+        <a href="https://wa.me/919993831755" class="btn btn-secondary">
+          💬 WhatsApp
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="hero-panel">
+
+      <div class="panel-label">
+        A1 Notification Center
+      </div>
+
+      <div class="notice-visual">
+
+        <div class="notice-ring"></div>
+
+        <div class="notice-core">
+          🔔
+        </div>
+
+        <div class="float-notice one">📢</div>
+        <div class="float-notice two">🎓</div>
+        <div class="float-notice three">💼</div>
+        <div class="float-notice four">📄</div>
+        <div class="float-notice five">🏛️</div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="search-area" id="notices">
+
+  <div class="container">
+
+    <div class="search-box">
+
+      <div class="search-icon">⌕</div>
+
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search notice... e.g. exam, job, scholarship, admission"
+        oninput="searchNotices()"
+      >
+
+      <button class="search-button" onclick="searchNotices()">
+        Search
+      </button>
+
+    </div>
+
+
+    <div class="filters">
+
+      <button class="filter active" onclick="filterNotices('all',this)">
+        All
+      </button>
+
+      <button class="filter" onclick="filterNotices('government',this)">
+        🏛️ Government
+      </button>
+
+      <button class="filter" onclick="filterNotices('exam',this)">
+        🎓 Exams
+      </button>
+
+      <button class="filter" onclick="filterNotices('jobs',this)">
+        💼 Jobs
+      </button>
+
+      <button class="filter" onclick="filterNotices('admission',this)">
+        🏫 Admission
+      </button>
+
+      <button class="filter" onclick="filterNotices('scholarship',this)">
+        💰 Scholarship
+      </button>
+
+      <button class="filter" onclick="filterNotices('document',this)">
+        📄 Documents
+      </button>
+
+      <button class="filter" onclick="filterNotices('a1',this)">
+        💙 A1 Updates
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <div class="container">
+
+    <div class="featured">
+
+      <div class="featured-content">
+
+        <div class="featured-icon">
+          📢
+        </div>
+
+        <div>
+
+          <h2>A1 Computer Notice Board</h2>
+
+          <p>
+            Important information, service updates and announcements
+            will be displayed here as the portal grows.
+          </p>
+
+        </div>
+
+        <button class="btn btn-primary" onclick="openNotice('A1 Computer Notice Board')">
+          View Details
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="section-heading">
+
+      <div>
+
+        <div class="eyebrow">
+          Latest Information
+        </div>
+
+        <h2>Latest Notices</h2>
+
+      </div>
+
+      <p>
+        Tap any notice to open its detailed information.
+        Official information should always be verified from the
+        concerned department before taking action.
+      </p>
+
+    </div>
+
+
+    <div class="notice-grid" id="noticeGrid">
+
+
+      <article
+        class="notice-card"
+        data-category="government"
+        data-search="government latest government notification public service update"
+        onclick="openNotice('Government Service Updates')"
+      >
+
+        <div class="notice-top">
+
+          <div class="notice-icon">
+            🏛️
+          </div>
+
+          <span class="notice-type">
+            GOVERNMENT
+          </span>
+
+        </div>
+
+        <h3>Government Service Updates</h3>
+
+        <p>
+          New government service information, public service
+          announcements and process-related updates.
+        </p>
+
+        <div class="notice-meta">
+          <span class="notice-date">Latest Update</span>
+          <span class="read-more">Open →</span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="notice-card"
+        data-category="exam"
+        data-search="exam examination admit card result syllabus timetable student"
+        onclick="openNotice('Exam & Student Updates')"
+      >
+
+        <div class="notice-top">
+
+          <div class="notice-icon">
+            🎓
+          </div>
+
+          <span class="notice-type">
+            EXAM
+          </span>
+
+        </div>
+
+        <h3>Exam & Student Updates</h3>
+
+        <p>
+          Exam forms, admit cards, results, timetables and important
+          student-related announcements.
+        </p>
+
+        <div class="notice-meta">
+          <span class="notice-date">Student Hub</span>
+          <span class="read-more">Open →</span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="notice-card"
+        data-category="jobs"
+        data-search="government jobs vacancy recruitment admit card result career"
+        onclick="openNotice('Jobs & Recruitment Alerts')"
+      >
+
+        <div class="notice-top">
+
+          <div class="notice-icon">
+            💼
+          </div>
+
+          <span class="notice-type">
+            JOBS
+          </span>
+
+        </div>
+
+        <h3>Jobs & Recruitment Alerts</h3>
+
+        <p>
+          Recruitment, vacancy, admit card, result and career-related
+          information for job seekers.
+        </p>
+
+        <div class="notice-meta">
+          <span class="notice-date">Career</span>
+          <span class="read-more">Open →</span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="notice-card"
+        data-category="admission"
+        data-search="college school admission application counselling education"
+        onclick="openNotice('School & College Admission')"
+      >
+
+        <div class="notice-top">
+
+          <div class="notice-icon">
+            🏫
+          </div>
+
+          <span class="notice-type">
+            ADMISSION
+          </span>
+
+        </div>
+
+        <h3>School & College Admission</h3>
+
+        <p>
+          Admission forms, counselling, application dates and
+          education-related announcements.
+        </p>
+
+        <div class="notice-meta">
+          <span class="notice-date">Education</span>
+          <span class="read-more">Open →</span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="notice-card"
+        data-category="scholarship"
+        data-search="scholarship student scholarship form last date financial aid"
+        onclick="openNotice('Scholarship Updates')"
+      >
+
+        <div class="notice-top">
+
+          <div class="notice-icon">
+            💰
+          </div>
+
+          <span class="notice-type">
+            SCHOLARSHIP
+          </span>
+
+        </div>
+
+        <h3>Scholarship Updates</h3>
+
+        <p>
+          Scholarship applications, student benefits and important
+          scholarship-related information.
+        </p>
+
+        <div class="notice-meta">
+          <span class="notice-date">Students</span>
+          <span class="read-more">Open →</span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="notice-card"
+        data-category="document"
+        data-search="document aadhaar pan voter certificate online document verification"
+        onclick="openNotice('Document & ID Updates')"
+      >
+
+        <div class="notice-top">
+
+          <div class="notice-icon">
+            📄
+          </div>
+
+          <span class="notice-type">
+            DOCUMENTS
+          </span>
+
+        </div>
+
+        <h3>Document & ID Updates</h3>
+
+        <p>
+          Document services, verification, application guidance and
+          digital document-related information.
+        </p>
+
+        <div class="notice-meta">
+          <span class="notice-date">Documents</span>
+          <span class="read-more">Open →</span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="notice-card"
+        data-category="government"
+        data-search="scheme pension farmer labour government scheme benefits"
+        onclick="openNotice('Government Scheme Updates')"
+      >
+
+        <div class="notice-top">
+
+          <div class="notice-icon">
+            🏛️
+          </div>
+
+          <span class="notice-type">
+            SCHEMES
+          </span>
+
+        </div>
+
+        <h3>Government Scheme Updates</h3>
+
+        <p>
+          Scheme-related information including student, farmer,
+          labour, pension and citizen benefits.
+        </p>
+
+        <div class="notice-meta">
+          <span class="notice-date">Schemes</span>
+          <span class="read-more">Open →</span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="notice-card"
+        data-category="a1"
+        data-search="a1 computer shop announcement service update digital service"
+        onclick="openNotice('A1 Computer Updates')"
+      >
+
+        <div class="notice-top">
+
+          <div class="notice-icon">
+            💙
+          </div>
+
+          <span class="notice-type">
+            A1 UPDATE
+          </span>
+
+        </div>
+
+        <h3>A1 Computer Updates</h3>
+
+        <p>
+          A1 Computer service announcements, new facilities and
+          important customer information.
+        </p>
+
+        <div class="notice-meta">
+          <span class="notice-date">A1 Computer</span>
+          <span class="read-more">Open →</span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="notice-card"
+        data-category="exam"
+        data-search="exam calendar competitive exam jee neet cuet ssc upsc railway banking"
+        onclick="openNotice('Competitive Exam Calendar')"
+      >
+
+        <div class="notice-top">
+
+          <div class="notice-icon">
+            📅
+          </div>
+
+          <span class="notice-type">
+            CALENDAR
+          </span>
+
+        </div>
+
+        <h3>Competitive Exam Calendar</h3>
+
+        <p>
+          Competitive exam planning, important dates and preparation
+          information for students and job aspirants.
+        </p>
+
+        <div class="notice-meta">
+          <span class="notice-date">Exam Calendar</span>
+          <span class="read-more">Open →</span>
+        </div>
+
+      </article>
+
+
+    </div>
+
+
+    <div class="empty" id="emptyState">
+      🔎 No notice found. Try another keyword or category.
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <div class="container">
+
+    <div class="calendar-box">
+
+      <div class="calendar-header">
+
+        <div>
+          <h2>📅 A1 Planning Calendar</h2>
+          <p>
+            Quick categories for upcoming information
+          </p>
+        </div>
+
+        <a href="student.html" class="btn btn-secondary">
+          🎓 Student Hub
+        </a>
+
+      </div>
+
+
+      <div class="calendar-grid">
+
+        <div class="calendar-item">
+          <strong>🎓 Exams</strong>
+          <span>Forms • Admit Cards • Results</span>
+        </div>
+
+        <div class="calendar-item">
+          <strong>💼 Jobs</strong>
+          <span>Vacancy • Recruitment • Results</span>
+        </div>
+
+        <div class="calendar-item">
+          <strong>💰 Scholarships</strong>
+          <span>Application • Benefits • Updates</span>
+        </div>
+
+        <div class="calendar-item">
+          <strong>🏛️ Government</strong>
+          <span>Schemes • Services • Notices</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="contact">
+
+  <div class="container">
+
+    <div class="contact-box">
+
+      <div>
+
+        <div class="eyebrow">
+          A1 Computer
+        </div>
+
+        <h2>Need help understanding a notice?</h2>
+
+        <p>
+          Contact A1 Computer for digital assistance, online forms,
+          print, scan and basic process guidance.
+        </p>
+
+      </div>
+
+
+      <div class="contact-actions">
+
+        <a href="tel:9993831755" class="btn btn-primary">
+          📞 9993831755
+        </a>
+
+        <a href="https://wa.me/919993831755" class="btn btn-secondary">
+          💬 WhatsApp
+        </a>
+
+        <a href="mailto:jatavneeraj479@gmail.com" class="btn btn-secondary">
+          ✉️ Email
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+  <div class="container" style="display:flex;justify-content:space-between;gap:15px;align-items:center;color:var(--muted);font-size:12px;">
+    <div>
+      <strong style="color:#fff;">A1 COMPUTER</strong> · Digital Service Hub
+    </div>
+
+    <div>
+      New Bus Stand, Ajaigarh
+    </div>
+  </div>
+</footer>
+
+
+<nav class="mobile-nav">
+
+  <a href="../index.html">
+    <span>⌂</span>
+    Home
+  </a>
+
+  <a href="services.html">
+    <span>▦</span>
+    Services
+  </a>
+
+  <a href="notices.html" class="active">
+    <span>🔔</span>
+    Notices
+  </a>
+
+  <a href="student.html">
+    <span>🎓</span>
+    Student
+  </a>
+
+  <a href="contact.html">
+    <span>☎</span>
+    Contact
+  </a>
+
+</nav>
+
+
+<div class="modal" id="noticeModal" onclick="closeOutside(event)">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal()">×</button>
+
+    <div class="modal-icon" id="modalIcon">
+      🔔
+    </div>
+
+    <h2 id="modalTitle">
+      Notice
+    </h2>
+
+    <p id="modalDescription">
+      Notice information.
+    </p>
+
+    <div class="modal-list" id="modalList"></div>
+
+    <div class="modal-actions">
+
+      <a href="tel:9993831755" class="btn btn-primary">
+        📞 Call A1
+      </a>
+
+      <a href="https://wa.me/919993831755" class="btn btn-secondary">
+        💬 WhatsApp
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const noticeData = {
+
+  "A1 Computer Notice Board":{
+    icon:"📢",
+    description:"A1 Computer ke notice board par important service announcements aur customer information organize ki jayegi.",
+    points:[
+      "New digital services",
+      "Important customer announcements",
+      "Service availability information",
+      "Online application assistance updates"
+    ]
+  },
+
+  "Government Service Updates":{
+    icon:"🏛️",
+    description:"Government services se related general updates aur process information yahan organize ki ja sakti hai.",
+    points:[
+      "Government service information",
+      "Citizen service updates",
+      "Application process guidance",
+      "Official notification verify karna zaroori hai"
+    ]
+  },
+
+  "Exam & Student Updates":{
+    icon:"🎓",
+    description:"Students ke liye exams, admit cards, results aur other academic updates ka information hub.",
+    points:[
+      "Exam forms",
+      "Admit cards",
+      "Results",
+      "Timetable and syllabus"
+    ]
+  },
+
+  "Jobs & Recruitment Alerts":{
+    icon:"💼",
+    description:"Government aur other recruitment related information ko organize karne ke liye dedicated section.",
+    points:[
+      "New vacancies",
+      "Recruitment notifications",
+      "Admit cards",
+      "Results and answer keys"
+    ]
+  },
+
+  "School & College Admission":{
+    icon:"🏫",
+    description:"School aur college admission related information ke liye dedicated update section.",
+    points:[
+      "Admission forms",
+      "Application dates",
+      "Counselling information",
+      "Required documents guidance"
+    ]
+  },
+
+  "Scholarship Updates":{
+    icon:"💰",
+    description:"Students ke scholarship aur educational benefits se related information.",
+    points:[
+      "Scholarship applications",
+      "Important dates",
+      "Eligibility information",
+      "Document requirements"
+    ]
+  },
+
+  "Document & ID Updates":{
+    icon:"📄",
+    description:"Identity documents aur digital document services ke related general updates.",
+    points:[
+      "Aadhaar related services",
+      "PAN related services",
+      "Voter services",
+      "Document verification guidance"
+    ]
+  },
+
+  "Government Scheme Updates":{
+    icon:"🏛️",
+    description:"Government schemes aur citizen benefits se related information ko organize karne ke liye section.",
+    points:[
+      "Student schemes",
+      "Farmer benefits",
+      "Labour schemes",
+      "Pension and citizen benefits"
+    ]
+  },
+
+  "A1 Computer Updates":{
+    icon:"💙",
+    description:"A1 Computer ki services, announcements aur customer support related updates.",
+    points:[
+      "New services",
+      "Digital service announcements",
+      "Customer assistance",
+      "Print, scan and online form support"
+    ]
+  },
+
+  "Competitive Exam Calendar":{
+    icon:"📅",
+    description:"Competitive exams ko plan karne ke liye exam calendar aur preparation-related information.",
+    points:[
+      "JEE",
+      "NEET",
+      "CUET",
+      "SSC / UPSC / Banking / Railway"
+    ]
+  }
+
+};
+
+
+const cards =
+  document.querySelectorAll(".notice-card");
+
+let currentCategory = "all";
+
+
+function openNotice(title){
+
+  const data = noticeData[title];
+
+  if(!data){
+
+    document.getElementById("modalIcon").textContent = "🔔";
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalDescription").textContent =
+      "Is notice ki detailed information A1 Computer se contact karke li ja sakti hai.";
+
+    document.getElementById("modalList").innerHTML =
+      "<div>✓ A1 Computer digital assistance available</div>";
+
+  }else{
+
+    document.getElementById("modalIcon").textContent =
+      data.icon;
+
+    document.getElementById("modalTitle").textContent =
+      title;
+
+    document.getElementById("modalDescription").textContent =
+      data.description;
+
+    const list =
+      document.getElementById("modalList");
+
+    list.innerHTML = "";
+
+    data.points.forEach(point => {
+
+      const item =
+        document.createElement("div");
+
+      item.textContent = "✓ " + point;
+
+      list.appendChild(item);
+
+    });
+
+  }
+
+  document
+    .getElementById("noticeModal")
+    .classList.add("show");
+
+  document.body.style.overflow = "hidden";
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("noticeModal")
+    .classList.remove("show");
+
+  document.body.style.overflow = "";
+
+}
+
+
+function closeOutside(event){
+
+  if(event.target === document.getElementById("noticeModal")){
+
+    closeModal();
+
+  }
+
+}
+
+
+document.addEventListener("keydown",function(event){
+
+  if(event.key === "Escape"){
+
+    closeModal();
+
+  }
+
+});
+
+
+function filterNotices(category,button){
+
+  currentCategory = category;
+
+  document
+    .querySelectorAll(".filter")
+    .forEach(btn => {
+
+      btn.classList.remove("active");
+
+    });
+
+  button.classList.add("active");
+
+  searchNotices();
+
+}
+
+
+function searchNotices(){
+
+  const query =
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
+
+  let visible = 0;
+
+  cards.forEach(card => {
+
+    const category =
+      card.dataset.category || "";
+
+    const searchText =
+      (
+        card.dataset.search ||
+        ""
+      ) +
+      " " +
+      card.textContent;
+
+    const matchesSearch =
+      searchText
+        .toLowerCase()
+        .includes(query);
+
+    const matchesCategory =
+      currentCategory === "all" ||
+      category === currentCategory;
+
+    if(matchesSearch && matchesCategory){
+
+      card.style.display = "";
+
+      visible++;
+
+    }else{
+
+      card.style.display = "none";
+
+    }
+
+  });
+
+
+  document.getElementById("emptyState")
+    .style.display =
+      visible === 0 ? "block" : "none";
+
+}
+
+
+function showLanguage(){
+
+  alert(
+    "🌐 Language Center\n\n" +
+    "Hindi • English • Marathi • Gujarati • Bengali • Tamil • Telugu\n\n" +
+    "Multi-language system ko later A1 language engine ke saath connect kiya jayega."
+  );
+
+}
+
+
+function showNotice(){
+
+  alert(
+    "🔔 A1 Notice Center\n\n" +
+    "Important updates aur announcements isi section mein organize kiye jayenge."
+  );
+
+}
+
+
+document.addEventListener("DOMContentLoaded",function(){
+
+  searchNotices();
+
+});
+
+</script>
+
+</body>
+</html>
