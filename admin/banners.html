@@ -1,0 +1,2059 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notices Manager | A1 Computer</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,Arial,sans-serif;
+}
+
+body{
+    background:#070b14;
+    color:#eef4ff;
+    min-height:100vh;
+}
+
+button,input,select,textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:260px;
+    background:rgba(12,18,31,.98);
+    border-right:1px solid rgba(255,255,255,.08);
+    padding:22px 16px;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    z-index:1000;
+    overflow-y:auto;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 10px 24px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    margin-bottom:18px;
+}
+
+.logo-icon{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#00d9ff,#6c5ce7);
+    font-size:20px;
+    font-weight:900;
+    color:white;
+    box-shadow:0 8px 30px rgba(0,217,255,.22);
+}
+
+.logo-text strong{
+    display:block;
+    font-size:17px;
+}
+
+.logo-text span{
+    display:block;
+    color:#7e8ba4;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.menu-title{
+    color:#68758e;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin:18px 10px 9px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.nav a{
+    color:#aebbd0;
+    text-decoration:none;
+    padding:12px 13px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-size:13px;
+    transition:.2s;
+}
+
+.nav a:hover{
+    background:rgba(255,255,255,.06);
+    color:#fff;
+}
+
+.nav a.active{
+    background:linear-gradient(
+        90deg,
+        rgba(0,217,255,.14),
+        rgba(108,92,231,.12)
+    );
+    color:#fff;
+    border:1px solid rgba(0,217,255,.16);
+}
+
+.nav-icon{
+    width:27px;
+    text-align:center;
+    font-size:17px;
+}
+
+.sidebar-bottom{
+    margin-top:25px;
+    padding:14px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:15px;
+    background:rgba(255,255,255,.025);
+}
+
+.admin-mini{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.admin-avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#6c5ce7,#00d9ff);
+    font-weight:800;
+}
+
+.admin-mini strong{
+    display:block;
+    font-size:12px;
+}
+
+.admin-mini span{
+    display:block;
+    font-size:10px;
+    color:#77849b;
+    margin-top:3px;
+}
+
+/* MAIN */
+.main{
+    margin-left:260px;
+    width:calc(100% - 260px);
+    min-height:100vh;
+}
+
+.topbar{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 28px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    background:rgba(7,11,20,.88);
+    backdrop-filter:blur(18px);
+    position:sticky;
+    top:0;
+    z-index:500;
+}
+
+.top-left{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.menu-btn{
+    display:none;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.04);
+    color:white;
+    width:40px;
+    height:40px;
+    border-radius:10px;
+}
+
+.page-title h1{
+    font-size:19px;
+}
+
+.page-title p{
+    color:#748198;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.top-actions{
+    display:flex;
+    gap:9px;
+}
+
+.top-btn{
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.04);
+    color:#dbe6f7;
+    padding:9px 13px;
+    border-radius:10px;
+    font-size:11px;
+}
+
+.top-btn:hover{
+    background:rgba(255,255,255,.08);
+}
+
+.content{
+    padding:25px 28px 45px;
+}
+
+/* HERO */
+.hero{
+    padding:24px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(0,217,255,.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 100%,
+            rgba(108,92,231,.12),
+            transparent 35%
+        ),
+        rgba(255,255,255,.025);
+    margin-bottom:22px;
+}
+
+.hero h2{
+    font-size:25px;
+    margin-bottom:7px;
+}
+
+.hero p{
+    color:#8794aa;
+    font-size:13px;
+    max-width:760px;
+    line-height:1.6;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:22px;
+}
+
+.stat{
+    padding:17px;
+    border-radius:16px;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.stat-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,217,255,.1);
+    font-size:18px;
+}
+
+.stat-value{
+    font-size:25px;
+    font-weight:800;
+    margin-top:13px;
+}
+
+.stat-label{
+    color:#7e8ba1;
+    font-size:11px;
+    margin-top:3px;
+}
+
+/* TOOLBAR */
+.toolbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:17px;
+}
+
+.search{
+    flex:1;
+    min-width:220px;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+    padding:12px 14px 12px 40px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.035);
+    color:#fff;
+    outline:none;
+}
+
+.search input:focus{
+    border-color:rgba(0,217,255,.45);
+}
+
+.search span{
+    position:absolute;
+    left:14px;
+    top:11px;
+    color:#718099;
+}
+
+select{
+    padding:12px 13px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#111827;
+    color:#dce7f7;
+    outline:none;
+}
+
+.primary{
+    padding:12px 16px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#00cfee,#5967ff);
+    color:white;
+    font-weight:700;
+    font-size:12px;
+}
+
+/* PANEL */
+.panel{
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:17px;
+    overflow:hidden;
+    background:rgba(255,255,255,.022);
+}
+
+.panel-head{
+    padding:17px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.panel-head h3{
+    font-size:14px;
+}
+
+.panel-head span{
+    color:#738198;
+    font-size:11px;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:950px;
+}
+
+th{
+    text-align:left;
+    padding:13px 15px;
+    color:#718098;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+    background:rgba(255,255,255,.02);
+}
+
+td{
+    padding:14px 15px;
+    border-top:1px solid rgba(255,255,255,.055);
+    font-size:12px;
+    color:#c8d4e6;
+}
+
+td strong{
+    color:#f1f6ff;
+}
+
+.small{
+    color:#758299;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    padding:5px 8px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:700;
+}
+
+.badge.active{
+    background:rgba(46,213,115,.1);
+    color:#52e68b;
+}
+
+.badge.important{
+    background:rgba(255,82,82,.1);
+    color:#ff8585;
+}
+
+.badge.normal{
+    background:rgba(0,217,255,.1);
+    color:#50dfff;
+}
+
+.badge.pending{
+    background:rgba(255,184,77,.1);
+    color:#ffbf61;
+}
+
+.actions{
+    display:flex;
+    gap:5px;
+}
+
+.action{
+    width:31px;
+    height:31px;
+    border:1px solid rgba(255,255,255,.07);
+    background:rgba(255,255,255,.035);
+    color:#b9c6d9;
+    border-radius:8px;
+}
+
+.action:hover{
+    background:rgba(255,255,255,.09);
+    color:white;
+}
+
+/* MODAL */
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(7px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    z-index:3000;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(700px,100%);
+    max-height:92vh;
+    overflow:auto;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    background:#0c1321;
+    box-shadow:0 30px 100px rgba(0,0,0,.55);
+}
+
+.modal-head{
+    padding:19px 20px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-head h3{
+    font-size:16px;
+}
+
+.close{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.04);
+    color:#b8c5d8;
+}
+
+.form{
+    padding:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+.field label{
+    display:block;
+    font-size:10px;
+    color:#8190a7;
+    margin-bottom:6px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.035);
+    color:#fff;
+    border-radius:10px;
+    padding:11px 12px;
+    outline:none;
+}
+
+.field textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.form-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:5px;
+}
+
+.secondary{
+    padding:11px 15px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.04);
+    color:#c7d3e4;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:5000;
+    background:#121c2c;
+    border:1px solid rgba(255,255,255,.1);
+    color:#e9f2ff;
+    padding:12px 16px;
+    border-radius:12px;
+    font-size:12px;
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+    transform:translateY(90px);
+    opacity:0;
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* MOBILE */
+@media(max-width:1000px){
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .top-actions .hide-mobile{
+        display:none;
+    }
+
+    .content{
+        padding:20px 15px 35px;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+}
+
+@media(max-width:600px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .stat{
+        padding:13px;
+    }
+
+    .stat-value{
+        font-size:21px;
+    }
+
+    .hero{
+        padding:18px;
+    }
+
+    .hero h2{
+        font-size:21px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .page-title h1{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">A1</div>
+
+        <div class="logo-text">
+            <strong>A1 COMPUTER</strong>
+            <span>ADMIN CONTROL CENTER</span>
+        </div>
+    </div>
+
+    <div class="menu-title">Main</div>
+
+    <nav class="nav">
+
+        <a href="dashboard.html">
+            <span class="nav-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="services.html">
+            <span class="nav-icon">⚡</span>
+            Services
+        </a>
+
+        <a href="categories.html">
+            <span class="nav-icon">▦</span>
+            Categories
+        </a>
+
+        <a href="students.html">
+            <span class="nav-icon">🎓</span>
+            Students
+        </a>
+
+        <a href="jobs.html">
+            <span class="nav-icon">💼</span>
+            Jobs
+        </a>
+
+        <a href="schemes.html">
+            <span class="nav-icon">🎁</span>
+            Schemes
+        </a>
+
+        <a href="land.html">
+            <span class="nav-icon">🏠</span>
+            Land & Property
+        </a>
+
+        <a href="documents.html">
+            <span class="nav-icon">📄</span>
+            Documents
+        </a>
+
+        <a href="notices.html" class="active">
+            <span class="nav-icon">🔔</span>
+            Notices
+        </a>
+
+    </nav>
+
+    <div class="menu-title">System</div>
+
+    <nav class="nav">
+
+        <a href="banners.html">
+            <span class="nav-icon">🖼️</span>
+            Banners
+        </a>
+
+        <a href="ai.html">
+            <span class="nav-icon">🤖</span>
+            AI Assistant
+        </a>
+
+        <a href="languages.html">
+            <span class="nav-icon">🌐</span>
+            Languages
+        </a>
+
+        <a href="official-links.html">
+            <span class="nav-icon">🔗</span>
+            Official Links
+        </a>
+
+        <a href="users.html">
+            <span class="nav-icon">👥</span>
+            Users
+        </a>
+
+        <a href="settings.html">
+            <span class="nav-icon">⚙️</span>
+            Settings
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <div class="admin-mini">
+
+            <div class="admin-avatar">A</div>
+
+            <div>
+                <strong>Administrator</strong>
+                <span>Control Center</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+<header class="topbar">
+
+    <div class="top-left">
+
+        <button
+            class="menu-btn"
+            onclick="toggleSidebar()"
+        >
+            ☰
+        </button>
+
+        <div class="page-title">
+
+            <h1>Notices Manager</h1>
+
+            <p>
+                Manage public notices, alerts and announcements
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="top-actions">
+
+        <button
+            class="top-btn hide-mobile"
+            onclick="openPublicSite()"
+        >
+            🌐 Public Site
+        </button>
+
+        <button
+            class="top-btn"
+            onclick="logout()"
+        >
+            ⇥ Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<section class="content">
+
+    <div class="hero">
+
+        <h2>🔔 Notices & Announcements</h2>
+
+        <p>
+            Create and manage important government updates, exam notices,
+            job alerts, scholarship announcements, deadlines and A1 Computer
+            customer notifications.
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-icon">🔔</div>
+
+            <div
+                class="stat-value"
+                id="totalCount"
+            >
+                8
+            </div>
+
+            <div class="stat-label">
+                Total Notices
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">📢</div>
+
+            <div
+                class="stat-value"
+                id="publishedCount"
+            >
+                6
+            </div>
+
+            <div class="stat-label">
+                Published
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">⭐</div>
+
+            <div
+                class="stat-value"
+                id="importantCount"
+            >
+                2
+            </div>
+
+            <div class="stat-label">
+                Important
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">⏳</div>
+
+            <div
+                class="stat-value"
+                id="draftCount"
+            >
+                2
+            </div>
+
+            <div class="stat-label">
+                Drafts
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="toolbar">
+
+        <div class="search">
+
+            <span>⌕</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search notices..."
+                oninput="renderTable()"
+            >
+
+        </div>
+
+
+        <select
+            id="categoryFilter"
+            onchange="renderTable()"
+        >
+
+            <option value="all">
+                All Categories
+            </option>
+
+            <option value="Jobs">
+                Jobs
+            </option>
+
+            <option value="Exam">
+                Exam
+            </option>
+
+            <option value="Scholarship">
+                Scholarship
+            </option>
+
+            <option value="Government">
+                Government
+            </option>
+
+            <option value="General">
+                General
+            </option>
+
+        </select>
+
+
+        <select
+            id="statusFilter"
+            onchange="renderTable()"
+        >
+
+            <option value="all">
+                All Status
+            </option>
+
+            <option value="Published">
+                Published
+            </option>
+
+            <option value="Draft">
+                Draft
+            </option>
+
+        </select>
+
+
+        <button
+            class="primary"
+            onclick="openAddModal()"
+        >
+            + Add Notice
+        </button>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-head">
+
+            <div>
+
+                <h3>
+                    Notice List
+                </h3>
+
+                <span>
+                    Manage announcements displayed on the portal
+                </span>
+
+            </div>
+
+            <span id="resultCount">
+                8 records
+            </span>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Notice
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Priority
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tableBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- MODAL -->
+<div
+    class="modal-overlay"
+    id="modal"
+>
+
+<div class="modal">
+
+    <div class="modal-head">
+
+        <h3 id="modalTitle">
+            Add Notice
+        </h3>
+
+        <button
+            class="close"
+            onclick="closeModal()"
+        >
+            ✕
+        </button>
+
+    </div>
+
+
+    <form
+        class="form"
+        onsubmit="saveNotice(event)"
+    >
+
+        <input
+            type="hidden"
+            id="editId"
+        >
+
+
+        <div class="grid">
+
+            <div class="field full">
+
+                <label>
+                    Notice Title
+                </label>
+
+                <input
+                    id="noticeTitle"
+                    required
+                    placeholder="Enter notice title"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Category
+                </label>
+
+                <select
+                    id="noticeCategory"
+                    required
+                >
+
+                    <option value="Jobs">
+                        Jobs
+                    </option>
+
+                    <option value="Exam">
+                        Exam
+                    </option>
+
+                    <option value="Scholarship">
+                        Scholarship
+                    </option>
+
+                    <option value="Government">
+                        Government
+                    </option>
+
+                    <option value="General">
+                        General
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Publish Date
+                </label>
+
+                <input
+                    type="date"
+                    id="noticeDate"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Priority
+                </label>
+
+                <select id="priority">
+
+                    <option value="Normal">
+                        Normal
+                    </option>
+
+                    <option value="Important">
+                        Important
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Status
+                </label>
+
+                <select id="noticeStatus">
+
+                    <option value="Published">
+                        Published
+                    </option>
+
+                    <option value="Draft">
+                        Draft
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Notice Details
+                </label>
+
+                <textarea
+                    id="noticeDetails"
+                    required
+                    placeholder="Write complete notice information..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                type="button"
+                class="secondary"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="submit"
+                class="primary"
+            >
+                Save Notice
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+const STORAGE_KEY = "a1_notices";
+
+
+const defaultNotices = [
+
+    {
+        id:1,
+        title:"New Government Job Notification",
+        category:"Jobs",
+        date:"2026-09-11",
+        priority:"Important",
+        status:"Published",
+        details:"Latest government job vacancies and application dates are now available."
+    },
+
+    {
+        id:2,
+        title:"Scholarship Application Update",
+        category:"Scholarship",
+        date:"2026-09-10",
+        priority:"Important",
+        status:"Published",
+        details:"Students can check scholarship eligibility and application information."
+    },
+
+    {
+        id:3,
+        title:"Upcoming Competitive Exam Notice",
+        category:"Exam",
+        date:"2026-09-09",
+        priority:"Normal",
+        status:"Published",
+        details:"Important examination dates and application updates."
+    },
+
+    {
+        id:4,
+        title:"A1 Computer Online Form Service",
+        category:"General",
+        date:"2026-09-08",
+        priority:"Normal",
+        status:"Published",
+        details:"Online form filling assistance is available at A1 Computer."
+    },
+
+    {
+        id:5,
+        title:"Government Scheme Update",
+        category:"Government",
+        date:"2026-09-07",
+        priority:"Normal",
+        status:"Published",
+        details:"New government scheme information has been added to the portal."
+    },
+
+    {
+        id:6,
+        title:"Student Admission Information",
+        category:"General",
+        date:"2026-09-06",
+        priority:"Normal",
+        status:"Published",
+        details:"Students can contact A1 Computer for admission-related online assistance."
+    },
+
+    {
+        id:7,
+        title:"Upcoming Scholarship Notice",
+        category:"Scholarship",
+        date:"2026-09-12",
+        priority:"Normal",
+        status:"Draft",
+        details:"Scholarship announcement draft for upcoming publication."
+    },
+
+    {
+        id:8,
+        title:"Exam Form Reminder",
+        category:"Exam",
+        date:"2026-09-13",
+        priority:"Normal",
+        status:"Draft",
+        details:"Reminder notice for examination form submission."
+    }
+
+];
+
+
+let notices = loadNotices();
+
+
+function loadNotices(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(STORAGE_KEY);
+
+        if(saved){
+
+            return JSON.parse(saved);
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+    return [...defaultNotices];
+
+}
+
+
+function saveToStorage(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(notices)
+    );
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function priorityClass(priority){
+
+    if(priority === "Important"){
+        return "important";
+    }
+
+    return "normal";
+
+}
+
+
+function statusClass(status){
+
+    if(status === "Published"){
+        return "active";
+    }
+
+    return "pending";
+
+}
+
+
+function formatDate(date){
+
+    if(!date){
+        return "-";
+    }
+
+    const parts =
+        date.split("-");
+
+    if(parts.length !== 3){
+        return date;
+    }
+
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+}
+
+
+function renderTable(){
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    const category =
+        document.getElementById("categoryFilter").value;
+
+
+    const status =
+        document.getElementById("statusFilter").value;
+
+
+    const filtered =
+        notices.filter(item => {
+
+            const matchesSearch =
+                item.title.toLowerCase().includes(search) ||
+                item.details.toLowerCase().includes(search) ||
+                item.category.toLowerCase().includes(search);
+
+
+            const matchesCategory =
+                category === "all" ||
+                item.category === category;
+
+
+            const matchesStatus =
+                status === "all" ||
+                item.status === status;
+
+
+            return (
+                matchesSearch &&
+                matchesCategory &&
+                matchesStatus
+            );
+
+        });
+
+
+    const tbody =
+        document.getElementById("tableBody");
+
+
+    if(!filtered.length){
+
+        tbody.innerHTML = `
+            <tr>
+                <td
+                    colspan="6"
+                    style="
+                        text-align:center;
+                        padding:35px;
+                        color:#758299;
+                    "
+                >
+                    No notices found.
+                </td>
+            </tr>
+        `;
+
+    }else{
+
+        tbody.innerHTML =
+            filtered.map(item => `
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            ${escapeHTML(item.title)}
+                        </strong>
+
+                        <div class="small">
+                            ${escapeHTML(
+                                item.details.substring(0,70)
+                            )}${item.details.length > 70 ? "..." : ""}
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(item.category)}
+                    </td>
+
+
+                    <td>
+                        ${formatDate(item.date)}
+                    </td>
+
+
+                    <td>
+
+                        <span
+                            class="badge ${priorityClass(item.priority)}"
+                        >
+                            ${escapeHTML(item.priority)}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <span
+                            class="badge ${statusClass(item.status)}"
+                        >
+                            ${escapeHTML(item.status)}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="action"
+                                title="View"
+                                onclick="viewNotice(${item.id})"
+                            >
+                                👁
+                            </button>
+
+
+                            <button
+                                class="action"
+                                title="Edit"
+                                onclick="editNotice(${item.id})"
+                            >
+                                ✎
+                            </button>
+
+
+                            <button
+                                class="action"
+                                title="Delete"
+                                onclick="deleteNotice(${item.id})"
+                            >
+                                🗑
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            `).join("");
+
+    }
+
+
+    document.getElementById("resultCount").textContent =
+        `${filtered.length} record${filtered.length === 1 ? "" : "s"}`;
+
+
+    updateStats();
+
+}
+
+
+function updateStats(){
+
+    const total =
+        notices.length;
+
+
+    const published =
+        notices.filter(
+            item => item.status === "Published"
+        ).length;
+
+
+    const important =
+        notices.filter(
+            item => item.priority === "Important"
+        ).length;
+
+
+    const drafts =
+        notices.filter(
+            item => item.status === "Draft"
+        ).length;
+
+
+    document.getElementById("totalCount").textContent =
+        total;
+
+    document.getElementById("publishedCount").textContent =
+        published;
+
+    document.getElementById("importantCount").textContent =
+        important;
+
+    document.getElementById("draftCount").textContent =
+        drafts;
+
+}
+
+
+function openAddModal(){
+
+    document.getElementById("modalTitle").textContent =
+        "Add Notice";
+
+
+    document.getElementById("editId").value =
+        "";
+
+
+    document.getElementById("noticeTitle").value =
+        "";
+
+
+    document.getElementById("noticeCategory").value =
+        "Jobs";
+
+
+    document.getElementById("noticeDate").value =
+        new Date().toISOString().split("T")[0];
+
+
+    document.getElementById("priority").value =
+        "Normal";
+
+
+    document.getElementById("noticeStatus").value =
+        "Published";
+
+
+    document.getElementById("noticeDetails").value =
+        "";
+
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+
+}
+
+
+function saveNotice(event){
+
+    event.preventDefault();
+
+
+    const editId =
+        Number(
+            document.getElementById("editId").value
+        );
+
+
+    const data = {
+
+        title:
+            document
+                .getElementById("noticeTitle")
+                .value
+                .trim(),
+
+        category:
+            document
+                .getElementById("noticeCategory")
+                .value,
+
+        date:
+            document
+                .getElementById("noticeDate")
+                .value,
+
+        priority:
+            document
+                .getElementById("priority")
+                .value,
+
+        status:
+            document
+                .getElementById("noticeStatus")
+                .value,
+
+        details:
+            document
+                .getElementById("noticeDetails")
+                .value
+                .trim()
+
+    };
+
+
+    if(editId){
+
+        const index =
+            notices.findIndex(
+                item => item.id === editId
+            );
+
+
+        if(index !== -1){
+
+            notices[index] = {
+
+                ...notices[index],
+
+                ...data
+
+            };
+
+
+            showToast(
+                "Notice updated successfully."
+            );
+
+        }
+
+    }else{
+
+        notices.unshift({
+
+            id:Date.now(),
+
+            ...data
+
+        });
+
+
+        showToast(
+            "Notice added successfully."
+        );
+
+    }
+
+
+    saveToStorage();
+
+    renderTable();
+
+    closeModal();
+
+}
+
+
+function editNotice(id){
+
+    const item =
+        notices.find(
+            x => x.id === id
+        );
+
+
+    if(!item) return;
+
+
+    document.getElementById("modalTitle").textContent =
+        "Edit Notice";
+
+
+    document.getElementById("editId").value =
+        item.id;
+
+
+    document.getElementById("noticeTitle").value =
+        item.title;
+
+
+    document.getElementById("noticeCategory").value =
+        item.category;
+
+
+    document.getElementById("noticeDate").value =
+        item.date;
+
+
+    document.getElementById("priority").value =
+        item.priority;
+
+
+    document.getElementById("noticeStatus").value =
+        item.status;
+
+
+    document.getElementById("noticeDetails").value =
+        item.details;
+
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+function viewNotice(id){
+
+    const item =
+        notices.find(
+            x => x.id === id
+        );
+
+
+    if(!item) return;
+
+
+    alert(
+`NOTICE DETAILS
+
+Title: ${item.title}
+Category: ${item.category}
+Date: ${formatDate(item.date)}
+Priority: ${item.priority}
+Status: ${item.status}
+
+Details:
+${item.details}`
+    );
+
+}
+
+
+function deleteNotice(id){
+
+    const item =
+        notices.find(
+            x => x.id === id
+        );
+
+
+    if(!item) return;
+
+
+    const confirmed =
+        confirm(
+            `Delete "${item.title}"?`
+        );
+
+
+    if(!confirmed) return;
+
+
+    notices =
+        notices.filter(
+            x => x.id !== id
+        );
+
+
+    saveToStorage();
+
+    renderTable();
+
+
+    showToast(
+        "Notice deleted successfully."
+    );
+
+}
+
+
+function toggleSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+function openPublicSite(){
+
+    window.open(
+        "../index.html",
+        "_blank"
+    );
+
+}
+
+
+function logout(){
+
+    sessionStorage.removeItem(
+        "a1_admin_logged_in"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(
+        window.a1ToastTimer
+    );
+
+
+    window.a1ToastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2500
+        );
+
+}
+
+
+/* AUTH CHECK */
+(function(){
+
+    const loggedIn =
+        sessionStorage.getItem(
+            "a1_admin_logged_in"
+        );
+
+
+    if(loggedIn !== "true"){
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    renderTable();
+
+})();
+
+
+/* MODAL BACKDROP */
+document
+    .getElementById("modal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* ESCAPE */
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```
