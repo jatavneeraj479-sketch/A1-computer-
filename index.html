@@ -1,0 +1,1555 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A1 Computer | Digital Study & Service Hub</title>
+
+<meta name="description"
+content="A1 Computer - Study, Government Services, Jobs, Documents and Digital Services at New Bus Stand, Ajaigarh.">
+
+<style>
+/* =========================================================
+   A1 COMPUTER — PHASE 1
+   Premium 2026 Dashboard
+========================================================= */
+
+:root{
+    --bg:#07101d;
+    --bg2:#0b1627;
+    --card:rgba(255,255,255,.075);
+    --border:rgba(255,255,255,.12);
+    --text:#f7f9ff;
+    --muted:#aeb9cc;
+    --gold:#f5c76a;
+    --cyan:#58d7ff;
+    --purple:#9d7cff;
+    --green:#4de1a3;
+    --danger:#ff6f91;
+    --shadow:0 20px 70px rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,
+    "Segoe UI",sans-serif;
+    background:
+      radial-gradient(circle at 10% 10%,rgba(88,215,255,.12),transparent 28%),
+      radial-gradient(circle at 90% 20%,rgba(157,124,255,.13),transparent 30%),
+      linear-gradient(145deg,var(--bg),var(--bg2));
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(245,199,106,.06);
+    filter:blur(90px);
+    top:20%;
+    left:40%;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.grid-bg{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.18;
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:50px 50px;
+    mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+/* ---------- HEADER ---------- */
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(22px);
+    background:rgba(5,12,23,.72);
+    border-bottom:1px solid var(--border);
+}
+
+.nav{
+    width:min(1200px,92%);
+    margin:auto;
+    height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:white;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--gold),#fff1bd);
+    color:#08111e;
+    font-size:23px;
+    box-shadow:0 8px 30px rgba(245,199,106,.18);
+}
+
+.logo-text strong{
+    display:block;
+    font-size:17px;
+    letter-spacing:1px;
+}
+
+.logo-text span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:2px;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.nav-btn{
+    width:43px;
+    height:43px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:rgba(255,255,255,.055);
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    transition:.25s;
+}
+
+.nav-btn:hover{
+    transform:translateY(-3px);
+    border-color:rgba(88,215,255,.45);
+    background:rgba(88,215,255,.10);
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+    width:min(1200px,92%);
+    margin:0 auto;
+    padding:55px 0 25px;
+}
+
+.hero-box{
+    min-height:530px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:35px;
+    padding:65px;
+    display:flex;
+    align-items:center;
+    background:
+      radial-gradient(circle at 80% 25%,rgba(88,215,255,.18),transparent 25%),
+      radial-gradient(circle at 90% 80%,rgba(157,124,255,.20),transparent 30%),
+      linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+    box-shadow:var(--shadow);
+}
+
+.hero-content{
+    max-width:680px;
+    position:relative;
+    z-index:3;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 14px;
+    border-radius:100px;
+    background:rgba(245,199,106,.10);
+    border:1px solid rgba(245,199,106,.25);
+    color:var(--gold);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,76px);
+    line-height:.98;
+    letter-spacing:-3px;
+    margin:23px 0;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,var(--gold),#fff3c8,var(--cyan));
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:620px;
+    color:var(--muted);
+    line-height:1.7;
+    font-size:17px;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:28px;
+}
+
+.primary-btn,
+.secondary-btn{
+    border:none;
+    padding:15px 21px;
+    border-radius:15px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.primary-btn{
+    background:linear-gradient(135deg,var(--gold),#ffe8a9);
+    color:#08111e;
+    box-shadow:0 12px 30px rgba(245,199,106,.17);
+}
+
+.secondary-btn{
+    color:white;
+    background:rgba(255,255,255,.07);
+    border:1px solid var(--border);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover{
+    transform:translateY(-4px);
+}
+
+/* ---------- FLOATING STUDY ELEMENTS ---------- */
+
+.study-orbit{
+    position:absolute;
+    right:70px;
+    top:50%;
+    transform:translateY(-50%);
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.study-orbit::before{
+    content:"";
+    position:absolute;
+    inset:35px;
+    border-radius:50%;
+    border:1px dashed rgba(88,215,255,.20);
+}
+
+.float-card{
+    position:absolute;
+    padding:15px;
+    border-radius:18px;
+    background:rgba(9,20,36,.80);
+    backdrop-filter:blur(15px);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    animation:float 4s ease-in-out infinite;
+}
+
+.float-card.book{
+    top:20px;
+    left:10px;
+    font-size:38px;
+}
+
+.float-card.laptop{
+    right:0;
+    top:85px;
+    font-size:38px;
+    animation-delay:1s;
+}
+
+.float-card.cap{
+    left:30px;
+    bottom:35px;
+    font-size:35px;
+    animation-delay:1.8s;
+}
+
+.float-card.pen{
+    right:20px;
+    bottom:30px;
+    font-size:30px;
+    animation-delay:2.5s;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0) rotate(0deg)}
+    50%{transform:translateY(-14px) rotate(2deg)}
+}
+
+/* ---------- SEARCH ---------- */
+
+.search-wrap{
+    width:min(950px,92%);
+    margin:0 auto 45px;
+    position:relative;
+    z-index:5;
+}
+
+.search{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px;
+    border-radius:20px;
+    background:rgba(255,255,255,.07);
+    border:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    box-shadow:var(--shadow);
+}
+
+.search span{
+    font-size:21px;
+    padding-left:13px;
+}
+
+.search input{
+    flex:1;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:white;
+    font-size:15px;
+    padding:15px 0;
+}
+
+.search input::placeholder{
+    color:#8190a8;
+}
+
+.search button{
+    border:none;
+    background:linear-gradient(135deg,var(--cyan),#9df0ff);
+    color:#07101d;
+    font-weight:800;
+    border-radius:14px;
+    padding:14px 20px;
+    cursor:pointer;
+}
+
+/* ---------- SECTION ---------- */
+
+.section{
+    width:min(1200px,92%);
+    margin:0 auto;
+    padding:30px 0;
+}
+
+.section-head{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    margin-bottom:22px;
+}
+
+.section-head h2{
+    font-size:28px;
+    letter-spacing:-1px;
+}
+
+.section-head p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:6px;
+}
+
+/* ---------- QUICK SERVICES ---------- */
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:12px;
+}
+
+.quick-card{
+    min-height:125px;
+    padding:20px 14px;
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:var(--card);
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.quick-card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(88,215,255,.4);
+    background:rgba(88,215,255,.08);
+}
+
+.quick-icon{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.quick-card strong{
+    font-size:13px;
+}
+
+.quick-card small{
+    display:block;
+    color:var(--muted);
+    margin-top:5px;
+}
+
+/* ---------- BENTO SERVICES ---------- */
+
+.bento{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+    grid-auto-rows:190px;
+    gap:14px;
+}
+
+.service-card{
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:27px;
+    background:linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+    cursor:pointer;
+    transition:.35s;
+}
+
+.service-card:hover{
+    transform:translateY(-6px) scale(1.01);
+    border-color:rgba(245,199,106,.38);
+}
+
+.service-card.large{
+    grid-row:span 2;
+    background:
+      radial-gradient(circle at 85% 20%,rgba(157,124,255,.20),transparent 28%),
+      linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+}
+
+.service-card .emoji{
+    font-size:38px;
+}
+
+.service-card h3{
+    margin-top:18px;
+    font-size:22px;
+}
+
+.service-card p{
+    color:var(--muted);
+    margin-top:8px;
+    line-height:1.5;
+    font-size:13px;
+}
+
+.service-arrow{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    background:rgba(255,255,255,.07);
+}
+
+/* ---------- STUDY ZONE ---------- */
+
+.study-section{
+    margin-top:20px;
+}
+
+.study-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.study-card{
+    min-height:165px;
+    border-radius:23px;
+    padding:23px;
+    border:1px solid var(--border);
+    background:
+      linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+    transition:.3s;
+    cursor:pointer;
+}
+
+.study-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(157,124,255,.45);
+}
+
+.study-card .icon{
+    font-size:31px;
+}
+
+.study-card h3{
+    margin-top:14px;
+}
+
+.study-card p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:7px;
+}
+
+/* ---------- BANNER ---------- */
+
+.promo{
+    width:min(1200px,92%);
+    margin:45px auto;
+}
+
+.promo-box{
+    position:relative;
+    overflow:hidden;
+    min-height:220px;
+    border-radius:28px;
+    padding:40px;
+    border:1px solid var(--border);
+    background:
+      radial-gradient(circle at 85% 30%,rgba(88,215,255,.22),transparent 25%),
+      linear-gradient(110deg,#101d32,#11152a);
+}
+
+.promo-box h2{
+    font-size:32px;
+    max-width:600px;
+}
+
+.promo-box p{
+    color:var(--muted);
+    margin:10px 0 22px;
+}
+
+/* ---------- NOTICE ---------- */
+
+.notice-list{
+    display:grid;
+    gap:10px;
+}
+
+.notice{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:17px;
+    border:1px solid var(--border);
+    border-radius:17px;
+    background:rgba(255,255,255,.045);
+}
+
+.notice-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    display:grid;
+    place-items:center;
+    background:rgba(245,199,106,.1);
+}
+
+.notice small{
+    color:var(--muted);
+    display:block;
+    margin-top:4px;
+}
+
+/* ---------- STUDY CART ---------- */
+
+.cart{
+    position:fixed;
+    right:20px;
+    bottom:85px;
+    width:62px;
+    height:62px;
+    border-radius:20px;
+    border:1px solid rgba(245,199,106,.35);
+    background:rgba(20,26,40,.88);
+    backdrop-filter:blur(18px);
+    color:white;
+    font-size:24px;
+    cursor:pointer;
+    z-index:999;
+    box-shadow:0 15px 45px rgba(0,0,0,.35);
+    transition:.3s;
+}
+
+.cart:hover{
+    transform:scale(1.08);
+}
+
+.cart-count{
+    position:absolute;
+    right:-4px;
+    top:-4px;
+    min-width:21px;
+    height:21px;
+    padding:0 5px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:var(--danger);
+    color:white;
+    font-size:10px;
+    font-weight:800;
+}
+
+/* ---------- CONTACT ---------- */
+
+.contact{
+    width:min(1200px,92%);
+    margin:20px auto 110px;
+}
+
+.contact-box{
+    border:1px solid var(--border);
+    border-radius:27px;
+    padding:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+    background:rgba(255,255,255,.05);
+}
+
+.contact-box p{
+    color:var(--muted);
+    margin-top:6px;
+}
+
+.contact-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* ---------- BOTTOM NAV ---------- */
+
+.bottom-nav{
+    display:none;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+    border-top:1px solid var(--border);
+    padding:28px 5%;
+    text-align:center;
+    color:#78869c;
+    font-size:12px;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:900px){
+
+    .hero-box{
+        padding:40px 27px;
+        min-height:610px;
+    }
+
+    .study-orbit{
+        opacity:.55;
+        right:50%;
+        top:auto;
+        bottom:-100px;
+        transform:translateX(50%);
+    }
+
+    .hero-content{
+        align-self:flex-start;
+    }
+
+    .quick-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .bento{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .service-card.large{
+        grid-column:span 2;
+        grid-row:span 1;
+    }
+
+    .study-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .nav{
+        height:68px;
+    }
+
+    .logo-text span{
+        display:none;
+    }
+
+    .nav-btn{
+        width:39px;
+        height:39px;
+    }
+
+    .hero{
+        padding-top:18px;
+    }
+
+    .hero-box{
+        border-radius:27px;
+        padding:30px 21px;
+        min-height:620px;
+    }
+
+    .hero h1{
+        font-size:45px;
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    .study-orbit{
+        transform:translateX(50%) scale(.72);
+    }
+
+    .search{
+        border-radius:16px;
+    }
+
+    .search button{
+        display:none;
+    }
+
+    .quick-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .bento{
+        grid-template-columns:1fr;
+        grid-auto-rows:auto;
+    }
+
+    .service-card,
+    .service-card.large{
+        grid-column:auto;
+        grid-row:auto;
+        min-height:170px;
+    }
+
+    .study-grid{
+        grid-template-columns:1fr;
+    }
+
+    .promo-box{
+        padding:28px 22px;
+    }
+
+    .promo-box h2{
+        font-size:27px;
+    }
+
+    .contact-box{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .bottom-nav{
+        position:fixed;
+        bottom:0;
+        left:0;
+        right:0;
+        height:67px;
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+        background:rgba(5,12,23,.92);
+        backdrop-filter:blur(20px);
+        border-top:1px solid var(--border);
+        z-index:998;
+    }
+
+    .bottom-nav button{
+        border:0;
+        background:none;
+        color:#9ca9bc;
+        font-size:11px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:4px;
+    }
+
+    .bottom-nav button:first-child{
+        color:var(--gold);
+    }
+
+    footer{
+        padding-bottom:85px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+<nav class="nav">
+
+<a href="#" class="logo">
+
+<div class="logo-icon">A1</div>
+
+<div class="logo-text">
+<strong>A1 COMPUTER</strong>
+<span>Digital Study & Service Hub</span>
+</div>
+
+</a>
+
+<div class="nav-actions">
+
+<button class="nav-btn" title="Notifications"
+onclick="showMessage('Notifications module will be connected in Phase 2')">
+🔔
+</button>
+
+<button class="nav-btn" title="Language"
+onclick="showMessage('Language system will be connected in Phase 2')">
+🌐
+</button>
+
+<button class="nav-btn" title="Menu"
+onclick="showMessage('Full menu will be connected in Phase 2')">
+☰
+</button>
+
+</div>
+
+</nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<main>
+
+<section class="hero">
+
+<div class="hero-box">
+
+<div class="hero-content">
+
+<div class="badge">
+<span>✦</span>
+NEXT-GEN DIGITAL SERVICE HUB
+</div>
+
+<h1>
+Study.<br>
+Services.<br>
+<span>Everything A1.</span>
+</h1>
+
+<p>
+पढ़ाई, सरकारी सेवाएँ, नौकरी, दस्तावेज़ और
+digital services — सब कुछ एक modern platform पर।
+</p>
+
+<div class="hero-buttons">
+
+<button class="primary-btn"
+onclick="scrollToServices()">
+Explore Services →
+</button>
+
+<button class="secondary-btn"
+onclick="showMessage('AI Assistant will be activated in the AI module.')">
+🤖 Ask A1 AI
+</button>
+
+</div>
+
+</div>
+
+
+<div class="study-orbit">
+
+<div class="float-card book">📚</div>
+<div class="float-card laptop">💻</div>
+<div class="float-card cap">🎓</div>
+<div class="float-card pen">✏️</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<div class="search-wrap">
+
+<div class="search">
+
+<span>⌕</span>
+
+<input
+id="searchInput"
+type="search"
+placeholder="Search services, exams, jobs, documents..."
+onkeyup="searchServices()"
+>
+
+<button onclick="searchServices()">Search</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= QUICK SERVICES ================= -->
+
+<section class="section">
+
+<div class="section-head">
+
+<div>
+<h2>⚡ Quick Services</h2>
+<p>सबसे ज्यादा इस्तेमाल होने वाली services</p>
+</div>
+
+</div>
+
+
+<div class="quick-grid">
+
+<div class="quick-card" data-search="aadhaar documents"
+onclick="openService('Aadhaar Services')">
+<div class="quick-icon">🪪</div>
+<strong>Aadhaar</strong>
+<small>Services</small>
+</div>
+
+<div class="quick-card" data-search="certificate government"
+onclick="openService('Certificates')">
+<div class="quick-icon">📄</div>
+<strong>Certificates</strong>
+<small>Govt. Services</small>
+</div>
+
+<div class="quick-card" data-search="jobs career"
+onclick="openService('Jobs & Career')">
+<div class="quick-icon">💼</div>
+<strong>Jobs</strong>
+<small>Career</small>
+</div>
+
+<div class="quick-card" data-search="result exam"
+onclick="openService('Exam Results')">
+<div class="quick-icon">🎯</div>
+<strong>Results</strong>
+<small>Exams</small>
+</div>
+
+<div class="quick-card" data-search="khasra land"
+onclick="openService('Land Records')">
+<div class="quick-icon">🗺️</div>
+<strong>Khasra</strong>
+<small>Land Records</small>
+</div>
+
+<div class="quick-card" data-search="railway train"
+onclick="openService('Railway Services')">
+<div class="quick-icon">🚆</div>
+<strong>Railway</strong>
+<small>Travel</small>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section class="section" id="services">
+
+<div class="section-head">
+
+<div>
+<h2>✨ Explore A1 Services</h2>
+<p>एक जगह से पूरी digital service journey</p>
+</div>
+
+</div>
+
+
+<div class="bento">
+
+<div class="service-card large"
+data-search="student study jee neet cuet ssc"
+onclick="openService('Student Hub')">
+
+<div class="emoji">🎓</div>
+
+<h3>Student Hub</h3>
+
+<p>
+JEE • NEET • CUET • SSC • Banking • Railway,
+Notes, PYQ, Results, Admit Cards और Scholarships.
+</p>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+
+<div class="service-card"
+data-search="government mp online"
+onclick="openService('Government Services')">
+
+<div class="emoji">🏛️</div>
+
+<h3>Government</h3>
+
+<p>MPOnline, certificates और citizen services.</p>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+
+<div class="service-card"
+data-search="jobs vacancy career"
+onclick="openService('Jobs & Career')">
+
+<div class="emoji">💼</div>
+
+<h3>Jobs & Career</h3>
+
+<p>Vacancies, eligibility, admit cards और results.</p>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+
+<div class="service-card"
+data-search="land khasra naksha property"
+onclick="openService('Land & Property')">
+
+<div class="emoji">🗺️</div>
+
+<h3>Land & Property</h3>
+
+<p>Khasra, B-1, Naksha और land information.</p>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+
+<div class="service-card"
+data-search="aadhaar pan voter documents"
+onclick="openService('Documents')">
+
+<div class="emoji">🪪</div>
+
+<h3>Documents</h3>
+
+<p>Aadhaar, PAN, Voter और digital documents.</p>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+
+<div class="service-card"
+data-search="scheme scholarship pension"
+onclick="openService('Schemes & Benefits')">
+
+<div class="emoji">💰</div>
+
+<h3>Schemes</h3>
+
+<p>Scholarships, pension, benefits और schemes.</p>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= STUDY ZONE ================= -->
+
+<section class="section study-section">
+
+<div class="section-head">
+
+<div>
+<h2>📚 Study Universe</h2>
+<p>Learn • Prepare • Achieve</p>
+</div>
+
+</div>
+
+
+<div class="study-grid">
+
+<div class="study-card"
+onclick="openService('Study Notes')">
+
+<div class="icon">📖</div>
+<h3>Study Notes</h3>
+<p>Important notes और study material.</p>
+
+</div>
+
+<div class="study-card"
+onclick="openService('Previous Year Papers')">
+
+<div class="icon">📝</div>
+<h3>Previous Papers</h3>
+<p>Previous year question papers.</p>
+
+</div>
+
+<div class="study-card"
+onclick="openService('Exam Preparation')">
+
+<div class="icon">🎯</div>
+<h3>Exam Preparation</h3>
+<p>Exam information और preparation.</p>
+
+</div>
+
+<div class="study-card"
+onclick="openService('Timetable')">
+
+<div class="icon">📅</div>
+<h3>Timetable</h3>
+<p>Exam timetable और important dates.</p>
+
+</div>
+
+<div class="study-card"
+onclick="openService('Results')">
+
+<div class="icon">🏆</div>
+<h3>Results</h3>
+<p>Result और answer-key updates.</p>
+
+</div>
+
+<div class="study-card"
+onclick="openService('Scholarships')">
+
+<div class="icon">💰</div>
+<h3>Scholarships</h3>
+<p>Student scholarship information.</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PROMO ================= -->
+
+<section class="promo">
+
+<div class="promo-box">
+
+<h2>
+Your next opportunity
+starts right here. 🚀
+</h2>
+
+<p>
+Exams • Jobs • Scholarships • Government Services
+</p>
+
+<button class="primary-btn"
+onclick="scrollToServices()">
+Explore Now →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= NOTICES ================= -->
+
+<section class="section">
+
+<div class="section-head">
+
+<div>
+<h2>🔔 Latest Updates</h2>
+<p>Important information at a glance</p>
+</div>
+
+</div>
+
+
+<div class="notice-list">
+
+<div class="notice">
+
+<div class="notice-icon">📢</div>
+
+<div>
+<strong>Government Service Updates</strong>
+<small>New updates will appear here.</small>
+</div>
+
+</div>
+
+
+<div class="notice">
+
+<div class="notice-icon">🎓</div>
+
+<div>
+<strong>Exam & Education Updates</strong>
+<small>Admit card, result और exam notices.</small>
+</div>
+
+</div>
+
+
+<div class="notice">
+
+<div class="notice-icon">💼</div>
+
+<div>
+<strong>Latest Job Updates</strong>
+<small>New vacancies और important dates.</small>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact">
+
+<div class="contact-box">
+
+<div>
+
+<h2>📍 A1 Computer</h2>
+
+<p>
+New Bus Stand, Ajaigarh
+</p>
+
+<p>
+📞 9993831755
+&nbsp; • &nbsp;
+📧 jatavneeraj479@gmail.com
+</p>
+
+</div>
+
+
+<div class="contact-actions">
+
+<a
+href="tel:9993831755"
+class="primary-btn"
+style="text-decoration:none">
+📞 Call
+</a>
+
+<a
+href="https://wa.me/919993831755"
+class="secondary-btn"
+style="text-decoration:none"
+target="_blank">
+💬 WhatsApp
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- ================= STUDY CART ================= -->
+
+<button class="cart"
+onclick="showCart()"
+title="My Study Cart">
+
+🛒
+
+<span class="cart-count" id="cartCount">0</span>
+
+</button>
+
+
+<!-- ================= MOBILE NAV ================= -->
+
+<nav class="bottom-nav">
+
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<span>⌂</span>
+Home
+</button>
+
+<button onclick="document.querySelector('.study-section').scrollIntoView({behavior:'smooth'})">
+<span>📚</span>
+Study
+</button>
+
+<button onclick="showCart()">
+<span>🛒</span>
+Cart
+</button>
+
+<button onclick="showMessage('Notification system will be connected in Phase 2')">
+<span>🔔</span>
+Updates
+</button>
+
+<button onclick="showMessage('Full menu will be connected in Phase 2')">
+<span>☰</span>
+Menu
+</button>
+
+</nav>
+
+
+<footer>
+
+© 2026 A1 Computer • New Bus Stand, Ajaigarh
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   A1 COMPUTER — PHASE 1 JAVASCRIPT
+========================================================= */
+
+let cartItems = [];
+
+
+/* SERVICE CLICK */
+
+function openService(service){
+
+    showMessage(
+        service +
+        " module selected. Full service page will be connected in Phase 2."
+    );
+
+}
+
+
+/* SEARCH */
+
+function searchServices(){
+
+    const input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const cards =
+        document.querySelectorAll(
+            "[data-search]"
+        );
+
+    if(!input){
+
+        cards.forEach(card=>{
+            card.style.display="";
+        });
+
+        return;
+    }
+
+    cards.forEach(card=>{
+
+        const text =
+            card.dataset.search.toLowerCase();
+
+        if(text.includes(input)){
+            card.style.display="";
+        }else{
+            card.style.display="none";
+        }
+
+    });
+
+}
+
+
+/* SCROLL */
+
+function scrollToServices(){
+
+    document
+      .getElementById("services")
+      .scrollIntoView({
+          behavior:"smooth"
+      });
+
+}
+
+
+/* TEMPORARY CART */
+
+function addToCart(item){
+
+    cartItems.push(item);
+
+    document
+      .getElementById("cartCount")
+      .textContent=cartItems.length;
+
+}
+
+
+/* CART */
+
+function showCart(){
+
+    if(cartItems.length===0){
+
+        showMessage(
+            "🛒 Study Cart अभी खाली है. आगे Study Material को यहाँ save किया जा सकेगा."
+        );
+
+        return;
+    }
+
+    showMessage(
+        "🛒 Cart में " +
+        cartItems.length +
+        " item हैं."
+    );
+
+}
+
+
+/* NOTIFICATION / INFO */
+
+function showMessage(message){
+
+    const old =
+        document.querySelector(".toast");
+
+    if(old) old.remove();
+
+    const toast =
+        document.createElement("div");
+
+    toast.className="toast";
+
+    toast.textContent=message;
+
+    Object.assign(toast.style,{
+        position:"fixed",
+        left:"50%",
+        bottom:"90px",
+        transform:"translateX(-50%)",
+        padding:"15px 20px",
+        borderRadius:"15px",
+        background:"rgba(10,18,31,.94)",
+        color:"#fff",
+        border:"1px solid rgba(255,255,255,.15)",
+        backdropFilter:"blur(20px)",
+        zIndex:"5000",
+        boxShadow:"0 15px 50px rgba(0,0,0,.4)",
+        maxWidth:"90%",
+        textAlign:"center",
+        fontSize:"13px"
+    });
+
+    document.body.appendChild(toast);
+
+    setTimeout(()=>{
+        toast.remove();
+    },3000);
+
+}
+
+</script>
+
+</body>
+</html>
+```
