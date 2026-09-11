@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A1 Computer | Admin Dashboard</title>
+  <meta name="theme-color" content="#050a13">
+  <meta name="description" content="A1 Computer Admin Dashboard">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050a13;
+      --sidebar: rgba(8, 17, 31, .88);
+      --card: rgba(13, 24, 42, .72);
+      --border: rgba(255,255,255,.09);
+      --text: #f5f7fb;
+      --muted: #8f9db2;
+      --cyan: #5ee7ff;
+      --purple: #8d6cff;
+      --green: #43e6a4;
+      --orange: #ffb45c;
+      --red: #ff637f;
+    }
+
+    html, body {
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 75% 10%, rgba(94,231,255,.08), transparent 28%),
+        radial-gradient(circle at 25% 90%, rgba(141,108,255,.08), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 50;
+      padding: 20px 14px;
+      background: var(--sidebar);
+      border-right: 1px solid var(--border);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      transition: transform .25s ease;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 9px 10px 25px;
+    }
+
+    .brand-logo {
+      width: 45px;
+      height: 45px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #04101a;
+      font-weight: 950;
+      background: linear-gradient(135deg, var(--cyan), #b9f7ff, var(--purple));
+      box-shadow: 0 10px 30px rgba(94,231,255,.15);
+    }
+
+    .brand-name {
+      font-weight: 850;
+      font-size: 17px;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 2px;
+    }
+
+    .menu-title {
+      padding: 12px 12px 7px;
+      color: #5e6c82;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-weight: 800;
+    }
+
+    .nav {
+      display: grid;
+      gap: 4px;
+    }
+
+    .nav-item {
+      width: 100%;
+      min-height: 43px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 12px;
+      color: #9ba8bb;
+      background: transparent;
+      text-align: left;
+      transition: .2s ease;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: #fff;
+      background: rgba(94,231,255,.07);
+      border-color: rgba(94,231,255,.12);
+    }
+
+    .nav-item.active {
+      box-shadow: inset 3px 0 0 var(--cyan);
+    }
+
+    .nav-icon {
+      width: 23px;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    .nav-label {
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .sidebar-bottom {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 18px;
+    }
+
+    .site-status {
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(255,255,255,.025);
+      margin-bottom: 9px;
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #b5c0d1;
+      font-size: 10px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    .logout {
+      width: 100%;
+      height: 42px;
+      border: 1px solid rgba(255,99,127,.15);
+      border-radius: 12px;
+      color: #ff9db0;
+      background: rgba(255,99,127,.05);
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .logout:hover {
+      background: rgba(255,99,127,.1);
+    }
+
+    /* MAIN */
+
+    .main {
+      width: calc(100% - 260px);
+      margin-left: 260px;
+      min-height: 100vh;
+      padding: 22px;
+    }
+
+    .topbar {
+      min-height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .mobile-menu {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      color: white;
+      font-size: 18px;
+    }
+
+    .welcome small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .welcome h1 {
+      margin-top: 4px;
+      font-size: clamp(23px, 3vw, 31px);
+      letter-spacing: -1px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      color: #cbd5e4;
+      font-size: 16px;
+    }
+
+    .icon-btn:hover {
+      border-color: rgba(94,231,255,.25);
+      color: var(--cyan);
+    }
+
+    .admin-profile {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 5px 9px 5px 5px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--card);
+    }
+
+    .avatar {
+      width: 33px;
+      height: 33px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      color: #07111f;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .profile-name {
+      font-size: 10px;
+      font-weight: 750;
+    }
+
+    .profile-role {
+      color: var(--muted);
+      font-size: 8px;
+      margin-top: 2px;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 27px;
+      min-height: 190px;
+      border-radius: 23px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(120deg, rgba(94,231,255,.08), rgba(141,108,255,.06)),
+        var(--card);
+      margin-bottom: 20px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -100px;
+      top: -150px;
+      border-radius: 50%;
+      border: 1px solid rgba(94,231,255,.14);
+      box-shadow:
+        0 0 0 30px rgba(94,231,255,.025),
+        0 0 0 60px rgba(94,231,255,.018);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--cyan);
+      border: 1px solid rgba(94,231,255,.13);
+      background: rgba(94,231,255,.05);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .hero h2 {
+      margin-top: 12px;
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing: -1.5px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* STATS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      padding: 19px;
+      min-height: 125px;
+      border-radius: 19px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      right: -40px;
+      bottom: -45px;
+      background: rgba(94,231,255,.06);
+    }
+
+    .stat-icon {
+      font-size: 19px;
+    }
+
+    .stat-number {
+      margin-top: 12px;
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .stat-label {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .stat-change {
+      margin-top: 9px;
+      color: var(--green);
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    /* GRID */
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 15px;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background: var(--card);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      min-height: 60px;
+      padding: 14px 17px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-title {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .panel-subtitle {
+      color: var(--muted);
+      font-size: 9px;
+      margin-top: 3px;
+    }
+
+    .view-all {
+      color: var(--cyan);
+      font-size: 9px;
+      font-weight: 750;
+    }
+
+    .quick-grid {
+      padding: 15px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .quick-card {
+      min-height: 100px;
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 15px;
+      background: rgba(255,255,255,.025);
+      transition: .2s ease;
+    }
+
+    .quick-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(94,231,255,.2);
+      background: rgba(94,231,255,.04);
+    }
+
+    .quick-icon {
+      font-size: 22px;
+    }
+
+    .quick-title {
+      margin-top: 9px;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .quick-desc {
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    /* ACTIVITY */
+
+    .activity {
+      padding: 8px 15px 15px;
+    }
+
+    .activity-item {
+      display: flex;
+      gap: 11px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .activity-item:last-child {
+      border-bottom: 0;
+    }
+
+    .activity-icon {
+      width: 33px;
+      height: 33px;
+      flex: 0 0 33px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(94,231,255,.07);
+    }
+
+    .activity-text strong {
+      display: block;
+      font-size: 10px;
+    }
+
+    .activity-text span {
+      display: block;
+      color: var(--muted);
+      font-size: 8px;
+      line-height: 1.5;
+      margin-top: 3px;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      margin-top: 18px;
+      padding: 16px 3px;
+      color: #526076;
+      font-size: 9px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 100;
+      max-width: 320px;
+      padding: 13px 16px;
+      border: 1px solid rgba(94,231,255,.18);
+      border-radius: 13px;
+      background: rgba(8,17,31,.94);
+      backdrop-filter: blur(15px);
+      color: #dce7f5;
+      font-size: 11px;
+      box-shadow: 0 20px 45px rgba(0,0,0,.3);
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* OVERLAY */
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(3px);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1050px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .sidebar {
+        transform: translateX(-105%);
+        box-shadow: 20px 0 50px rgba(0,0,0,.3);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .overlay.show {
+        display: block;
+      }
+
+      .main {
+        width: 100%;
+        margin-left: 0;
+        padding: 15px;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .top-actions .icon-btn {
+        display: none;
+      }
+
+      .profile-name,
+      .profile-role {
+        display: none;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .topbar {
+        gap: 9px;
+      }
+
+      .welcome h1 {
+        font-size: 22px;
+      }
+
+      .admin-profile {
+        padding-right: 5px;
+      }
+
+      .hero {
+        padding: 20px;
+        border-radius: 19px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .stat {
+        padding: 14px;
+        min-height: 110px;
+      }
+
+      .stat-number {
+        font-size: 23px;
+      }
+
+      .quick-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="brand">
+        <div class="brand-logo">A1</div>
+
+        <div>
+          <div class="brand-name">A1 Computer</div>
+          <div class="brand-sub">Admin Control Center</div>
+        </div>
+      </div>
+
+      <div class="menu-title">Overview</div>
+
+      <nav class="nav">
+
+        <button class="nav-item active" data-section="dashboard">
+          <span class="nav-icon">⌂</span>
+          <span class="nav-label">Dashboard</span>
+        </button>
+
+        <button class="nav-item" data-section="services">
+          <span class="nav-icon">⚡</span>
+          <span class="nav-label">Services</span>
+        </button>
+
+        <button class="nav-item" data-section="categories">
+          <span class="nav-icon">▦</span>
+          <span class="nav-label">Categories</span>
+        </button>
+
+        <button class="nav-item" data-section="students">
+          <span class="nav-icon">🎓</span>
+          <span class="nav-label">Students</span>
+        </button>
+
+        <button class="nav-item" data-section="jobs">
+          <span class="nav-icon">💼</span>
+          <span class="nav-label">Jobs</span>
+        </button>
+
+        <button class="nav-item" data-section="schemes">
+          <span class="nav-icon">🏛️</span>
+          <span class="nav-label">Schemes</span>
+        </button>
+
+        <button class="nav-item" data-section="land">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">Land & Property</span>
+        </button>
+
+      </nav>
+
+      <div class="menu-title">Content</div>
+
+      <nav class="nav">
+
+        <button class="nav-item" data-section="documents">
+          <span class="nav-icon">📄</span>
+          <span class="nav-label">Documents</span>
+        </button>
+
+        <button class="nav-item" data-section="notices">
+          <span class="nav-icon">🔔</span>
+          <span class="nav-label">Notices</span>
+        </button>
+
+        <button class="nav-item" data-section="banners">
+          <span class="nav-icon">🖼️</span>
+          <span class="nav-label">Banners</span>
+        </button>
+
+        <button class="nav-item" data-section="ai">
+          <span class="nav-icon">🤖</span>
+          <span class="nav-label">A1 AI</span>
+        </button>
+
+        <button class="nav-item" data-section="languages">
+          <span class="nav-icon">🌐</span>
+          <span class="nav-label">Languages</span>
+        </button>
+
+        <button class="nav-item" data-section="links">
+          <span class="nav-icon">🔗</span>
+          <span class="nav-label">Official Links</span>
+        </button>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <div class="site-status">
+          <div class="status-line">
+            <span class="status-dot"></span>
+            Website status: Online
+          </div>
+        </div>
+
+        <button class="logout" id="logoutButton">
+          ⇥ Logout
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <header class="topbar">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenu"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+        <div class="welcome">
+          <small>Admin Control Center</small>
+          <h1>Good day, Admin 👋</h1>
+        </div>
+
+        <div class="top-actions">
+
+          <button class="icon-btn" id="siteButton" title="Open website">
+            ↗
+          </button>
+
+          <button class="icon-btn" id="refreshButton" title="Refresh">
+            ⟳
+          </button>
+
+          <div class="admin-profile">
+
+            <div class="avatar">A1</div>
+
+            <div>
+              <div class="profile-name" id="profileName">
+                Administrator
+              </div>
+
+              <div class="profile-role">
+                Super Admin
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <!-- HERO -->
+      <section class="hero">
+
+        <div class="hero-badge">
+          <span>●</span>
+          A1 COMPUTER • CONTROL CENTER
+        </div>
+
+        <h2>
+          Everything important,
+          <span style="color: var(--cyan);">in one place.</span>
+        </h2>
+
+        <p>
+          Manage your digital service portal, study resources,
+          government services, notices and future platform
+          features from the A1 Computer administration system.
+        </p>
+
+      </section>
+
+
+      <!-- STATS -->
+      <section class="stats">
+
+        <div class="stat">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-number" id="serviceCount">24</div>
+          <div class="stat-label">Active Services</div>
+          <div class="stat-change">● Portal ready</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">🔔</div>
+          <div class="stat-number" id="noticeCount">06</div>
+          <div class="stat-label">Published Notices</div>
+          <div class="stat-change">↑ Content active</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">🎓</div>
+          <div class="stat-number" id="studentCount">12</div>
+          <div class="stat-label">Study Sections</div>
+          <div class="stat-change">↑ Learning hub</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">🌐</div>
+          <div class="stat-number">07</div>
+          <div class="stat-label">Languages Planned</div>
+          <div class="stat-change">↑ Multilingual</div>
+        </div>
+
+      </section>
+
+
+      <!-- CONTENT -->
+      <section class="content-grid">
+
+        <!-- QUICK MANAGEMENT -->
+        <div class="panel">
+
+          <div class="panel-head">
+
+            <div>
+              <div class="panel-title">
+                Quick Management
+              </div>
+
+              <div class="panel-subtitle">
+                Frequently used administration tools
+              </div>
+            </div>
+
+            <a href="#" class="view-all" id="viewAll">
+              View all →
+            </a>
+
+          </div>
+
+
+          <div class="quick-grid">
+
+            <button
+              class="quick-card"
+              data-section="services"
+            >
+              <div class="quick-icon">⚡</div>
+              <div class="quick-title">Manage Services</div>
+              <div class="quick-desc">
+                Add, edit and organize portal services.
+              </div>
+            </button>
+
+            <button
+              class="quick-card"
+              data-section="notices"
+            >
+              <div class="quick-icon">🔔</div>
+              <div class="quick-title">Publish Notice</div>
+              <div class="quick-desc">
+                Manage important announcements and updates.
+              </div>
+            </button>
+
+            <button
+              class="quick-card"
+              data-section="banners"
+            >
+              <div class="quick-icon">🖼️</div>
+              <div class="quick-title">Banners & Posters</div>
+              <div class="quick-desc">
+                Manage homepage promotional content.
+              </div>
+            </button>
+
+            <button
+              class="quick-card"
+              data-section="ai"
+            >
+              <div class="quick-icon">🤖</div>
+              <div class="quick-title">A1 AI Control</div>
+              <div class="quick-desc">
+                Control the temporary AI assistant system.
+              </div>
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ACTIVITY -->
+        <div class="panel">
+
+          <div class="panel-head">
+
+            <div>
+              <div class="panel-title">
+                Recent Activity
+              </div>
+
+              <div class="panel-subtitle">
+                Local dashboard activity
+              </div>
+            </div>
+
+          </div>
+
+          <div class="activity">
+
+            <div class="activity-item">
+              <div class="activity-icon">🌐</div>
+
+              <div class="activity-text">
+                <strong>Website is online</strong>
+                <span>
+                  A1 Computer public portal is available.
+                </span>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">📚</div>
+
+              <div class="activity-text">
+                <strong>Study hub active</strong>
+                <span>
+                  Student and exam sections are available.
+                </span>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">🛠️</div>
+
+              <div class="activity-text">
+                <strong>Admin system initialized</strong>
+                <span>
+                  Dashboard interface is ready for backend integration.
+                </span>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">🚀</div>
+
+              <div class="activity-text">
+                <strong>Next-gen upgrade</strong>
+                <span>
+                  Backend and database integration is the next phase.
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <footer class="footer">
+
+        <span>
+          © <span id="year"></span> A1 Computer • New Bus Stand, Ajaigarh
+        </span>
+
+        <span>
+          Admin Dashboard • Development Version
+        </span>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+
+  <div class="toast" id="toast"></div>
+
+
+  <script>
+    (function () {
+
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const logoutButton = document.getElementById("logoutButton");
+      const siteButton = document.getElementById("siteButton");
+      const refreshButton = document.getElementById("refreshButton");
+      const toast = document.getElementById("toast");
+      const profileName = document.getElementById("profileName");
+
+      document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+
+      /* AUTH CHECK */
+
+      const loggedIn =
+        sessionStorage.getItem("a1_admin_logged_in");
+
+      if (loggedIn !== "true") {
+        window.location.replace("login.html");
+        return;
+      }
+
+
+      /* ADMIN NAME */
+
+      const savedAdmin =
+        sessionStorage.getItem("a1_admin_id");
+
+      if (savedAdmin) {
+        profileName.textContent = savedAdmin;
+      }
+
+
+      /* MOBILE MENU */
+
+      function openMenu() {
+        sidebar.classList.add("open");
+        overlay.classList.add("show");
+      }
+
+      function closeMenu() {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("show");
+      }
+
+      mobileMenu.addEventListener("click", openMenu);
+      overlay.addEventListener("click", closeMenu);
+
+
+      /* TOAST */
+
+      let toastTimer;
+
+      function showToast(text) {
+
+        clearTimeout(toastTimer);
+
+        toast.textContent = text;
+        toast.classList.add("show");
+
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("show");
+        }, 2400);
+
+      }
+
+
+      /* NAVIGATION */
+
+      const navItems =
+        document.querySelectorAll(".nav-item");
+
+      function handleSection(section) {
+
+        navItems.forEach(function (item) {
+          item.classList.toggle(
+            "active",
+            item.dataset.section === section
+          );
+        });
+
+        closeMenu();
+
+        if (section === "dashboard") {
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+          return;
+        }
+
+        showToast(
+          section.charAt(0).toUpperCase() +
+          section.slice(1) +
+          " management module will open here."
+        );
+
+      }
+
+
+      navItems.forEach(function (item) {
+
+        item.addEventListener("click", function () {
+
+          handleSection(item.dataset.section);
+
+        });
+
+      });
+
+
+      /* QUICK CARDS */
+
+      document
+        .querySelectorAll(".quick-card")
+        .forEach(function (card) {
+
+          card.addEventListener("click", function () {
+
+            handleSection(card.dataset.section);
+
+          });
+
+        });
+
+
+      /* VIEW ALL */
+
+      document
+        .getElementById("viewAll")
+        .addEventListener("click", function (event) {
+
+          event.preventDefault();
+
+          showToast(
+            "All management modules are listed in the sidebar."
+          );
+
+        });
+
+
+      /* OPEN PUBLIC WEBSITE */
+
+      siteButton.addEventListener("click", function () {
+
+        window.open(
+          "../index.html",
+          "_blank"
+        );
+
+      });
+
+
+      /* REFRESH */
+
+      refreshButton.addEventListener("click", function () {
+
+        showToast("Refreshing dashboard...");
+
+        setTimeout(function () {
+          window.location.reload();
+        }, 400);
+
+      });
+
+
+      /* LOGOUT */
+
+      logoutButton.addEventListener("click", function () {
+
+        const confirmLogout =
+          window.confirm(
+            "Do you want to logout from A1 Computer Admin?"
+          );
+
+        if (!confirmLogout) {
+          return;
+        }
+
+        sessionStorage.removeItem(
+          "a1_admin_logged_in"
+        );
+
+        sessionStorage.removeItem(
+          "a1_admin_id"
+        );
+
+        window.location.replace("login.html");
+
+      });
+
+
+      /* ESCAPE */
+
+      document.addEventListener(
+        "keydown",
+        function (event) {
+
+          if (event.key === "Escape") {
+            closeMenu();
+          }
+
+        }
+      );
+
+
+    })();
+  </script>
+
+</body>
+</html>
