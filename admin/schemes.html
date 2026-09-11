@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <title>A1 Computer — Schemes Manager</title>
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --bg:#07111f;
+      --panel:rgba(15,28,48,.88);
+      --border:rgba(255,255,255,.09);
+      --text:#f4f7fb;
+      --muted:#9eacc0;
+      --primary:#5ee7ff;
+      --secondary:#8b7cff;
+      --success:#42e6a4;
+      --warning:#ffc857;
+      --danger:#ff667a;
+      --shadow:0 20px 60px rgba(0,0,0,.28);
+    }
+
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%,rgba(94,231,255,.10),transparent 28%),
+        radial-gradient(circle at 90% 20%,rgba(139,124,255,.12),transparent 30%),
+        linear-gradient(135deg,#050b14,#0a1424 55%,#07111f);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+
+    .layout{display:flex;min-height:100vh}
+
+    .sidebar{
+      width:260px;
+      position:fixed;
+      inset:0 auto 0 0;
+      background:rgba(5,13,25,.96);
+      border-right:1px solid var(--border);
+      padding:22px 16px;
+      z-index:1000;
+      backdrop-filter:blur(20px);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:8px 10px 24px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+
+    .brand-logo{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:#06101d;
+      font-weight:900;
+      box-shadow:0 0 28px rgba(94,231,255,.22);
+    }
+
+    .brand h2{font-size:17px}
+    .brand span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+
+    .nav-title{
+      color:#718199;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      padding:8px 12px;
+    }
+
+    .nav-link{
+      width:100%;
+      border:0;
+      background:transparent;
+      color:#b8c4d5;
+      text-align:left;
+      padding:12px 13px;
+      border-radius:12px;
+      margin:3px 0;
+      display:flex;
+      align-items:center;
+      gap:11px;
+      transition:.2s;
+    }
+
+    .nav-link:hover,.nav-link.active{
+      color:white;
+      background:rgba(94,231,255,.09);
+    }
+
+    .nav-link.active{box-shadow:inset 3px 0 0 var(--primary)}
+
+    .sidebar-bottom{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:18px;
+    }
+
+    .main{
+      margin-left:260px;
+      width:calc(100% - 260px);
+      padding:26px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      margin-bottom:26px;
+    }
+
+    .page-title h1{
+      font-size:clamp(25px,4vw,38px);
+      letter-spacing:-.7px;
+    }
+
+    .page-title p{
+      color:var(--muted);
+      margin-top:6px;
+      font-size:14px;
+    }
+
+    .top-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      color:white;
+      border-radius:12px;
+      padding:11px 15px;
+      transition:.2s;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(94,231,255,.35);
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--primary),#62a7ff);
+      color:#06101d;
+      border:0;
+      font-weight:800;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:15px;
+      margin-bottom:20px;
+    }
+
+    .stat{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:19px;
+      box-shadow:var(--shadow);
+    }
+
+    .stat-label{color:var(--muted);font-size:12px}
+
+    .stat-value{
+      font-size:28px;
+      font-weight:850;
+      margin-top:8px;
+    }
+
+    .toolbar{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:15px;
+      display:grid;
+      grid-template-columns:1.6fr 1fr 1fr auto;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .field,.search-box{
+      width:100%;
+      background:rgba(255,255,255,.045);
+      border:1px solid var(--border);
+      color:white;
+      border-radius:11px;
+      padding:11px 13px;
+      outline:none;
+    }
+
+    select.field option{
+      background:#0d192b;
+      color:white;
+    }
+
+    .schemes-card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .schemes-head{
+      padding:17px 19px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+
+    .schemes-head h3{font-size:16px}
+
+    .table-wrap{overflow-x:auto}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:950px;
+    }
+
+    th,td{
+      padding:15px 17px;
+      text-align:left;
+      border-bottom:1px solid var(--border);
+      white-space:nowrap;
+    }
+
+    th{
+      color:#8292a9;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    td{
+      color:#d9e1ec;
+      font-size:13px;
+    }
+
+    .scheme-name{
+      display:flex;
+      align-items:center;
+      gap:11px;
+    }
+
+    .scheme-icon{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:rgba(139,124,255,.10);
+      border:1px solid rgba(139,124,255,.18);
+      font-size:19px;
+    }
+
+    .scheme-title{
+      font-weight:750;
+      color:white;
+    }
+
+    .scheme-dept{
+      color:var(--muted);
+      font-size:11px;
+      margin-top:3px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      border-radius:999px;
+      padding:5px 9px;
+      font-size:10px;
+      font-weight:800;
+    }
+
+    .badge.active{
+      color:#55efac;
+      background:rgba(66,230,164,.10);
+    }
+
+    .badge.closed{
+      color:#ff8898;
+      background:rgba(255,102,122,.10);
+    }
+
+    .badge.pending{
+      color:#ffd56b;
+      background:rgba(255,200,87,.10);
+    }
+
+    .actions{display:flex;gap:7px}
+
+    .icon-btn{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:#cbd6e4;
+      border-radius:9px;
+      width:34px;
+      height:34px;
+    }
+
+    .icon-btn:hover{
+      border-color:rgba(94,231,255,.35);
+      color:white;
+    }
+
+    .empty{
+      display:none;
+      text-align:center;
+      padding:45px 20px;
+      color:var(--muted);
+    }
+
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.68);
+      backdrop-filter:blur(8px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:3000;
+    }
+
+    .modal-backdrop.show{display:flex}
+
+    .modal{
+      width:min(700px,100%);
+      max-height:90vh;
+      overflow-y:auto;
+      background:#0b1728;
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:0 30px 90px rgba(0,0,0,.5);
+    }
+
+    .modal-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:19px 21px;
+      border-bottom:1px solid var(--border);
+    }
+
+    .modal-head h2{font-size:18px}
+
+    .close{
+      border:0;
+      background:rgba(255,255,255,.06);
+      color:white;
+      width:35px;
+      height:35px;
+      border-radius:10px;
+      font-size:19px;
+    }
+
+    .form{
+      padding:20px;
+      display:grid;
+      gap:14px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .form-group label{
+      display:block;
+      color:#9ba9bd;
+      font-size:11px;
+      margin-bottom:6px;
+    }
+
+    textarea.field{
+      min-height:105px;
+      resize:vertical;
+    }
+
+    .modal-footer{
+      display:flex;
+      justify-content:flex-end;
+      gap:9px;
+      padding:16px 20px;
+      border-top:1px solid var(--border);
+    }
+
+    .toast{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:5000;
+      background:#122238;
+      border:1px solid rgba(94,231,255,.22);
+      color:white;
+      padding:13px 16px;
+      border-radius:13px;
+      box-shadow:0 15px 40px rgba(0,0,0,.35);
+      transform:translateY(20px);
+      opacity:0;
+      pointer-events:none;
+      transition:.25s;
+    }
+
+    .toast.show{
+      transform:translateY(0);
+      opacity:1;
+    }
+
+    .mobile-menu{
+      display:none;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      color:white;
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      font-size:20px;
+    }
+
+    @media(max-width:1050px){
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .toolbar{grid-template-columns:1fr 1fr}
+    }
+
+    @media(max-width:760px){
+      .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+      }
+
+      .sidebar.open{transform:translateX(0)}
+
+      .main{
+        margin-left:0;
+        width:100%;
+        padding:18px;
+      }
+
+      .mobile-menu{display:block}
+
+      .topbar{align-items:flex-start}
+
+      .top-actions .btn{
+        padding:9px 11px;
+        font-size:12px;
+      }
+
+      .toolbar{grid-template-columns:1fr}
+
+      .stats{grid-template-columns:1fr 1fr}
+
+      .form-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:460px){
+      .stats{grid-template-columns:1fr}
+      .page-title h1{font-size:26px}
+      .top-actions{display:none}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <div class="brand-logo">A1</div>
+      <div>
+        <h2>A1 Computer</h2>
+        <span>Admin Control Center</span>
+      </div>
+    </div>
+
+    <div class="nav-title">Management</div>
+
+    <button class="nav-link" onclick="go('dashboard.html')">📊 Dashboard</button>
+    <button class="nav-link" onclick="go('services.html')">🧩 Services</button>
+    <button class="nav-link" onclick="go('categories.html')">🗂️ Categories</button>
+    <button class="nav-link" onclick="go('students.html')">🎓 Students</button>
+    <button class="nav-link" onclick="go('jobs.html')">💼 Jobs</button>
+    <button class="nav-link active">🎁 Schemes</button>
+    <button class="nav-link" onclick="coming('Land module')">🏠 Land</button>
+    <button class="nav-link" onclick="coming('Documents module')">📄 Documents</button>
+    <button class="nav-link" onclick="coming('Notices module')">📢 Notices</button>
+
+    <div class="nav-title">System</div>
+
+    <button class="nav-link" onclick="coming('Banners module')">🖼️ Banners</button>
+    <button class="nav-link" onclick="coming('AI module')">🤖 AI</button>
+    <button class="nav-link" onclick="coming('Languages module')">🌐 Languages</button>
+    <button class="nav-link" onclick="coming('Official Links module')">🔗 Official Links</button>
+    <button class="nav-link" onclick="coming('Users module')">👥 Users</button>
+    <button class="nav-link" onclick="coming('Settings module')">⚙️ Settings</button>
+
+    <div class="sidebar-bottom">
+      <button class="nav-link" onclick="openSite()">🌐 Public Website</button>
+      <button class="nav-link" onclick="logout()">🚪 Logout</button>
+    </div>
+
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+
+        <div class="page-title">
+          <h1>Schemes Manager</h1>
+          <p>Manage government schemes, benefits and welfare programs.</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="btn" onclick="refreshPage()">↻ Refresh</button>
+        <button class="btn" onclick="openSite()">View Website</button>
+        <button class="btn btn-primary" onclick="openAdd()">＋ Add Scheme</button>
+      </div>
+
+    </div>
+
+    <section class="stats">
+
+      <div class="stat">
+        <div class="stat-label">Total Schemes</div>
+        <div class="stat-value" id="totalSchemes">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-label">Active Schemes</div>
+        <div class="stat-value" id="activeSchemes">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-label">Beneficiaries</div>
+        <div class="stat-value" id="beneficiaries">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-label">Closing Soon</div>
+        <div class="stat-value" id="closingSoon">0</div>
+      </div>
+
+    </section>
+
+    <section class="toolbar">
+
+      <input
+        id="search"
+        class="search-box"
+        type="search"
+        placeholder="🔍 Search scheme, department, benefit..."
+        oninput="renderSchemes()"
+      >
+
+      <select id="categoryFilter" class="field" onchange="renderSchemes()">
+        <option value="">All Categories</option>
+        <option value="Education">Education</option>
+        <option value="Women">Women</option>
+        <option value="Farmers">Farmers</option>
+        <option value="Employment">Employment</option>
+        <option value="Health">Health</option>
+        <option value="Housing">Housing</option>
+        <option value="Social Welfare">Social Welfare</option>
+      </select>
+
+      <select id="statusFilter" class="field" onchange="renderSchemes()">
+        <option value="">All Status</option>
+        <option value="Active">Active</option>
+        <option value="Pending">Pending</option>
+        <option value="Closed">Closed</option>
+      </select>
+
+      <button class="btn" onclick="clearFilters()">Clear</button>
+
+    </section>
+
+    <section class="schemes-card">
+
+      <div class="schemes-head">
+        <h3>Government Schemes</h3>
+        <span id="resultCount" style="color:#8797ad;font-size:12px;">0 schemes</span>
+      </div>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Scheme</th>
+              <th>Category</th>
+              <th>Department</th>
+              <th>Benefit</th>
+              <th>Beneficiaries</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody id="schemesBody"></tbody>
+
+        </table>
+
+        <div class="empty" id="emptyState">
+          No schemes found for the selected filters.
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<div class="modal-backdrop" id="modal">
+
+  <div class="modal">
+
+    <div class="modal-head">
+      <h2 id="modalTitle">Add Scheme</h2>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <form class="form" onsubmit="saveScheme(event)">
+
+      <input type="hidden" id="editId">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Scheme Name</label>
+          <input
+            id="schemeName"
+            class="field"
+            required
+            placeholder="e.g. Scholarship Scheme"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Department</label>
+          <input
+            id="department"
+            class="field"
+            required
+            placeholder="e.g. Government Department"
+          >
+        </div>
+
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Category</label>
+
+          <select id="category" class="field" required>
+            <option value="">Select Category</option>
+            <option>Education</option>
+            <option>Women</option>
+            <option>Farmers</option>
+            <option>Employment</option>
+            <option>Health</option>
+            <option>Housing</option>
+            <option>Social Welfare</option>
+          </select>
+
+        </div>
+
+        <div class="form-group">
+          <label>Target Beneficiaries</label>
+
+          <input
+            id="target"
+            class="field"
+            required
+            placeholder="e.g. Students"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Benefit</label>
+
+          <input
+            id="benefit"
+            class="field"
+            required
+            placeholder="e.g. Financial Assistance"
+          >
+
+        </div>
+
+        <div class="form-group">
+          <label>Beneficiary Count</label>
+
+          <input
+            id="beneficiaryCount"
+            class="field"
+            type="number"
+            min="0"
+            value="0"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Last Date</label>
+
+          <input
+            id="lastDate"
+            class="field"
+            type="date"
+          >
+
+        </div>
+
+        <div class="form-group">
+          <label>Status</label>
+
+          <select id="status" class="field">
+            <option>Active</option>
+            <option>Pending</option>
+            <option>Closed</option>
+          </select>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Official Link</label>
+
+        <input
+          id="officialLink"
+          class="field"
+          type="url"
+          placeholder="https://..."
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Scheme Description</label>
+
+        <textarea
+          id="description"
+          class="field"
+          placeholder="Basic information about the scheme..."
+        ></textarea>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button
+          type="button"
+          class="btn"
+          onclick="closeModal()"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          Save Scheme
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+const STORAGE_KEY = "a1_schemes_manager";
+
+let schemes =
+  JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") ||
+  [
+    {
+      id:1,
+      name:"Student Scholarship Scheme",
+      department:"Education Department",
+      category:"Education",
+      target:"Students",
+      benefit:"Financial Assistance",
+      beneficiaryCount:1250,
+      lastDate:"2026-10-30",
+      status:"Active",
+      officialLink:"",
+      description:"Educational financial assistance for eligible students."
+    },
+    {
+      id:2,
+      name:"Women Welfare Scheme",
+      department:"Women & Child Development",
+      category:"Women",
+      target:"Women",
+      benefit:"Financial Support",
+      beneficiaryCount:850,
+      lastDate:"2026-11-15",
+      status:"Active",
+      officialLink:"",
+      description:"Support program for eligible women."
+    },
+    {
+      id:3,
+      name:"Farmer Assistance Scheme",
+      department:"Agriculture Department",
+      category:"Farmers",
+      target:"Farmers",
+      benefit:"Agricultural Assistance",
+      beneficiaryCount:2300,
+      lastDate:"",
+      status:"Active",
+      officialLink:"",
+      description:"Agricultural support for eligible farmers."
+    },
+    {
+      id:4,
+      name:"Employment Support Scheme",
+      department:"Employment Department",
+      category:"Employment",
+      target:"Job Seekers",
+      benefit:"Employment Assistance",
+      beneficiaryCount:620,
+      lastDate:"2026-09-25",
+      status:"Pending",
+      officialLink:"",
+      description:"Employment support and career assistance."
+    },
+    {
+      id:5,
+      name:"Health Benefit Scheme",
+      department:"Health Department",
+      category:"Health",
+      target:"Eligible Families",
+      benefit:"Health Support",
+      beneficiaryCount:1750,
+      lastDate:"",
+      status:"Active",
+      officialLink:"",
+      description:"Health related welfare support."
+    }
+  ];
+
+function saveStorage(){
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(schemes)
+  );
+}
+
+function renderSchemes(){
+
+  const body =
+    document.getElementById("schemesBody");
+
+  const search =
+    document.getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const category =
+    document.getElementById("categoryFilter").value;
+
+  const status =
+    document.getElementById("statusFilter").value;
+
+  const filtered =
+    schemes.filter(scheme => {
+
+      const text =
+        (
+          scheme.name +
+          " " +
+          scheme.department +
+          " " +
+          scheme.target +
+          " " +
+          scheme.benefit
+        ).toLowerCase();
+
+      const matchesSearch =
+        !search ||
+        text.includes(search);
+
+      const matchesCategory =
+        !category ||
+        scheme.category === category;
+
+      const matchesStatus =
+        !status ||
+        scheme.status === status;
+
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesStatus
+      );
+    });
+
+  body.innerHTML = "";
+
+  filtered.forEach(scheme => {
+
+    const tr =
+      document.createElement("tr");
+
+    tr.innerHTML = `
+
+      <td>
+
+        <div class="scheme-name">
+
+          <div class="scheme-icon">
+            🎁
+          </div>
+
+          <div>
+
+            <div class="scheme-title">
+              ${escapeHTML(scheme.name)}
+            </div>
+
+            <div class="scheme-dept">
+              ${escapeHTML(scheme.department)}
+            </div>
+
+          </div>
+
+        </div>
+
+      </td>
+
+      <td>
+        ${escapeHTML(scheme.category)}
+      </td>
+
+      <td>
+        ${escapeHTML(scheme.department)}
+      </td>
+
+      <td>
+        ${escapeHTML(scheme.benefit)}
+      </td>
+
+      <td>
+        ${Number(
+          scheme.beneficiaryCount || 0
+        ).toLocaleString()}
+      </td>
+
+      <td>
+
+        <span class="badge ${statusClass(scheme.status)}">
+          ${escapeHTML(scheme.status)}
+        </span>
+
+      </td>
+
+      <td>
+
+        <div class="actions">
+
+          <button
+            class="icon-btn"
+            title="View"
+            onclick="viewScheme(${scheme.id})"
+          >
+            👁
+          </button>
+
+          <button
+            class="icon-btn"
+            title="Edit"
+            onclick="editScheme(${scheme.id})"
+          >
+            ✏️
+          </button>
+
+          <button
+            class="icon-btn"
+            title="Delete"
+            onclick="deleteScheme(${scheme.id})"
+          >
+            🗑
+          </button>
+
+        </div>
+
+      </td>
+    `;
+
+    body.appendChild(tr);
+
+  });
+
+  document.getElementById("resultCount")
+    .textContent =
+    `${filtered.length} ${
+      filtered.length === 1
+        ? "scheme"
+        : "schemes"
+    }`;
+
+  document.getElementById("emptyState")
+    .style.display =
+    filtered.length
+      ? "none"
+      : "block";
+
+  updateStats();
+
+}
+
+function updateStats(){
+
+  const active =
+    schemes.filter(
+      s => s.status === "Active"
+    );
+
+  const totalBeneficiaries =
+    schemes.reduce(
+      (sum, scheme) =>
+        sum +
+        Number(
+          scheme.beneficiaryCount || 0
+        ),
+      0
+    );
+
+  const today =
+    new Date();
+
+  const closingSoon =
+    schemes.filter(scheme => {
+
+      if(
+        !scheme.lastDate ||
+        scheme.status === "Closed"
+      ){
+        return false;
+      }
+
+      const date =
+        new Date(
+          scheme.lastDate +
+          "T23:59:59"
+        );
+
+      const diff =
+        Math.ceil(
+          (date - today) /
+          86400000
+        );
+
+      return diff >= 0 && diff <= 10;
+
+    });
+
+  document.getElementById("totalSchemes")
+    .textContent =
+    schemes.length;
+
+  document.getElementById("activeSchemes")
+    .textContent =
+    active.length;
+
+  document.getElementById("beneficiaries")
+    .textContent =
+    totalBeneficiaries.toLocaleString();
+
+  document.getElementById("closingSoon")
+    .textContent =
+    closingSoon.length;
+
+}
+
+function openAdd(){
+
+  document.getElementById("modalTitle")
+    .textContent =
+    "Add Scheme";
+
+  document.getElementById("editId")
+    .value = "";
+
+  document.getElementById("schemeName")
+    .value = "";
+
+  document.getElementById("department")
+    .value = "";
+
+  document.getElementById("category")
+    .value = "";
+
+  document.getElementById("target")
+    .value = "";
+
+  document.getElementById("benefit")
+    .value = "";
+
+  document.getElementById("beneficiaryCount")
+    .value = "0";
+
+  document.getElementById("lastDate")
+    .value = "";
+
+  document.getElementById("status")
+    .value = "Active";
+
+  document.getElementById("officialLink")
+    .value = "";
+
+  document.getElementById("description")
+    .value = "";
+
+  document.getElementById("modal")
+    .classList.add("show");
+
+}
+
+function editScheme(id){
+
+  const scheme =
+    schemes.find(
+      s => s.id === id
+    );
+
+  if(!scheme) return;
+
+  document.getElementById("modalTitle")
+    .textContent =
+    "Edit Scheme";
+
+  document.getElementById("editId")
+    .value =
+    scheme.id;
+
+  document.getElementById("schemeName")
+    .value =
+    scheme.name;
+
+  document.getElementById("department")
+    .value =
+    scheme.department;
+
+  document.getElementById("category")
+    .value =
+    scheme.category;
+
+  document.getElementById("target")
+    .value =
+    scheme.target;
+
+  document.getElementById("benefit")
+    .value =
+    scheme.benefit;
+
+  document.getElementById("beneficiaryCount")
+    .value =
+    scheme.beneficiaryCount || 0;
+
+  document.getElementById("lastDate")
+    .value =
+    scheme.lastDate || "";
+
+  document.getElementById("status")
+    .value =
+    scheme.status;
+
+  document.getElementById("officialLink")
+    .value =
+    scheme.officialLink || "";
+
+  document.getElementById("description")
+    .value =
+    scheme.description || "";
+
+  document.getElementById("modal")
+    .classList.add("show");
+
+}
+
+function saveScheme(event){
+
+  event.preventDefault();
+
+  const id =
+    Number(
+      document.getElementById("editId").value
+    );
+
+  const data = {
+
+    id:
+      id ||
+      Date.now(),
+
+    name:
+      document.getElementById("schemeName")
+        .value
+        .trim(),
+
+    department:
+      document.getElementById("department")
+        .value
+        .trim(),
+
+    category:
+      document.getElementById("category")
+        .value,
+
+    target:
+      document.getElementById("target")
+        .value
+        .trim(),
+
+    benefit:
+      document.getElementById("benefit")
+        .value
+        .trim(),
+
+    beneficiaryCount:
+      Number(
+        document.getElementById(
+          "beneficiaryCount"
+        ).value || 0
+      ),
+
+    lastDate:
+      document.getElementById("lastDate")
+        .value,
+
+    status:
+      document.getElementById("status")
+        .value,
+
+    officialLink:
+      document.getElementById(
+        "officialLink"
+      ).value.trim(),
+
+    description:
+      document.getElementById(
+        "description"
+      ).value.trim()
+
+  };
+
+  if(id){
+
+    const index =
+      schemes.findIndex(
+        s => s.id === id
+      );
+
+    if(index !== -1){
+
+      schemes[index] =
+        data;
+
+      showToast(
+        "Scheme updated successfully"
+      );
+
+    }
+
+  }else{
+
+    schemes.unshift(data);
+
+    showToast(
+      "New scheme added successfully"
+    );
+
+  }
+
+  saveStorage();
+
+  closeModal();
+
+  renderSchemes();
+
+}
+
+function viewScheme(id){
+
+  const scheme =
+    schemes.find(
+      s => s.id === id
+    );
+
+  if(!scheme) return;
+
+  alert(
+    `${scheme.name}\n\n` +
+    `Department: ${scheme.department}\n` +
+    `Category: ${scheme.category}\n` +
+    `Target: ${scheme.target}\n` +
+    `Benefit: ${scheme.benefit}\n` +
+    `Beneficiaries: ${Number(
+      scheme.beneficiaryCount || 0
+    ).toLocaleString()}\n` +
+    `Status: ${scheme.status}\n\n` +
+    `${scheme.description || "No description available."}`
+  );
+
+}
+
+function deleteScheme(id){
+
+  const scheme =
+    schemes.find(
+      s => s.id === id
+    );
+
+  if(!scheme) return;
+
+  const ok =
+    confirm(
+      `Delete "${scheme.name}"?\n\n` +
+      `This action cannot be undone.`
+    );
+
+  if(!ok) return;
+
+  schemes =
+    schemes.filter(
+      s => s.id !== id
+    );
+
+  saveStorage();
+
+  renderSchemes();
+
+  showToast(
+    "Scheme deleted"
+  );
+
+}
+
+function closeModal(){
+
+  document.getElementById("modal")
+    .classList.remove("show");
+
+}
+
+function clearFilters(){
+
+  document.getElementById("search")
+    .value = "";
+
+  document.getElementById("categoryFilter")
+    .value = "";
+
+  document.getElementById("statusFilter")
+    .value = "";
+
+  renderSchemes();
+
+}
+
+function statusClass(status){
+
+  if(status === "Active"){
+    return "active";
+  }
+
+  if(status === "Closed"){
+    return "closed";
+  }
+
+  return "pending";
+
+}
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      () => {
+        toast.classList.remove("show");
+      },
+      2500
+    );
+
+}
+
+function refreshPage(){
+
+  renderSchemes();
+
+  showToast(
+    "Schemes refreshed"
+  );
+
+}
+
+function toggleSidebar(){
+
+  document.getElementById("sidebar")
+    .classList.toggle("open");
+
+}
+
+function go(page){
+
+  window.location.href =
+    page;
+
+}
+
+function openSite(){
+
+  window.open(
+    "../index.html",
+    "_blank"
+  );
+
+}
+
+function coming(name){
+
+  showToast(
+    name +
+    " will be connected in the next module"
+  );
+
+}
+
+function logout(){
+
+  sessionStorage.removeItem(
+    "a1_admin_logged_in"
+  );
+
+  window.location.href =
+    "login.html";
+
+}
+
+document
+  .getElementById("modal")
+  .addEventListener(
+    "click",
+    function(event){
+
+      if(event.target === this){
+        closeModal();
+      }
+
+    }
+  );
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+      closeModal();
+    }
+
+  }
+);
+
+renderSchemes();
+
+</script>
+
+</body>
+</html>
